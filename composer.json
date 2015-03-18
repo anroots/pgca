@@ -1,0 +1,39 @@
+{
+    "name": "anroots/pgca",
+    "description": ":package_description",
+    "keywords": [
+        "pgca"
+    ],
+    "homepage": "https://github.com/anroots/pgca",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ando Roots",
+            "email": "ando@sqroot.eu",
+            "homepage": "http://sqroot.eu",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*",
+        "scrutinizer/ocular": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "League\\Skeleton\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "League\\Skeleton\\Test\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
