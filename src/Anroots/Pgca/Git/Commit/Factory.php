@@ -9,7 +9,8 @@ class Factory implements FactoryInterface
     public function create(array $data)
     {
         $commit = new Commit;
-        $commit->setHash($data['hash']);
+        $commit->setHash($data['hash'])
+            ->setMessage($data['message']);
 
         return $commit;
     }

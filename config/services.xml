@@ -32,6 +32,9 @@
         <service id="report" class="Anroots\Pgca\Report"/>
         <service id="rule.violationFactory" class="Anroots\Pgca\Rule\ViolationFactory"/>
 
+        <!-- Filters -->
+        <service id="commit.filter.mergeFilter" class="Anroots\Pgca\Commit\Filter\MergeFilter" />
+
         <!-- Rules -->
         <service id="rule.abstractRule" abstract="true"
                  class="Anroots\Pgca\Rule\AbstractRule">

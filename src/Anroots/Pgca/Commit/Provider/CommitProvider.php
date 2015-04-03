@@ -8,4 +8,8 @@ interface CommitProviderInterface
      * @return \Generator
      */
     public function getCommits();
+
+    public function setFilters(array $filters);
+
+    public function getFilters();
 }

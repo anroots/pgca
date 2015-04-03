@@ -4,6 +4,7 @@ namespace Anroots\Pgca\Cli\Command;
 
 use Anroots\Pgca\Cli\ContainerAwareCommand;
 use Anroots\Pgca\Commit\Analyzer\CommitAnalyzerInterface;
+use Anroots\Pgca\Commit\Provider\CommitProviderInterface;
 use Anroots\Pgca\Rule\ViolationInterface;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,7 +29,11 @@ class AnalyzeCommand extends ContainerAwareCommand
         /** @var CommitAnalyzerInterface $analyzer */
         $analyzer = $this->getContainer()->get('commit.analyzer.messageAnalyzer');
 
+        /** @var CommitProviderInterface $fileSystemProvider */
         $fileSystemProvider = $this->getContainer()->get('commit.provider.fileSystemProvider');
+        $mergeFilter = $this->getContainer()->get('commit.filter.mergeFilter');
+        $fileSystemProvider->setFilters([$mergeFilter]);
+
         $analyzer->setCommitProvider($fileSystemProvider);
         $analyzer->run();
 
@@ -42,16 +47,22 @@ class AnalyzeCommand extends ContainerAwareCommand
      * @param OutputInterface $output
      * @param ViolationInterface[] $violations
      */
-    private function printViolations(OutputInterface $output, array $violations = [])
+    private function printViolations(OutputInterface $output, array $violations = null)
     {
 
+        if ($violations === null) {
+            $output->writeln('<info>No violations</info>');
+
+            return;
+        }
         $table = new Table($output);
-        $table->setHeaders(['Commit', 'Rule']);
+        $table->setHeaders(['Commit', 'Rule', 'Message']);
 
         foreach ($violations as $violation) {
             $table->addRow([
                 $violation->getCommit()->getHash(),
-                $violation->getRule()->getName()
+                $violation->getRule()->getName(),
+                $violation->getCommit()->getMessage()
             ]);
         }
         $table->render();
