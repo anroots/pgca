@@ -39,7 +39,7 @@ abstract class AbstractAnalyzer implements CommitAnalyzerInterface
     public function run()
     {
         if (!count($this->rules)) {
-            throw new NoRulesException('No analyzer rules provided');
+            throw new RuleException('No analyzer rules provided');
         }
 
         $commits = $this->commitProvider->getCommits();

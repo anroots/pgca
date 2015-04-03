@@ -52,5 +52,7 @@
 
         <service id="rule.message.hasSummaryAndDescription" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\HasSummaryAndDescriptionRule"/>
+        <service id="rule.message.isReallyShort" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\IsReallyShortRule"/>
     </services>
 </container>

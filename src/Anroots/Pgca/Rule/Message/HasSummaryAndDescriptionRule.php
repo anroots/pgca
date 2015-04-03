@@ -11,6 +11,7 @@ class HasSummaryAndDescriptionRule extends AbstractRule
 
     public function apply(CommitInterface $commit)
     {
-        $this->addViolation($commit);
+        // Todo
+        //$this->addViolation($commit);
     }
 }

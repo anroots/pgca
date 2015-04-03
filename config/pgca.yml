@@ -9,3 +9,4 @@ analyzers:
   message:
     rules:
       - message.hasSummaryAndDescription
+      - message.isReallyShort

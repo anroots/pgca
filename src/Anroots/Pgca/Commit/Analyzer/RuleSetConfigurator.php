@@ -36,12 +36,13 @@ class RuleSetConfigurator
         $rules = [];
         foreach ($config['rules'] as $ruleId) {
             $serviceId = 'rule.' . $ruleId;
-            if ($this->container->has($serviceId)) {
-                /** @var RuleInterface $rule */
-                $rule = $this->container->get($serviceId);
-                $rule->setAnalyzer($analyzer);
-                $rules[] = $rule;
+            if (!$this->container->has($serviceId)) {
+                throw new RuleException(sprintf('Rule %s not found', $ruleId));
             }
+            /** @var RuleInterface $rule */
+            $rule = $this->container->get($serviceId);
+            $rule->setAnalyzer($analyzer);
+            $rules[] = $rule;
         }
         $analyzer->setRules($rules);
 
