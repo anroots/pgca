@@ -2,24 +2,34 @@
 
 namespace Anroots\Pgca\Commit\Provider;
 
+use Gitonomy\Git\Commit;
+use Gitonomy\Git\Repository;
+
 class FileSystemProvider extends AbstractProvider
 {
 
+    /**
+     * @var Repository
+     */
+    private $repository;
+
+    private $defaultOptions = [
+        'path'=> '.'
+    ];
+
+    public function setRepository(Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function getCommits()
     {
-        $commits = [
-            [
-                'hash' => 'b1c23af2c7e2ed95276d4844d406b5ec74488944',
-                'message' => 'Merge pull request #1009 from mikey/das'
-            ],
-            [
-                'hash' => 'b1c23ff2c7e2ed95276d4844d406b5ec74488944',
-                'message' => 'Load some files'
-            ],
-        ];
 
-        foreach ($commits as $commitData) {
-            $commit = $this->commitFactory->create($commitData);
+        $log = $this->repository->getLog();
+
+        foreach ($log->getCommits() as $commitData) {
+
+            $commit = $this->createCommit($commitData);
 
             if ($this->skipCommit($commit)) {
                 continue;
@@ -27,5 +37,31 @@ class FileSystemProvider extends AbstractProvider
 
             yield $commit;
         }
+    }
+
+    private function createCommit(Commit $commitData)
+    {
+        return $this->commitFactory->create([
+            'hash' => $commitData->getHash(),
+            'message' => $commitData->getMessage()
+        ]);
+    }
+
+    public function configure(array $options)
+    {
+        $options = array_replace_recursive($this->defaultOptions,$options);
+
+        $this->setRepositoryPath($options['path']);
+    }
+
+    private function setRepositoryPath($path)
+    {
+        $repositoryClass = $this->getRepositoryServiceClass();
+        $this->repository = new $repositoryClass($path);
+    }
+
+    private function getRepositoryServiceClass()
+    {
+        return Repository::class;
     }
 }

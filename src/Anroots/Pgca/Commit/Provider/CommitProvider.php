@@ -12,4 +12,6 @@ interface CommitProviderInterface
     public function setFilters(array $filters);
 
     public function getFilters();
+
+    public function configure(array $options);
 }

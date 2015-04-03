@@ -5,7 +5,9 @@ namespace Anroots\Pgca\Cli\Command;
 use Anroots\Pgca\Cli\ContainerAwareCommand;
 use Anroots\Pgca\Commit\Analyzer\CommitAnalyzerInterface;
 use Anroots\Pgca\Commit\Provider\CommitProviderInterface;
+use Anroots\Pgca\ConfigInterface;
 use Anroots\Pgca\Rule\ViolationInterface;
+use Gitonomy\Git\Repository;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -13,10 +15,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class AnalyzeCommand extends ContainerAwareCommand
 {
+
+    /**
+     * @var ConfigInterface
+     */
+    protected $config;
+
     public function configure()
     {
         $this->setName('analyze')
-            ->addOption('provider', 'p', InputOption::VALUE_OPTIONAL, 'Git commit message provider to use', 'fs')
             ->setDescription('Analyses Git commit messages');
     }
 
@@ -26,21 +33,38 @@ class AnalyzeCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->config = $this->getContainer()->get('config');
+
         /** @var CommitAnalyzerInterface $analyzer */
         $analyzer = $this->getContainer()->get('commit.analyzer.messageAnalyzer');
 
-        /** @var CommitProviderInterface $fileSystemProvider */
-        $fileSystemProvider = $this->getContainer()->get('commit.provider.fileSystemProvider');
-        $mergeFilter = $this->getContainer()->get('commit.filter.mergeFilter');
-        $fileSystemProvider->setFilters([$mergeFilter]);
+        $provider = $this->providerFactory();
+        $analyzer->setCommitProvider($provider);
 
-        $analyzer->setCommitProvider($fileSystemProvider);
         $analyzer->run();
 
         $violations = $analyzer->getReport()->getViolations();
         $this->printViolations($output, $violations);
 
         return 0;
+    }
+
+    /**
+     * @return CommitProviderInterface
+     */
+    private function providerFactory()
+    {
+        $providerName = $this->config->get('provider.name');
+        $providerServiceName = 'commit.provider.'.$providerName;
+
+        /** @var CommitProviderInterface $provider */
+        $provider = $this->getContainer()->get($providerServiceName);
+        $provider->configure($this->config->get('provider'));
+
+        $mergeFilter = $this->getContainer()->get('commit.filter.mergeFilter');
+        $provider->setFilters([$mergeFilter]);
+
+        return $provider;
     }
 
     /**

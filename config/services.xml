@@ -25,15 +25,23 @@
 
         <service id="git.commit.factory" class="Anroots\Pgca\Git\Commit\Factory"/>
 
-        <service id="commit.provider.fileSystemProvider" class="Anroots\Pgca\Commit\Provider\FileSystemProvider">
-            <argument type="service" id="git.commit.factory"/>
-        </service>
 
         <service id="report" class="Anroots\Pgca\Report"/>
         <service id="rule.violationFactory" class="Anroots\Pgca\Rule\ViolationFactory"/>
 
         <!-- Filters -->
         <service id="commit.filter.mergeFilter" class="Anroots\Pgca\Commit\Filter\MergeFilter" />
+
+        <!-- Providers -->
+        <service id="commit.provider.abstractProvider" class="Anroots\Pgca\Commit\Provider\AbstractProvider"
+                 abstract="true">
+            <argument type="service" id="git.commit.factory"/>
+        </service>
+
+        <service id="commit.provider.fileSystemProvider" class="Anroots\Pgca\Commit\Provider\FileSystemProvider"
+                parent="commit.provider.abstractProvider">
+        </service>
+
 
         <!-- Rules -->
         <service id="rule.abstractRule" abstract="true"
