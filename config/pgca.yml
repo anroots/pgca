@@ -1,0 +1,4 @@
+analyzers:
+  message:
+    rules:
+      - message.hasSummaryAndDescription

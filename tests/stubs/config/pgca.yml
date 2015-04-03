@@ -1,0 +1,7 @@
+name: Orchestra
+instruments:
+ - piano
+ - violin
+ratings:
+  skills:
+    speed: high

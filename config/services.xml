@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="config" class="Anroots\Pgca\Config">
+            <call method="load"/>
+        </service>
+        <service id="commit.analyzer.ruleSetConfigurator" class="Anroots\Pgca\Commit\Analyzer\RuleSetConfigurator"
+                 public="false">
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="config"/>
+        </service>
+
+        <service id="commit.analyzer.abstractAnalyzer" abstract="true"
+                 class="Anroots\Pgca\Commit\Analyzer\AbstractAnalyzer">
+            <argument type="service" id="report"/>
+            <configurator service="commit.analyzer.ruleSetConfigurator" method="loadRules"/>
+        </service>
+        <service id="commit.analyzer.messageAnalyzer" class="Anroots\Pgca\Commit\Analyzer\MessageAnalyzer"
+                 parent="commit.analyzer.abstractAnalyzer"/>
+
+
+        <service id="git.commit.factory" class="Anroots\Pgca\Git\Commit\Factory"/>
+
+        <service id="commit.provider.fileSystemProvider" class="Anroots\Pgca\Commit\Provider\FileSystemProvider">
+            <argument type="service" id="git.commit.factory"/>
+        </service>
+
+        <service id="report" class="Anroots\Pgca\Report"/>
+        <service id="rule.violationFactory" class="Anroots\Pgca\Rule\ViolationFactory"/>
+
+        <!-- Rules -->
+        <service id="rule.abstractRule" abstract="true"
+                 class="Anroots\Pgca\Rule\AbstractRule">
+            <argument type="service" id="rule.violationFactory"/>
+
+        </service>
+
+        <service id="rule.message.hasSummaryAndDescription" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\HasSummaryAndDescriptionRule"/>
+    </services>
+</container>
