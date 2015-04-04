@@ -10,7 +10,7 @@ use Anroots\Pgca\Git\CommitInterface;
 class MergeFilter extends AbstractFilter
 {
 
-    public function apply(CommitInterface $commit)
+    public function isIncluded(CommitInterface $commit)
     {
         // Extremely naive implementation. Probably needs improving.
         $firstCars = substr($commit->getMessage(), 0, 5);

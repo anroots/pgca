@@ -29,8 +29,16 @@
         <service id="report" class="Anroots\Pgca\Report"/>
         <service id="rule.violationFactory" class="Anroots\Pgca\Rule\ViolationFactory"/>
 
+        <service id="abstractCollectionFactory" abstract="true">
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="commit.filter.filterSetFactory" class="Anroots\Pgca\Commit\Filter\FilterSetFactory"
+                parent="abstractCollectionFactory"/>
+
         <!-- Filters -->
         <service id="commit.filter.mergeFilter" class="Anroots\Pgca\Commit\Filter\MergeFilter" />
+        <service id="commit.filter.containsRegexFilter" class="Anroots\Pgca\Commit\Filter\ContainsRegexFilter" />
 
         <!-- Providers -->
         <service id="commit.provider.abstractProvider" class="Anroots\Pgca\Commit\Provider\AbstractProvider"
@@ -56,5 +64,6 @@
                  class="Anroots\Pgca\Rule\Message\IsReallyShortRule"/>
         <service id="rule.message.startsWithCapitalLetter" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\StartsWithCapitalLetterRule"/>
+
     </services>
 </container>

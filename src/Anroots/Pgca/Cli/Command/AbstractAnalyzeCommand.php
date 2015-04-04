@@ -4,7 +4,6 @@ namespace Anroots\Pgca\Cli\Command;
 
 use Anroots\Pgca\Cli\ContainerAwareCommand;
 use Anroots\Pgca\Commit\Analyzer\CommitAnalyzerInterface;
-use Anroots\Pgca\Commit\Filter\FilterException;
 use Anroots\Pgca\Commit\Provider\CommitProviderInterface;
 use Anroots\Pgca\ConfigInterface;
 use Anroots\Pgca\Rule\ViolationInterface;
@@ -72,16 +71,11 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         $provider = $this->getContainer()->get($providerServiceName);
         $provider->configure($providerConfig);
 
-        $filters = [];
-        foreach ($providerConfig['filters'] as $filterId) {
 
-            $filterName = 'commit.filter.' . $filterId;
-            if (!$this->getContainer()->has($filterName)) {
-                throw new FilterException(sprintf('Filter %s not found!', $filterId));
-            }
-            $filter = $this->getContainer()->get($filterName);
-            $filters[] = $filter;
-        }
+        $filterSetFactory = $this->getContainer()->get('commit.filter.filterSetFactory');
+
+        $filters = $filterSetFactory->create($providerConfig['filters']);
+
         $provider->setFilters($filters);
 
         return $provider;
