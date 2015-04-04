@@ -9,7 +9,7 @@
             <call method="load"/>
         </service>
 
-        <service id="abstractSetConfigurator" abstract="true" public="false">
+        <service id="abstractSetConfigurator" abstract="true">
             <argument type="service" id="service_container"/>
             <argument type="service" id="config"/>
         </service>
