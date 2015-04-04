@@ -36,6 +36,9 @@
         <service id="commit.filter.isNotMergeCommit" class="Anroots\Pgca\Commit\Filter\IsNotMergeCommit"/>
         <service id="commit.filter.containsRegex" class="Anroots\Pgca\Commit\Filter\ContainsRegex"/>
 
+        <!-- Report -->
+        <service id="report.simpleConsoleReport" class="Anroots\Pgca\Report\SimpleConsoleReport" />
+
         <!-- Providers -->
         <service id="commit.provider.abstractProvider" class="Anroots\Pgca\Commit\Provider\AbstractProvider"
                  abstract="true">
