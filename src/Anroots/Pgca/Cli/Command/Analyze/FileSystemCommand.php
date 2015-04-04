@@ -4,7 +4,6 @@ namespace Anroots\Pgca\Cli\Command\Analyze;
 
 use Anroots\Pgca\Cli\Command\AbstractAnalyzeCommand;
 use Anroots\Pgca\Commit\Provider\FileSystemProvider;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 
 class FileSystemCommand extends AbstractAnalyzeCommand

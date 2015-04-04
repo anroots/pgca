@@ -36,9 +36,10 @@ class ConfigTest extends TestCase
     /**
      * @covers ::get
      */
-    public function testGetReturnsCorrectValueForDotNotationKey(){
+    public function testGetReturnsCorrectValueForDotNotationKey()
+    {
         $actual = $this->config->get('ratings.skills.speed');
 
-        $this->assertSame('high',$actual);
+        $this->assertSame('high', $actual);
     }
 }

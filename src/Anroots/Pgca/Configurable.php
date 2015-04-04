@@ -2,12 +2,11 @@
 
 namespace Anroots\Pgca;
 
-use Anroots\Pgca\Git\CommitInterface;
+interface Configurable
+{
 
-interface Configurable {
 
-
-    public function configure(array $options =[]);
+    public function configure(array $options = []);
 
 
     public function isConfigured();

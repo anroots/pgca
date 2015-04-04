@@ -15,13 +15,6 @@ class ContainsRegex extends AbstractFilter
      */
     private $pattern;
 
-
-    protected function isIncluded(CommitInterface $commit)
-    {
-
-        return preg_match($this->pattern, $commit->getMessage()) === 1;
-    }
-
     public function isConfigured()
     {
         return !empty($this->pattern);
@@ -32,5 +25,11 @@ class ContainsRegex extends AbstractFilter
         if (array_key_exists('pattern', $options)) {
             $this->pattern = $options['pattern'];
         }
+    }
+
+    protected function isIncluded(CommitInterface $commit)
+    {
+
+        return preg_match($this->pattern, $commit->getMessage()) === 1;
     }
 }

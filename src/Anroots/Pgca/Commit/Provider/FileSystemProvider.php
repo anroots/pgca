@@ -8,7 +8,7 @@ use Gitonomy\Git\Repository;
 
 class FileSystemProvider extends AbstractProvider implements CollectionSetAwareInterface
 {
-const DEFAULT_LIMIT = 100;
+    const DEFAULT_LIMIT = 100;
     /**
      * @var Repository
      */
@@ -17,7 +17,7 @@ const DEFAULT_LIMIT = 100;
     private $defaultOptions = [
         'path' => '.',
         'from' => null,
-        'limit'=> self::DEFAULT_LIMIT
+        'limit' => self::DEFAULT_LIMIT
     ];
 
     private $options = [];
@@ -30,7 +30,7 @@ const DEFAULT_LIMIT = 100;
     public function getCommits()
     {
 
-        $log = $this->repository->getLog($this->options['from'],null,null,$this->options['limit']);
+        $log = $this->repository->getLog($this->options['from'], null, null, $this->options['limit']);
 
         $commits = $log->getCommits();
         foreach ($commits as $commitData) {
@@ -73,6 +73,6 @@ const DEFAULT_LIMIT = 100;
 
     public function setCollection(array $collection)
     {
-return $this->setFilters($collection);
+        return $this->setFilters($collection);
     }
 }

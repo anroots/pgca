@@ -2,6 +2,7 @@
 
 namespace Anroots\Pgca\Commit\Filter;
 
-class FilterException extends \Exception {
+class FilterException extends \Exception
+{
 
 }

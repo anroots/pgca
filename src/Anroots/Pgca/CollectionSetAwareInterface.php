@@ -2,6 +2,7 @@
 
 namespace Anroots\Pgca;
 
-interface CollectionSetAwareInterface {
+interface CollectionSetAwareInterface
+{
     public function setCollection(array $collection);
 }
