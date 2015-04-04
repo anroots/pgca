@@ -11,6 +11,7 @@ class FileSystemCommand extends AbstractAnalyzeCommand
     public function configure()
     {
         $this->setName('analyze:filesystem')
+            ->setAliases(['analyze'])
             ->addOption(
                 'from',
                 'f',
