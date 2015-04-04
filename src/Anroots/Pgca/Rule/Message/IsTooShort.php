@@ -10,6 +10,7 @@ class IsTooShort extends AbstractRule
     const MIN_LENGTH = 20;
 
     protected $name = 'message.isReallyShort';
+    protected $message = 'Commit message is really short';
 
     /**
      * @var int

@@ -30,15 +30,24 @@ class SimpleConsoleReport extends AbstractReport
         }
 
         $table = new Table($this->output);
-        $table->setHeaders(['Commit', 'Rule', 'Message']);
+        $table->setHeaders(['Commit', 'Message','Explanation']);
 
         foreach ($this->report->getViolations() as $violation) {
             $table->addRow([
-                $violation->getCommit()->getHash(),
-                $violation->getRule()->getName(),
-                $violation->getCommit()->getMessage()
+                $violation->getCommit()->getShortHash(),
+                $this->truncate($violation->getCommit()->getSummary(), 20),
+                $violation->getRule()->getMessage()
             ]);
         }
         $table->render();
+    }
+
+    private function truncate($text, $limit = 50)
+    {
+        if (strlen($text) <= $limit) {
+            return $text;
+        }
+
+        return trim(substr($text, 0, $limit)) . '...';
     }
 }

@@ -18,4 +18,6 @@ interface RuleInterface
     public function getName();
 
     public function configure(array $data);
+
+    public function getMessage();
 }

@@ -10,7 +10,9 @@ class Factory implements FactoryInterface
     {
         $commit = new Commit;
         $commit->setHash($data['hash'])
-            ->setMessage($data['message']);
+            ->setMessage($data['message'])
+            ->setSummary($data['summary'])
+        ->setShortHash($data['shortHash']);
 
         return $commit;
     }

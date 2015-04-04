@@ -49,7 +49,9 @@ class FileSystemProvider extends AbstractProvider
     {
         return $this->commitFactory->create([
             'hash' => $commitData->getHash(),
-            'message' => $commitData->getMessage()
+            'message' => $commitData->getMessage(),
+            'shortHash' => $commitData->getShortHash(),
+            'summary'=>$commitData->getSubjectMessage()
         ]);
     }
 
