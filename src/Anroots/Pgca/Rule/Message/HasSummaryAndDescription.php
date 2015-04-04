@@ -5,7 +5,7 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
-class HasSummaryAndDescriptionRule extends AbstractRule
+class HasSummaryAndDescription extends AbstractRule
 {
     protected $name = 'message.hasSummaryAndDescription';
 

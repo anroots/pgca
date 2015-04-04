@@ -5,7 +5,7 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
-class StartsWithCapitalLetterRule extends AbstractRule
+class StartsWithCapitalLetter extends AbstractRule
 {
     protected $name = 'message.startsWithCapitalLetter';
 

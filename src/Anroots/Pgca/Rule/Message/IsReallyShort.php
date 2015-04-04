@@ -5,7 +5,7 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
-class IsReallyShortRule extends AbstractRule
+class IsReallyShort extends AbstractRule
 {
     const MIN_LENGTH = 20;
     protected $name = 'message.isReallyShort';

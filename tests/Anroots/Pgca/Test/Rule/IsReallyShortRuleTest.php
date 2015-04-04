@@ -3,13 +3,13 @@
 namespace Anroots\Pgca\Test\Rule;
 
 use Anroots\Pgca\Git\Commit;
-use Anroots\Pgca\Rule\Message\IsReallyShortRule;
+use Anroots\Pgca\Rule\Message\IsReallyShort;
 use Anroots\Pgca\Rule\RuleInterface;
 use Anroots\Pgca\Test\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 
 /**
- * @coversDefaultClass \Anroots\Pgca\Rule\Message\IsReallyShortRule
+ * @coversDefaultClass \Anroots\Pgca\Rule\Message\IsReallyShort
  */
 class IsReallyShortRuleTest extends TestCase
 {
@@ -21,7 +21,7 @@ class IsReallyShortRuleTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->rule = $this->getMockBuilder(IsReallyShortRule::class)
+        $this->rule = $this->getMockBuilder(IsReallyShort::class)
             ->setMethods(['addViolation'])
             ->disableOriginalConstructor()
             ->getMock();

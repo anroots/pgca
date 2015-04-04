@@ -59,11 +59,11 @@
         </service>
 
         <service id="rule.message.hasSummaryAndDescription" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\HasSummaryAndDescriptionRule"/>
+                 class="Anroots\Pgca\Rule\Message\HasSummaryAndDescription"/>
         <service id="rule.message.isReallyShort" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\IsReallyShortRule"/>
+                 class="Anroots\Pgca\Rule\Message\IsReallyShort"/>
         <service id="rule.message.startsWithCapitalLetter" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\StartsWithCapitalLetterRule"/>
+                 class="Anroots\Pgca\Rule\Message\StartsWithCapitalLetter"/>
 
     </services>
 </container>
