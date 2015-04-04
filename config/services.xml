@@ -43,8 +43,13 @@
             <configurator service="commit.provider.filterSetConfigurator" method="load"/>
         </service>
 
+        <service id="github.client" class="Github\Client" public="false" />
+
         <service id="commit.provider.fileSystemProvider" class="Anroots\Pgca\Commit\Provider\FileSystemProvider"
+                 parent="commit.provider.abstractProvider" />
+        <service id="commit.provider.gitHubProvider" class="Anroots\Pgca\Commit\Provider\GitHubProvider"
                  parent="commit.provider.abstractProvider">
+                <argument type="service" id="github.client" />
         </service>
 
 

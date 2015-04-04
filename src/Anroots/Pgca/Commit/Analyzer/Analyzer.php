@@ -45,6 +45,10 @@ class Analyzer implements CollectionSetAwareInterface, CommitAnalyzerInterface
 
         $commits = $this->commitProvider->getCommits();
 
+        if (!$commits instanceof \Generator) {
+            throw new \RuntimeException('Invalid output from the generator: check that getCommits() is a generator.');
+        }
+
         foreach ($commits as $commit) {
             $this->analyzeCommit($commit);
         }

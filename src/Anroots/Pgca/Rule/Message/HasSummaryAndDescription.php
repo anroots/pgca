@@ -11,7 +11,8 @@ class HasSummaryAndDescription extends AbstractRule
 
     protected function run(CommitInterface $commit)
     {
-        if (!strstr($commit->getMessage(),"\n\n")) {
+        $hasNewLines = preg_match("/\n\n/", $commit->getMessage()) === 1;
+        if (!$hasNewLines) {
             $this->addViolation($commit);
         }
     }

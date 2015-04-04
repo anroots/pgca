@@ -2,11 +2,12 @@
 
 namespace Anroots\Pgca\Commit\Provider;
 
+use Anroots\Pgca\CollectionSetAwareInterface;
 use Anroots\Pgca\Commit\Filter\FilterInterface;
 use Anroots\Pgca\Git\Commit\FactoryInterface;
 use Anroots\Pgca\Git\CommitInterface;
 
-abstract class AbstractProvider implements CommitProviderInterface
+abstract class AbstractProvider implements CommitProviderInterface,CollectionSetAwareInterface
 {
 
     /**
@@ -62,4 +63,8 @@ abstract class AbstractProvider implements CommitProviderInterface
     }
 
 
+    public function setCollection(array $collection)
+    {
+        return $this->setFilters($collection);
+    }
 }

@@ -6,7 +6,7 @@ use Anroots\Pgca\CollectionSetAwareInterface;
 use Gitonomy\Git\Commit;
 use Gitonomy\Git\Repository;
 
-class FileSystemProvider extends AbstractProvider implements CollectionSetAwareInterface
+class FileSystemProvider extends AbstractProvider
 {
     const DEFAULT_LIMIT = 100;
     /**
@@ -69,10 +69,5 @@ class FileSystemProvider extends AbstractProvider implements CollectionSetAwareI
     private function getRepositoryServiceClass()
     {
         return Repository::class;
-    }
-
-    public function setCollection(array $collection)
-    {
-        return $this->setFilters($collection);
     }
 }
