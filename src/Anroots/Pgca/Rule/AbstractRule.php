@@ -3,10 +3,12 @@
 namespace Anroots\Pgca\Rule;
 
 use Anroots\Pgca\Commit\Analyzer\CommitAnalyzerInterface;
+use Anroots\Pgca\Commit\Analyzer\RuleException;
+use Anroots\Pgca\ConfigurableEntity;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\ReportInterface;
 
-abstract class AbstractRule implements RuleInterface
+abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
 {
 
     /**
@@ -60,5 +62,19 @@ abstract class AbstractRule implements RuleInterface
     {
         return $this->name;
     }
+
+    public function apply(CommitInterface $commit)
+    {
+        if (!$this->isConfigured()) {
+            throw new RuleException(
+                sprintf('Please provide all required configuration options to %s', get_class($this))
+            );
+        }
+
+        return $this->run($commit);
+    }
+
+    abstract protected function run(CommitInterface $commit);
+
 
 }

@@ -2,9 +2,11 @@
 
 namespace Anroots\Pgca\Commit\Analyzer;
 
+use Anroots\Pgca\CollectionSetAwareInterface;
 use Anroots\Pgca\Git\CommitInterface;
+use Anroots\Pgca\Rule\RuleInterface;
 
-class MessageAnalyzer extends AbstractAnalyzer
+class MessageAnalyzer extends AbstractAnalyzer implements CollectionSetAwareInterface
 {
 
     /**
@@ -21,5 +23,18 @@ class MessageAnalyzer extends AbstractAnalyzer
     public function getName()
     {
         return 'message';
+    }
+
+    /**
+     * @param RuleInterface[] $rules
+     * @return $this
+     */
+    public function setCollection(array $rules)
+    {
+        foreach ($rules as $rule) {
+            $rule->setAnalyzer($this);
+        }
+
+        return $this->setRules($rules);
     }
 }

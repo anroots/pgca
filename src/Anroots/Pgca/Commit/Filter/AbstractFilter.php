@@ -3,16 +3,12 @@
 
 namespace Anroots\Pgca\Commit\Filter;
 
+use Anroots\Pgca\ConfigurableEntity;
 use Anroots\Pgca\Git\CommitInterface;
 
-abstract class AbstractFilter implements FilterInterface
+abstract class AbstractFilter extends ConfigurableEntity implements FilterInterface
 {
 
-
-    public function configure(array $options)
-    {
-
-    }
 
     public function apply(CommitInterface $commit)
     {
@@ -27,8 +23,4 @@ abstract class AbstractFilter implements FilterInterface
 
     abstract protected function isIncluded(CommitInterface $commit);
 
-    protected function isConfigured()
-    {
-        return true;
-    }
 }

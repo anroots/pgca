@@ -9,7 +9,7 @@ class StartsWithCapitalLetter extends AbstractRule
 {
     protected $name = 'message.startsWithCapitalLetter';
 
-    public function apply(CommitInterface $commit)
+    public function run(CommitInterface $commit)
     {
         $firstLetter = substr($commit->getMessage(), 0, 1);
         if (!ctype_upper($firstLetter)) {

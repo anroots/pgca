@@ -16,4 +16,6 @@ interface RuleInterface
     public function setAnalyzer(CommitAnalyzerInterface $analyzer);
 
     public function getName();
+
+    public function configure(array $data);
 }

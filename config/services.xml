@@ -8,16 +8,23 @@
         <service id="config" class="Anroots\Pgca\Config">
             <call method="load"/>
         </service>
-        <service id="commit.analyzer.ruleSetConfigurator" class="Anroots\Pgca\Commit\Analyzer\RuleSetConfigurator"
-                 public="false">
+
+        <service id="abstractSetConfigurator" abstract="true" public="false">
             <argument type="service" id="service_container"/>
             <argument type="service" id="config"/>
         </service>
 
+        <service id="commit.analyzer.ruleSetConfigurator" class="Anroots\Pgca\Commit\Analyzer\RuleSetConfigurator"
+                 parent="abstractSetConfigurator" />
+
+        <service id="commit.provider.filterSetConfigurator" class="Anroots\Pgca\Commit\Provider\FilterSetConfigurator"
+                 parent="abstractSetConfigurator" />
+
+
         <service id="commit.analyzer.abstractAnalyzer" abstract="true"
                  class="Anroots\Pgca\Commit\Analyzer\AbstractAnalyzer">
             <argument type="service" id="report"/>
-            <configurator service="commit.analyzer.ruleSetConfigurator" method="loadRules"/>
+            <configurator service="commit.analyzer.ruleSetConfigurator" method="load"/>
         </service>
         <service id="commit.analyzer.messageAnalyzer" class="Anroots\Pgca\Commit\Analyzer\MessageAnalyzer"
                  parent="commit.analyzer.abstractAnalyzer"/>
@@ -29,13 +36,6 @@
         <service id="report" class="Anroots\Pgca\Report"/>
         <service id="rule.violationFactory" class="Anroots\Pgca\Rule\ViolationFactory"/>
 
-        <service id="abstractCollectionFactory" abstract="true">
-            <argument type="service" id="service_container" />
-        </service>
-
-        <service id="commit.filter.filterSetFactory" class="Anroots\Pgca\Commit\Filter\FilterSetFactory"
-                parent="abstractCollectionFactory"/>
-
         <!-- Filters -->
         <service id="commit.filter.isNotMergeCommit" class="Anroots\Pgca\Commit\Filter\IsNotMergeCommit" />
         <service id="commit.filter.containsRegex" class="Anroots\Pgca\Commit\Filter\ContainsRegex" />
@@ -44,6 +44,7 @@
         <service id="commit.provider.abstractProvider" class="Anroots\Pgca\Commit\Provider\AbstractProvider"
                  abstract="true">
             <argument type="service" id="git.commit.factory"/>
+            <configurator service="commit.provider.filterSetConfigurator" method="load" />
         </service>
 
         <service id="commit.provider.fileSystemProvider" class="Anroots\Pgca\Commit\Provider\FileSystemProvider"
@@ -60,8 +61,8 @@
 
         <service id="rule.message.hasSummaryAndDescription" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\HasSummaryAndDescription"/>
-        <service id="rule.message.isReallyShort" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\IsReallyShort"/>
+        <service id="rule.message.isTooShort" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\IsTooShort"/>
         <service id="rule.message.startsWithCapitalLetter" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\StartsWithCapitalLetter"/>
 

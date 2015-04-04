@@ -72,12 +72,6 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         $provider->configure($providerConfig);
 
 
-        $filterSetFactory = $this->getContainer()->get('commit.filter.filterSetFactory');
-
-        $filters = $filterSetFactory->create($providerConfig['filters']);
-
-        $provider->setFilters($filters);
-
         return $provider;
     }
 

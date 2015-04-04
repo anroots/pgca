@@ -5,11 +5,13 @@ provider:
     - name: isNotMergeCommit
     - name: containsRegex
       config:
-        pattern: /fix/i
+        pattern: /typo/i
 
 
 analyzers:
   message:
     rules:
-      - message.hasSummaryAndDescription
-      - message.isReallyShort
+      - name: message.hasSummaryAndDescription
+      - name: message.isTooShort
+        config:
+          min: 6
