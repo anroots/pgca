@@ -5,7 +5,7 @@ namespace Anroots\Pgca;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
-abstract class AbstractSetConfigurator implements SetConfigurator
+abstract class AbstractSetConfigurator implements SetConfiguratorInterface
 {
 
     /**

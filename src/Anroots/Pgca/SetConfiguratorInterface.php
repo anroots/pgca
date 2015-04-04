@@ -2,7 +2,7 @@
 
 namespace Anroots\Pgca;
 
-interface SetConfigurator
+interface SetConfiguratorInterface
 {
     public function setPrefix($prefix);
 

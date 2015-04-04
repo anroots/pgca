@@ -11,7 +11,8 @@ class HasSummaryAndDescription extends AbstractRule
 
     protected function run(CommitInterface $commit)
     {
-        // Todo
-        //$this->addViolation($commit);
+        if (!strstr($commit->getMessage(),"\n\n")) {
+            $this->addViolation($commit);
+        }
     }
 }
