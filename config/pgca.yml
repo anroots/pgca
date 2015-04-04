@@ -10,4 +10,3 @@ analyzers:
     rules:
       - message.hasSummaryAndDescription
       - message.isReallyShort
-      - message.startsWithCapitalLetter

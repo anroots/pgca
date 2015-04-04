@@ -10,21 +10,16 @@ use Anroots\Pgca\ConfigInterface;
 use Anroots\Pgca\Rule\ViolationInterface;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AnalyzeCommand extends ContainerAwareCommand
+abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
 {
 
     /**
      * @var ConfigInterface
      */
     protected $config;
-
-    public function configure()
-    {
-        $this->setName('analyze')
-            ->setDescription('Analyses Git commit messages');
-    }
 
     /**
      * @param InputInterface $input
@@ -37,7 +32,7 @@ class AnalyzeCommand extends ContainerAwareCommand
         /** @var CommitAnalyzerInterface $analyzer */
         $analyzer = $this->getContainer()->get('commit.analyzer.messageAnalyzer');
 
-        $provider = $this->providerFactory();
+        $provider = $this->providerFactory($this->getConfig($input));
         $analyzer->setCommitProvider($provider);
 
         $analyzer->run();
@@ -48,12 +43,13 @@ class AnalyzeCommand extends ContainerAwareCommand
         return 0;
     }
 
+  abstract public function getConfig(InputInterface $input);
+
     /**
      * @return CommitProviderInterface
      */
-    private function providerFactory()
+    private function providerFactory(array $providerConfig)
     {
-        $providerConfig = $this->config->get('provider');
         $providerServiceName = 'commit.provider.' . $providerConfig['name'];
 
         /** @var CommitProviderInterface $provider */

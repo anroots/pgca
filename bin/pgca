@@ -4,8 +4,8 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Anroots\Pgca\Cli\Application;
-use Anroots\Pgca\Cli\Command\AnalyzeCommand;
+use Anroots\Pgca\Cli\Command\Analyze\FileSystemCommand;
 
 $application = new Application('PHP Git Commit Analyzer');
-$application->add(new AnalyzeCommand);
+$application->add(new FileSystemCommand);
 $application->run();

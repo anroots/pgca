@@ -14,8 +14,12 @@ class FileSystemProvider extends AbstractProvider
     private $repository;
 
     private $defaultOptions = [
-        'path'=> '.'
+        'path' => '.',
+        'from' => null,
+        'limit'=> 100
     ];
+
+    private $options = [];
 
     public function setRepository(Repository $repository)
     {
@@ -25,9 +29,10 @@ class FileSystemProvider extends AbstractProvider
     public function getCommits()
     {
 
-        $log = $this->repository->getLog();
+        $log = $this->repository->getLog($this->options['from'],null,null,$this->options['limit']);
 
-        foreach ($log->getCommits() as $commitData) {
+        $commits = $log->getCommits();
+        foreach ($commits as $commitData) {
 
             $commit = $this->createCommit($commitData);
 
@@ -49,9 +54,9 @@ class FileSystemProvider extends AbstractProvider
 
     public function configure(array $options)
     {
-        $options = array_replace_recursive($this->defaultOptions,$options);
+        $this->options = array_replace_recursive($this->defaultOptions, $options);
 
-        $this->setRepositoryPath($options['path']);
+        $this->setRepositoryPath($this->options['path']);
     }
 
     private function setRepositoryPath($path)
