@@ -41,10 +41,19 @@ class Application extends \Symfony\Component\Console\Application
     private function containerFactory()
     {
         $container = new ContainerBuilder;
-        $fileLocator = new FileLocator(__DIR__ . '/../../../../config');
+        $fileLocator = new FileLocator([
+            __DIR__ . '/../../../../config',
+            __DIR__ . '/../../../../../../../config'
+        ]);
         $loader = new XmlFileLoader($container, $fileLocator);
         $loader->load('services.xml');
 
+        try {
+            $loader->load('pgca.xml');
+        } catch (\InvalidArgumentException $e) {
+            // Could not load the additional rules file
+            // Todo: handle this better
+        }
         $container->compile();
 
         return $container;
