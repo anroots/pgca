@@ -10,7 +10,6 @@ use Anroots\Pgca\ConfigInterface;
 use Anroots\Pgca\Rule\ViolationInterface;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
@@ -43,7 +42,24 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         return 0;
     }
 
-  abstract public function getConfig(InputInterface $input);
+
+    public function getConfig(InputInterface $input)
+    {
+        $providerConfig = $this->config->get('provider');
+        $defaults = $this->getDefinition()->getOptionDefaults();
+        $options = array_filter($input->getOptions(), function ($value, $key) use ($defaults, $providerConfig) {
+
+            $isNotDefaultValue = $value !== $defaults[$key];
+
+            $providerConfigDoesNotSetThis = !array_key_exists($key, $providerConfig);
+
+            return $isNotDefaultValue || $providerConfigDoesNotSetThis;
+        }, ARRAY_FILTER_USE_BOTH);
+
+        $mergedConfig = array_replace($providerConfig, $options);
+
+        return $mergedConfig;
+    }
 
     /**
      * @return CommitProviderInterface

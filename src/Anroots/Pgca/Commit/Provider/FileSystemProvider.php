@@ -7,7 +7,7 @@ use Gitonomy\Git\Repository;
 
 class FileSystemProvider extends AbstractProvider
 {
-
+const DEFAULT_LIMIT = 100;
     /**
      * @var Repository
      */
@@ -16,7 +16,7 @@ class FileSystemProvider extends AbstractProvider
     private $defaultOptions = [
         'path' => '.',
         'from' => null,
-        'limit'=> 100
+        'limit'=> self::DEFAULT_LIMIT
     ];
 
     private $options = [];
