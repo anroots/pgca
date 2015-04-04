@@ -13,6 +13,7 @@ class Config implements ConfigInterface
      * @var string[]
      */
     private $paths = [
+        '.',
         'config'
     ];
 
@@ -25,7 +26,8 @@ class Config implements ConfigInterface
     {
         $locator = new FileLocator($this->paths);
         $configFile = $locator->locate('pgca.yml');
-        $this->config = new Data(Yaml::parse($configFile));
+        $fileContents = Yaml::parse(file_get_contents($configFile), true);
+        $this->config = new Data($fileContents);
     }
 
     public function get($path)
