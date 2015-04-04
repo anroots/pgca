@@ -14,9 +14,9 @@ class IsTooShort extends AbstractRule
     /**
      * @var int
      */
-    private $minLength;
+    private $minLength = self::MIN_LENGTH;
 
-    public function configure(array $options)
+    public function configure(array $options = [])
     {
         $this->minLength = array_key_exists('min', $options) ? (int)$options['min'] : self::MIN_LENGTH;
 
@@ -28,7 +28,7 @@ class IsTooShort extends AbstractRule
     }
 
 
-    public function run(CommitInterface $commit)
+    protected function run(CommitInterface $commit)
     {
         $messageLength = strlen($commit->getMessage());
         if ($messageLength < $this->minLength) {

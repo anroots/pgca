@@ -9,7 +9,7 @@ class HasSummaryAndDescription extends AbstractRule
 {
     protected $name = 'message.hasSummaryAndDescription';
 
-    public function run(CommitInterface $commit)
+    protected function run(CommitInterface $commit)
     {
         // Todo
         //$this->addViolation($commit);
