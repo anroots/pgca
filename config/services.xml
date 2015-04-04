@@ -15,21 +15,16 @@
         </service>
 
         <service id="commit.analyzer.ruleSetConfigurator" class="Anroots\Pgca\Commit\Analyzer\RuleSetConfigurator"
-                 parent="abstractSetConfigurator" />
+                 parent="abstractSetConfigurator"/>
 
         <service id="commit.provider.filterSetConfigurator" class="Anroots\Pgca\Commit\Provider\FilterSetConfigurator"
-                 parent="abstractSetConfigurator" />
+                 parent="abstractSetConfigurator"/>
 
 
-        <service id="commit.analyzer.abstractAnalyzer" abstract="true"
-                 class="Anroots\Pgca\Commit\Analyzer\AbstractAnalyzer">
+        <service id="commit.analyzer.analyzer" class="Anroots\Pgca\Commit\Analyzer\Analyzer">
             <argument type="service" id="report"/>
             <configurator service="commit.analyzer.ruleSetConfigurator" method="load"/>
         </service>
-
-        <service id="commit.analyzer.analyzer" class="Anroots\Pgca\Commit\Analyzer\Analyzer"
-                 parent="commit.analyzer.abstractAnalyzer"/>
-
 
         <service id="git.commit.factory" class="Anroots\Pgca\Git\Commit\Factory"/>
 
@@ -38,18 +33,18 @@
         <service id="rule.violationFactory" class="Anroots\Pgca\Rule\ViolationFactory"/>
 
         <!-- Filters -->
-        <service id="commit.filter.isNotMergeCommit" class="Anroots\Pgca\Commit\Filter\IsNotMergeCommit" />
-        <service id="commit.filter.containsRegex" class="Anroots\Pgca\Commit\Filter\ContainsRegex" />
+        <service id="commit.filter.isNotMergeCommit" class="Anroots\Pgca\Commit\Filter\IsNotMergeCommit"/>
+        <service id="commit.filter.containsRegex" class="Anroots\Pgca\Commit\Filter\ContainsRegex"/>
 
         <!-- Providers -->
         <service id="commit.provider.abstractProvider" class="Anroots\Pgca\Commit\Provider\AbstractProvider"
                  abstract="true">
             <argument type="service" id="git.commit.factory"/>
-            <configurator service="commit.provider.filterSetConfigurator" method="load" />
+            <configurator service="commit.provider.filterSetConfigurator" method="load"/>
         </service>
 
         <service id="commit.provider.fileSystemProvider" class="Anroots\Pgca\Commit\Provider\FileSystemProvider"
-                parent="commit.provider.abstractProvider">
+                 parent="commit.provider.abstractProvider">
         </service>
 
 
