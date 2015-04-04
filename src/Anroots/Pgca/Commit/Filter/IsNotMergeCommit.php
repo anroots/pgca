@@ -7,7 +7,7 @@ use Anroots\Pgca\Git\CommitInterface;
 /**
  * Skip merge commits
  */
-class MergeFilter extends AbstractFilter
+class IsNotMergeCommit extends AbstractFilter
 {
 
     public function isIncluded(CommitInterface $commit)

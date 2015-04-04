@@ -7,7 +7,7 @@ use Anroots\Pgca\Git\CommitInterface;
 /**
  * Skip commits that contain a RegEx expression
  */
-class ContainsRegexFilter extends AbstractFilter
+class ContainsRegex extends AbstractFilter
 {
 
     /**

@@ -2,10 +2,10 @@ provider:
   name: fileSystemProvider
   path: ../hubot
   filters:
-    - name: mergeFilter
-    - name: containsRegexFilter
+    - name: isNotMergeCommit
+    - name: containsRegex
       config:
-        pattern: /bower/
+        pattern: /fix/i
 
 
 analyzers:

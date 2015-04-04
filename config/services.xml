@@ -37,8 +37,8 @@
                 parent="abstractCollectionFactory"/>
 
         <!-- Filters -->
-        <service id="commit.filter.mergeFilter" class="Anroots\Pgca\Commit\Filter\MergeFilter" />
-        <service id="commit.filter.containsRegexFilter" class="Anroots\Pgca\Commit\Filter\ContainsRegexFilter" />
+        <service id="commit.filter.isNotMergeCommit" class="Anroots\Pgca\Commit\Filter\IsNotMergeCommit" />
+        <service id="commit.filter.containsRegex" class="Anroots\Pgca\Commit\Filter\ContainsRegex" />
 
         <!-- Providers -->
         <service id="commit.provider.abstractProvider" class="Anroots\Pgca\Commit\Provider\AbstractProvider"
