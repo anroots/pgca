@@ -25,6 +25,11 @@ class Report implements ReportInterface
         return $this->violations;
     }
 
+    public function countViolations()
+    {
+        return count($this->violations);
+    }
+
     /**
      * @param Rule\ViolationInterface[] $violations
      * @return $this

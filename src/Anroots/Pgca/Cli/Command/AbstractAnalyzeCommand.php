@@ -38,7 +38,7 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         $violations = $analyzer->getReport()->getViolations();
         $this->printViolations($output, $violations);
 
-        return 0;
+        return $analyzer->getReport()->countViolations() === 0 ?: 1;
     }
 
 

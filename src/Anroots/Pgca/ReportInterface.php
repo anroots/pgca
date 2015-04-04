@@ -14,4 +14,6 @@ interface ReportInterface
     public function getViolations();
 
     public function setViolations(array $violations);
+
+    public function countViolations();
 }
