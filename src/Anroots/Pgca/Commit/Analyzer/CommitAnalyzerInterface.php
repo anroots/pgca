@@ -18,8 +18,6 @@ interface CommitAnalyzerInterface
 
     public function analyzeCommit(CommitInterface $commit);
 
-    public function getName();
-
     public function setRules(array $rules);
 
     public function getRules();

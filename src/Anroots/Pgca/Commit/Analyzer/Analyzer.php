@@ -6,7 +6,7 @@ use Anroots\Pgca\CollectionSetAwareInterface;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\RuleInterface;
 
-class MessageAnalyzer extends AbstractAnalyzer implements CollectionSetAwareInterface
+class Analyzer extends AbstractAnalyzer implements CollectionSetAwareInterface
 {
 
     /**
@@ -18,11 +18,6 @@ class MessageAnalyzer extends AbstractAnalyzer implements CollectionSetAwareInte
         foreach ($this->rules as $rule) {
             $rule->apply($commit);
         }
-    }
-
-    public function getName()
-    {
-        return 'message';
     }
 
     /**

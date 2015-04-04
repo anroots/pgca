@@ -28,7 +28,7 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         $this->config = $this->getContainer()->get('config');
 
         /** @var CommitAnalyzerInterface $analyzer */
-        $analyzer = $this->getContainer()->get('commit.analyzer.messageAnalyzer');
+        $analyzer = $this->getContainer()->get('commit.analyzer.analyzer');
 
         $provider = $this->providerFactory($this->getConfig($input));
         $analyzer->setCommitProvider($provider);

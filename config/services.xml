@@ -26,7 +26,8 @@
             <argument type="service" id="report"/>
             <configurator service="commit.analyzer.ruleSetConfigurator" method="load"/>
         </service>
-        <service id="commit.analyzer.messageAnalyzer" class="Anroots\Pgca\Commit\Analyzer\MessageAnalyzer"
+
+        <service id="commit.analyzer.analyzer" class="Anroots\Pgca\Commit\Analyzer\Analyzer"
                  parent="commit.analyzer.abstractAnalyzer"/>
 
 
