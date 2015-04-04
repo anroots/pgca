@@ -54,5 +54,7 @@
                  class="Anroots\Pgca\Rule\Message\HasSummaryAndDescriptionRule"/>
         <service id="rule.message.isReallyShort" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\IsReallyShortRule"/>
+        <service id="rule.message.startsWithCapitalLetter" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\StartsWithCapitalLetterRule"/>
     </services>
 </container>

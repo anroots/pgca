@@ -4,13 +4,12 @@ namespace Anroots\Pgca\Cli\Command;
 
 use Anroots\Pgca\Cli\ContainerAwareCommand;
 use Anroots\Pgca\Commit\Analyzer\CommitAnalyzerInterface;
+use Anroots\Pgca\Commit\Filter\FilterException;
 use Anroots\Pgca\Commit\Provider\CommitProviderInterface;
 use Anroots\Pgca\ConfigInterface;
 use Anroots\Pgca\Rule\ViolationInterface;
-use Gitonomy\Git\Repository;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class AnalyzeCommand extends ContainerAwareCommand
@@ -54,15 +53,24 @@ class AnalyzeCommand extends ContainerAwareCommand
      */
     private function providerFactory()
     {
-        $providerName = $this->config->get('provider.name');
-        $providerServiceName = 'commit.provider.'.$providerName;
+        $providerConfig = $this->config->get('provider');
+        $providerServiceName = 'commit.provider.' . $providerConfig['name'];
 
         /** @var CommitProviderInterface $provider */
         $provider = $this->getContainer()->get($providerServiceName);
-        $provider->configure($this->config->get('provider'));
+        $provider->configure($providerConfig);
 
-        $mergeFilter = $this->getContainer()->get('commit.filter.mergeFilter');
-        $provider->setFilters([$mergeFilter]);
+        $filters = [];
+        foreach ($providerConfig['filters'] as $filterId) {
+
+            $filterName = 'commit.filter.' . $filterId;
+            if (!$this->getContainer()->has($filterName)) {
+                throw new FilterException(sprintf('Filter %s not found!', $filterId));
+            }
+            $filter = $this->getContainer()->get($filterName);
+            $filters[] = $filter;
+        }
+        $provider->setFilters($filters);
 
         return $provider;
     }

@@ -1,6 +1,6 @@
 provider:
   name: fileSystemProvider
-  path: ../jaa
+  path: ../hubot
   filters:
     - mergeFilter
 
@@ -10,3 +10,4 @@ analyzers:
     rules:
       - message.hasSummaryAndDescription
       - message.isReallyShort
+      - message.startsWithCapitalLetter
