@@ -7,8 +7,15 @@ use Anroots\Pgca\Rule\AbstractRule;
 
 class HasSummaryAndDescription extends AbstractRule
 {
-    protected $name = 'message.hasSummaryAndDescription';
-    protected $message = 'Missing description block';
+    public function getName()
+    {
+        return 'message.hasSummaryAndDescription';
+    }
+
+    public function getMessage()
+    {
+        return 'Missing description block';
+    }
 
     protected function run(CommitInterface $commit)
     {

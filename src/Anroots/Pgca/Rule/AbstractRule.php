@@ -21,9 +21,6 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
      */
     private $violationFactory;
 
-    protected $name;
-    protected $message;
-
     /**
      * @param ViolationFactoryInterface $violationFactory
      */
@@ -59,15 +56,9 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
         return $this;
     }
 
-    public function getName()
-    {
-        return $this->name;
-    }
+    abstract public function getName();
 
-    public function getMessage()
-    {
-        return $this->message;
-    }
+    abstract public function getMessage();
 
     public function apply(CommitInterface $commit)
     {

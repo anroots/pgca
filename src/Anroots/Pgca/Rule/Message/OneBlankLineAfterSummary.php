@@ -7,8 +7,15 @@ use Anroots\Pgca\Rule\AbstractRule;
 
 class OneBlankLineAfterSummary extends AbstractRule
 {
-    protected $name = 'message.oneBlankLineAfterSummary';
-    protected $message = 'There should be exactly one blank line after the summary line';
+    public function getName()
+    {
+        return 'message.oneBlankLineAfterSummary';
+    }
+
+    public function getMessage()
+    {
+        return 'There should be exactly one blank line after the summary line';
+    }
 
     protected function run(CommitInterface $commit)
     {
