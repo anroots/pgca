@@ -36,8 +36,7 @@ abstract class AbstractRuleTest extends TestCase
         $this->rule->expects($this->once())
             ->method('addViolation');
 
-        $commit = new Commit;
-        $commit->setMessage($message);
+        $commit = $this->commitFactory($message);
         $this->rule->apply($commit);
     }
 
@@ -53,9 +52,16 @@ abstract class AbstractRuleTest extends TestCase
         $this->rule->expects($this->never())
             ->method('addViolation');
 
+        $commit = $this->commitFactory($message);
+        $this->rule->apply($commit);
+    }
+
+    private function commitFactory($message)
+    {
         $commit = new Commit;
         $commit->setMessage($message);
-        $this->rule->apply($commit);
+
+        return $commit;
     }
 
     abstract protected function getRuleClass();

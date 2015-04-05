@@ -7,9 +7,29 @@ class Commit implements CommitInterface
 
     private $hash;
     private $shortHash;
-    private $message;
     private $summary;
+    private $description;
     private $authorName;
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     * @return $this
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 
     /**
      * @return mixed
@@ -67,12 +87,19 @@ class Commit implements CommitInterface
 
     public function getMessage()
     {
-        return $this->message;
+        return trim($this->summary . "\n\n" . $this->description);
     }
 
     public function setMessage($message)
     {
-        $this->message = $message;
+
+        $parts = preg_split("/\n/", $message, 1);
+
+        $this->summary = trim($parts[0]);
+
+        if (isset($parts[1])) {
+            $this->description = trim($parts[1]);
+        }
 
         return $this;
     }
