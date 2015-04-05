@@ -12,7 +12,8 @@ class Factory implements FactoryInterface
         $commit->setHash($data['hash'])
             ->setMessage($data['message'])
             ->setSummary($data['summary'])
-        ->setShortHash($data['shortHash']);
+        ->setShortHash($data['shortHash'])
+        ->setAuthorName($data['authorName']);
 
         return $commit;
     }

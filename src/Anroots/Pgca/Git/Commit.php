@@ -9,6 +9,28 @@ class Commit implements CommitInterface
     private $shortHash;
     private $message;
     private $summary;
+    private $authorName;
+
+    /**
+     * @return mixed
+     */
+    public function getAuthorName()
+    {
+        return $this->authorName;
+    }
+
+    /**
+     * @param mixed $authorName
+     * @return $this
+     */
+    public function setAuthorName($authorName)
+    {
+        $this->authorName = $authorName;
+
+        return $this;
+    }
+
+
 
     /**
      * @return mixed

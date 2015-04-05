@@ -2,7 +2,6 @@
 
 namespace Anroots\Pgca\Commit\Provider;
 
-use Anroots\Pgca\CollectionSetAwareInterface;
 use Gitonomy\Git\Commit;
 use Gitonomy\Git\Repository;
 
@@ -51,7 +50,8 @@ class FileSystemProvider extends AbstractProvider
             'hash' => $commitData->getHash(),
             'message' => $commitData->getMessage(),
             'shortHash' => $commitData->getShortHash(),
-            'summary'=>$commitData->getSubjectMessage()
+            'summary' => $commitData->getSubjectMessage(),
+            'authorName' => $commitData->getAuthorName()
         ]);
     }
 

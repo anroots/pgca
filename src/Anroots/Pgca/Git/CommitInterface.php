@@ -20,4 +20,7 @@ interface CommitInterface
 
     public function setSummary($summary);
     public function getSummary();
+
+    public function getAuthorName();
+    public function setAuthorName($name);
 }

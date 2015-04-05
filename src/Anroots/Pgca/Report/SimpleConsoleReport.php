@@ -30,11 +30,12 @@ class SimpleConsoleReport extends AbstractReport
         }
 
         $table = new Table($this->output);
-        $table->setHeaders(['Commit', 'Message','Explanation']);
+        $table->setHeaders(['Commit', 'Author', 'Message','Explanation']);
 
         foreach ($this->report->getViolations() as $violation) {
             $table->addRow([
                 $violation->getCommit()->getShortHash(),
+                $violation->getCommit()->getAuthorName(),
                 $this->truncate($violation->getCommit()->getSummary(), 20),
                 $violation->getRule()->getMessage()
             ]);
