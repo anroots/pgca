@@ -102,7 +102,7 @@ class Commit implements CommitInterface
             $this->description = trim($parts[1]);
         }
 
-        $this->message = trim($message);
+        $this->message = $message;
 
         return $this;
     }

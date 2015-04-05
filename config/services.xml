@@ -97,6 +97,8 @@
                  class="Anroots\Pgca\Rule\Message\SummaryFiftyOrLessChars"/>
         <service id="rule.message.oneBlankLineAfterSummary" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary"/>
+        <service id="rule.message.hasTrailingWhitespace" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\HasTrailingWhitespace"/>
 
 
     </services>

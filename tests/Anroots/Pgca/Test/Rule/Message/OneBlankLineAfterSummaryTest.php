@@ -8,7 +8,6 @@ use Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary;
 
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary
- * @group debug
  */
 class OneBlankLineAfterSummaryTest extends AbstractRuleTest
 {

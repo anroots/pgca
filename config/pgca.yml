@@ -9,6 +9,10 @@ analyzers:
   message:
     rules:
       - name: message.hasSummaryAndDescription
+      - name: message.startsWithCapitalLetter
+      - name: message.oneBlankLineAfterSummary
+      - name: message.summaryFiftyOrLessChars
       - name: message.isTooShort
+      - name: message.hasTrailingWhitespace
         config:
           min: 6
