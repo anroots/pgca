@@ -10,6 +10,7 @@ class Commit implements CommitInterface
     private $summary;
     private $description;
     private $authorName;
+    private $message;
 
     /**
      * @return mixed
@@ -87,19 +88,21 @@ class Commit implements CommitInterface
 
     public function getMessage()
     {
-        return trim($this->summary . "\n\n" . $this->description);
+        return $this->message;
     }
 
     public function setMessage($message)
     {
 
-        $parts = preg_split("/\n/", $message, 1);
+        $parts = preg_split("/\n/", $message, 2);
 
         $this->summary = trim($parts[0]);
 
-        if (isset($parts[1])) {
+        if (isset($parts[1]) && mb_strlen(trim($parts[1])) > 0) {
             $this->description = trim($parts[1]);
         }
+
+        $this->message = trim($message);
 
         return $this;
     }

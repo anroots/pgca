@@ -15,7 +15,6 @@ class HasSummaryAndDescriptionTest extends AbstractRuleTest
         return [
             ['Quake'],
             ["Max pain\n"],
-            ["Unreal\n\n\nTournament"],
             ["\n\nTest"],
             ['']
         ];
@@ -26,6 +25,7 @@ class HasSummaryAndDescriptionTest extends AbstractRuleTest
         return [
             ["Fix some stuff\n\nThen do more"],
             ["a\n\ntr"],
+            ["Unreal\n\n\nTournament"],
             ["Summary line\n\nDescription first\n\nDescription\nTwo"]
         ];
     }
