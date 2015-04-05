@@ -28,12 +28,35 @@ class ConsoleSerializer extends AbstractSerializer
     public function serialize(ReportComposerInterface $report)
     {
 
+        $this->output->writeln($this->getHeader($report));
+
         $rows = $report->getReportHeader()->getRows();
 
         if (!count($rows)) {
-            return null;
+            $this->output->writeln('<info>No violations.</info>');
+        } else {
+            $this->printRows($rows);
         }
 
+
+        return $this->output->fetch();
+    }
+
+    /**
+     * @param ReportComposerInterface $report
+     * @return string
+     */
+    private function getHeader(ReportComposerInterface $report)
+    {
+        // Todo: write a pretty and more informational header
+        return 'PGCA report, generated on ' . $report->getReportHeader()->getCreated()->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * @param $rows
+     */
+    private function printRows($rows)
+    {
         $table = new Table($this->output);
 
 
@@ -53,7 +76,5 @@ class ConsoleSerializer extends AbstractSerializer
         }
 
         $table->render();
-
-        return $this->output->fetch();
     }
 }
