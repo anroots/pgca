@@ -3,9 +3,6 @@ provider:
   path: ../hubot
   filters:
     - name: isNotMergeCommit
-    - name: containsRegex
-      config:
-        pattern: /typo/i
 
 
 analyzers:
