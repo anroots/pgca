@@ -17,4 +17,6 @@ interface ViolationInterface
      * @return RuleInterface
      */
     public function getRule();
+
+    public function toArray();
 }

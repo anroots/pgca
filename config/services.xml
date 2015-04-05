@@ -37,7 +37,31 @@
         <service id="commit.filter.containsRegex" class="Anroots\Pgca\Commit\Filter\ContainsRegex"/>
 
         <!-- Report -->
-        <service id="report.simpleConsoleReport" class="Anroots\Pgca\Report\SimpleConsoleReport" />
+        <service id="report.composer.abstractComposer" abstract="true">
+            <argument type="service" id="report.reportHeader"/>
+        </service>
+        <service id="report.reportHeader" class="Anroots\Pgca\Report\ReportHeader">
+            <argument type="service">
+                <service class="DateTime" />
+            </argument>
+        </service>
+
+        <service id="report.composer.simpleReport" class="Anroots\Pgca\Report\Composer\SimpleReport"
+                 parent="report.composer.abstractComposer"/>
+        <service id="report.composer.fullReport" class="Anroots\Pgca\Report\Composer\FullReport"
+                 parent="report.composer.abstractComposer" />
+
+        <!-- Printers -->
+        <service id="report.printer.filePrinter" class="Anroots\Pgca\Report\Printer\FilePrinter"/>
+
+        <!-- Serializers -->
+        <service id="report.serializer.jsonSerializer" class="Anroots\Pgca\Report\Serializer\JsonSerializer"/>
+        <service id="report.serializer.consoleSerializer" class="Anroots\Pgca\Report\Serializer\ConsoleSerializer">
+            <argument type="service">
+                <service class="Symfony\Component\Console\Output\BufferedOutput"/>
+            </argument>
+        </service>
+        <service id="report.printer.consolePrinter" class="Anroots\Pgca\Report\Printer\ConsolePrinter" />
 
         <!-- Providers -->
         <service id="commit.provider.abstractProvider" class="Anroots\Pgca\Commit\Provider\AbstractProvider"
@@ -46,13 +70,13 @@
             <configurator service="commit.provider.filterSetConfigurator" method="load"/>
         </service>
 
-        <service id="github.client" class="Github\Client" public="false" />
+        <service id="github.client" class="Github\Client" public="false"/>
 
         <service id="commit.provider.fileSystemProvider" class="Anroots\Pgca\Commit\Provider\FileSystemProvider"
-                 parent="commit.provider.abstractProvider" />
+                 parent="commit.provider.abstractProvider"/>
         <service id="commit.provider.gitHubProvider" class="Anroots\Pgca\Commit\Provider\GitHubProvider"
                  parent="commit.provider.abstractProvider">
-                <argument type="service" id="github.client" />
+            <argument type="service" id="github.client"/>
         </service>
 
 

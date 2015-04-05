@@ -82,5 +82,11 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
 
     abstract protected function run(CommitInterface $commit);
 
-
+    public function toArray()
+    {
+        return [
+            'name' => $this->getName(),
+            'message' => $this->getMessage()
+        ];
+}
 }

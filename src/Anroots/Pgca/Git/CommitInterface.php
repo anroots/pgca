@@ -23,4 +23,6 @@ interface CommitInterface
 
     public function getAuthorName();
     public function setAuthorName($name);
+
+    public function toArray();
 }

@@ -39,5 +39,11 @@ class Violation implements ViolationInterface
         return $this->rule;
     }
 
-
+    public function toArray()
+    {
+        return [
+            'commit' => $this->getCommit()->toArray(),
+            'rule' => $this->getRule()->toArray()
+        ];
+    }
 }

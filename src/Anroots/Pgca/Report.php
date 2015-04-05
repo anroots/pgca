@@ -10,7 +10,7 @@ class Report implements ReportInterface
     /**
      * @var ViolationInterface[]
      */
-    protected $violations;
+    protected $violations = [];
 
     public function addViolation(ViolationInterface $violation)
     {

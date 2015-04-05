@@ -20,4 +20,6 @@ interface RuleInterface
     public function configure(array $data);
 
     public function getMessage();
+
+    public function toArray();
 }

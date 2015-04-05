@@ -6,8 +6,11 @@ use Anroots\Pgca\Cli\ContainerAwareCommand;
 use Anroots\Pgca\Commit\Analyzer\CommitAnalyzerInterface;
 use Anroots\Pgca\Commit\Provider\CommitProviderInterface;
 use Anroots\Pgca\ConfigInterface;
-use Anroots\Pgca\Report\ReportPrinterInterface;
+use Anroots\Pgca\Report\Printer\ConsolePrinter;
+use Anroots\Pgca\Report\Printer\FilePrinter;
+use Anroots\Pgca\Report\Serializer\SerializerInterface;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
@@ -19,26 +22,40 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
     protected $config;
 
     /**
+     * @var OutputInterface
+     */
+    private $output;
+
+    public function configure()
+    {
+        $this->addOption('serializer', 's', InputOption::VALUE_OPTIONAL, 'Specify the serializer to use', 'console')
+            ->addOption('printer', null, InputOption::VALUE_OPTIONAL, 'Specify the printer to use', 'console')
+            ->addOption('composer', 'c', InputOption::VALUE_OPTIONAL, 'Specify the composer to use', 'simple');
+    }
+
+    /**
      * @param InputInterface $input
      * @param OutputInterface $output
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->config = $this->getContainer()->get('config');
+        $this->output = $output;
 
-        /** @var CommitAnalyzerInterface $analyzer */
-        $analyzer = $this->getContainer()->get('commit.analyzer.analyzer');
+        $mergedConfig = $this->getConfig($input);
 
-        $provider = $this->providerFactory($this->getConfig($input));
-        $analyzer->setCommitProvider($provider);
-
+        $analyzer = $this->analyzerFactory($mergedConfig);
         $analyzer->run();
 
-        /** @var ReportPrinterInterface $report */
-        $report = $this->getContainer()->get('report.simpleConsoleReport');
-        $report->setReport($analyzer->getReport())
-            ->setOutput($output)
-            ->compose();
+        $simpleReport = $this->reportComposerFactory($mergedConfig['composer']);
+        $simpleReport->setReport($analyzer->getReport())
+            ->build();
+
+        $serializer = $this->serializerFactory($mergedConfig['serializer']);
+        $serializedReport = $serializer->serialize($simpleReport);
+
+        $printer = $this->printerFactory($mergedConfig['printer']);
+        $printer->write($serializedReport);
 
         return $analyzer->getReport()->countViolations() === 0 ?: 1;
     }
@@ -75,6 +92,53 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
 
 
         return $provider;
+    }
+
+    /**
+     * @param $mergedConfig
+     * @return CommitAnalyzerInterface
+     */
+    protected function analyzerFactory(array $mergedConfig)
+    {
+        /** @var CommitAnalyzerInterface $analyzer */
+        $analyzer = $this->getContainer()->get('commit.analyzer.analyzer');
+
+        $provider = $this->providerFactory($mergedConfig);
+        $analyzer->setCommitProvider($provider);
+
+        return $analyzer;
+    }
+
+    /**
+     * @param $name
+     * @return object ReportComposerInterface
+     */
+    private function reportComposerFactory($name)
+    {
+        return $this->getContainer()->get('report.composer.' . $name . 'Report');
+    }
+
+    /**
+     * @param $serializer
+     * @return SerializerInterface
+     */
+    private function serializerFactory($serializer)
+    {
+        return $this->getContainer()->get('report.serializer.' . $serializer . 'Serializer');
+    }
+
+    private function printerFactory($name)
+    {
+        $printer = $this->getContainer()->get('report.printer.' . $name . 'Printer');
+
+        // Todo: refactor with the correct design pattern. Lose the if-s
+        if ($printer instanceof ConsolePrinter) {
+            $printer->setOutput($this->output);
+        } elseif ($printer instanceof FilePrinter) {
+            $printer->setFileName('report.json');
+        }
+
+        return $printer;
     }
 
 

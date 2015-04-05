@@ -31,7 +31,6 @@ class Commit implements CommitInterface
     }
 
 
-
     /**
      * @return mixed
      */
@@ -95,6 +94,17 @@ class Commit implements CommitInterface
         $this->shortHash = $shortHash;
 
         return $this;
+    }
+
+    public function toArray()
+    {
+        return [
+            'shortHash' => $this->shortHash,
+            'message' => $this->message,
+            'hash' => $this->hash,
+            'summary' => $this->summary,
+            'authorName' => $this->authorName
+        ];
     }
 
 }
