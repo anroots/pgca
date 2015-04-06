@@ -12,7 +12,7 @@ abstract class AbstractRuleTest extends TestCase
     /**
      * @var RuleInterface|PHPUnit_Framework_MockObject_MockObject
      */
-    private $rule;
+    protected $rule;
 
     public function setUp()
     {
@@ -33,8 +33,7 @@ abstract class AbstractRuleTest extends TestCase
     public function testRuleFailsForInvalidMessages($message)
     {
 
-        $this->rule->expects($this->once())
-            ->method('addViolation');
+        $this->expectFailure();
 
         $commit = $this->commitFactory($message);
         $this->rule->apply($commit);
@@ -49,14 +48,13 @@ abstract class AbstractRuleTest extends TestCase
      */
     public function testRulePassesForValidMessages($message)
     {
-        $this->rule->expects($this->never())
-            ->method('addViolation');
+        $this->expectSuccess();
 
         $commit = $this->commitFactory($message);
         $this->rule->apply($commit);
     }
 
-    private function commitFactory($message)
+    protected function commitFactory($message)
     {
         $commit = new Commit;
         $commit->setMessage($message);
@@ -65,4 +63,16 @@ abstract class AbstractRuleTest extends TestCase
     }
 
     abstract protected function getRuleClass();
+
+    protected function expectSuccess()
+    {
+        $this->rule->expects($this->never())
+            ->method('addViolation');
+    }
+
+    protected function expectFailure()
+    {
+        $this->rule->expects($this->once())
+            ->method('addViolation');
+    }
 }

@@ -2,23 +2,21 @@
 
 namespace Anroots\Pgca\Test\Rule\Message;
 
-use Anroots\Pgca\Rule\Message\HasTrailingWhitespace;
+use Anroots\Pgca\Rule\Message\HasTrailingNewline;
 
 /**
- * @coversDefaultClass \Anroots\Pgca\Rule\Message\HasTrailingWhitespace
+ * @coversDefaultClass \Anroots\Pgca\Rule\Message\HasTrailingNewline
  */
-class HasTrailingWhitespaceTest extends AbstractRuleTest
+class HasTrailingNewlineTest extends AbstractRuleTest
 {
 
     public function provideInvalidMessages()
     {
         return [
-            ['Quake '],
-            ["Max pain\n "],
-            ["Test\nsad "],
-            ["Test\n\n "],
-            ["Test\n\nsad "],
-            [' '],
+            ["Max pain\n\n"],
+            ["Test\nsad\n"],
+            ["Test\n\n\n"],
+            ["\n"],
         ];
     }
 
@@ -34,6 +32,6 @@ class HasTrailingWhitespaceTest extends AbstractRuleTest
 
     protected function getRuleClass()
     {
-        return HasTrailingWhitespace::class;
+        return HasTrailingNewline::class;
     }
 }

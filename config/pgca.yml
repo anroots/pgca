@@ -1,6 +1,6 @@
 provider:
   name: fileSystemProvider
-  path: ../hubot
+  path: .
   filters:
     - name: isNotMergeCommit
 
@@ -14,5 +14,8 @@ analyzers:
       - name: message.summaryFiftyOrLessChars
       - name: message.isTooShort
       - name: message.hasTrailingWhitespace
-        config:
-          min: 6
+      - name: message.hasTrailingNewline
+      - name: message.hasDoubleWhitespace
+      - name: message.allLinesLessThanThresholdChars
+      - name: message.messageIsTypicalNonsense
+      - name: message.containsProfanity

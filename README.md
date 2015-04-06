@@ -10,14 +10,8 @@
 
 ## Todo: rule implementations
 
-- summary line is 50 characters or less
-- commit message is a typical "blagh": "fix stuff", "do some work" etc
-- Every line is below 72 characters long
-- has summary line
-- has description line
 - summary is in present / imperative form
 - has ticket reference in commit message
-- message contains two consecutive whitespaces between words (allowed for formatting lists)
 
 http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 

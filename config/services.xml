@@ -42,14 +42,14 @@
         </service>
         <service id="report.reportHeader" class="Anroots\Pgca\Report\ReportHeader">
             <argument type="service">
-                <service class="DateTime" />
+                <service class="DateTime"/>
             </argument>
         </service>
 
         <service id="report.composer.simpleReport" class="Anroots\Pgca\Report\Composer\SimpleReport"
                  parent="report.composer.abstractComposer"/>
         <service id="report.composer.fullReport" class="Anroots\Pgca\Report\Composer\FullReport"
-                 parent="report.composer.abstractComposer" />
+                 parent="report.composer.abstractComposer"/>
 
         <!-- Printers -->
         <service id="report.printer.filePrinter" class="Anroots\Pgca\Report\Printer\FilePrinter"/>
@@ -61,7 +61,7 @@
                 <service class="Symfony\Component\Console\Output\BufferedOutput"/>
             </argument>
         </service>
-        <service id="report.printer.consolePrinter" class="Anroots\Pgca\Report\Printer\ConsolePrinter" />
+        <service id="report.printer.consolePrinter" class="Anroots\Pgca\Report\Printer\ConsolePrinter"/>
 
         <!-- Providers -->
         <service id="commit.provider.abstractProvider" class="Anroots\Pgca\Commit\Provider\AbstractProvider"
@@ -99,7 +99,19 @@
                  class="Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary"/>
         <service id="rule.message.hasTrailingWhitespace" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\HasTrailingWhitespace"/>
-
-
+        <service id="rule.message.hasTrailingNewline" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\HasTrailingNewline"/>
+        <service id="rule.message.hasDoubleWhitespace" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\HasDoubleWhitespace"/>
+        <service id="rule.message.allLinesLessThanThresholdChars" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\AllLinesLessThanThresholdChars"/>
+        <service id="rule.message.messageIsTypicalNonsense" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\MessageIsTypicalNonsense"/>
+        <service id="rule.message.containsProfanity" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\ContainsProfanity">
+            <argument type="service">
+                <service class="swearjar\Tester"/>
+            </argument>
+        </service>
     </services>
 </container>

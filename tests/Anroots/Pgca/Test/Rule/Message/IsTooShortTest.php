@@ -8,7 +8,7 @@ use Anroots\Pgca\Rule\Message\IsTooShort;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\IsTooShort
  */
-class IsTooShortRuleTest extends AbstractRuleTest
+class IsTooShortTest extends AbstractRuleTest
 {
     protected function getRuleClass()
     {

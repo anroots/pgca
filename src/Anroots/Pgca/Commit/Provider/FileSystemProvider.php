@@ -31,7 +31,12 @@ class FileSystemProvider extends AbstractProvider
 
         $log = $this->repository->getLog($this->options['from'], null, null, $this->options['limit']);
 
-        $commits = $log->getCommits();
+
+        if (!$log->countCommits()) {
+            throw new \RuntimeException('No commits found');
+        }
+
+        $commits = $log->getIterator();
         foreach ($commits as $commitData) {
 
             $commit = $this->createCommit($commitData);
