@@ -20,7 +20,7 @@
     "symfony/dependency-injection": "~2.6",
     "symfony/config": "~2.6",
     "dflydev/dot-access-data": "dev-master",
-    "gitonomy/gitlib": "dev-master",
+    "gitonomy/gitlib": "~0.1.7",
     "knplabs/github-api": "~1.4",
     "swearjar/swearjar":"~0.1"
   },
