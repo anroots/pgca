@@ -60,6 +60,7 @@ class MessageIsTypicalNonsense extends AbstractRule
 
             if ($this->isMessageMostlyNonsense($message, $nonsensePhrase)) {
                 $this->addViolation($commit);
+
                 return;
             }
         }

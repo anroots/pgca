@@ -54,7 +54,8 @@ abstract class AbstractComposer implements ReportComposerInterface
     }
 
 
-    public function build(){
+    public function build()
+    {
 
         if ($this->getReport()->countViolations() === 0) {
             return $this;

@@ -79,5 +79,5 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
             'name' => $this->getName(),
             'message' => $this->getMessage()
         ];
-}
+    }
 }

@@ -5,7 +5,9 @@ namespace Anroots\Pgca\Git;
 interface CommitInterface
 {
     public function getHash();
+
     public function getShortHash();
+
     public function setShortHash($hash);
 
     /**
@@ -19,12 +21,16 @@ interface CommitInterface
     public function setMessage($message);
 
     public function setSummary($summary);
+
     public function getSummary();
 
     public function getAuthorName();
+
     public function setAuthorName($name);
 
     public function getDescription();
+
     public function setDescription($description);
+
     public function toArray();
 }

@@ -23,6 +23,7 @@ class SimpleReport extends AbstractComposer
                 $this->column($violation->getRule()->getMessage(), 'violationMessage', 'Explanation')
             ]);
         }
+
         return $this;
     }
 

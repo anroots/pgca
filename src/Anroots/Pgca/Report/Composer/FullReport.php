@@ -22,6 +22,7 @@ class FullReport extends AbstractComposer
                 $this->column($violation->getRule()->getName(), 'ruleName', 'Rule Name')
             ]);
         }
+
         return $this;
     }
 

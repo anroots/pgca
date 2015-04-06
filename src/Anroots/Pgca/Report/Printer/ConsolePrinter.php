@@ -15,6 +15,7 @@ class ConsolePrinter extends AbstractPrinter
     public function setOutput(OutputInterface $output)
     {
         $this->output = $output;
+
         return $this;
     }
 

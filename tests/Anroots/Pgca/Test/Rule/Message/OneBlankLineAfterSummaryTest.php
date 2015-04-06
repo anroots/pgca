@@ -3,7 +3,6 @@
 namespace Anroots\Pgca\Test\Rule\Message;
 
 use Anroots\Pgca\Git\Commit;
-use Anroots\Pgca\Rule\Message\IsTooShort;
 use Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary;
 
 /**
