@@ -50,9 +50,13 @@ class FileSystemProvider extends AbstractProvider
 
     private function createCommit(Commit $commitData)
     {
+        // Remove the last character from the commit message.
+        // This is always a newline due to the way Gitlib works.
+        $commitMessage =substr($commitData->getMessage(), 0, mb_strlen($commitData->getMessage()) - 1);
+
         return $this->commitFactory->create([
             'hash' => $commitData->getHash(),
-            'message' => $commitData->getMessage(),
+            'message' => $commitMessage,
             'shortHash' => $commitData->getShortHash(),
             'summary' => $commitData->getSubjectMessage(),
             'authorName' => $commitData->getAuthorName()
