@@ -15,7 +15,7 @@ class HasTrailingNewline extends AbstractRule
 
     public function getMessage()
     {
-        return 'Commit message has ends with trailing line breaks';
+        return 'Commit message ends with a trailing line break';
     }
 
     protected function run(CommitInterface $commit)
