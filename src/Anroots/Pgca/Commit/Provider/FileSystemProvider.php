@@ -38,7 +38,6 @@ class FileSystemProvider extends AbstractProvider
 
         $commits = $log->getIterator();
         foreach ($commits as $commitData) {
-
             $commit = $this->createCommit($commitData);
 
             if ($this->skipCommit($commit)) {

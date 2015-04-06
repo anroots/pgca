@@ -11,7 +11,6 @@ class FullReport extends AbstractComposer
         $violations = $this->getReport()->getViolations();
 
         foreach ($violations as $violation) {
-
             $this->getReportHeader()->addRow([
                 $this->column($violation->getCommit()->getShortHash(), 'shortHash', 'Short Commit Hash'),
                 $this->column($violation->getCommit()->getHash(), 'hash', 'Commit Hash'),
@@ -25,6 +24,4 @@ class FullReport extends AbstractComposer
 
         return $this;
     }
-
-
 }

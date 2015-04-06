@@ -61,5 +61,4 @@ class AllLinesLessThanThresholdCharsTest extends AbstractRuleTest
         $this->rule->configure(['max' => $maxLength]);
         parent::testRulePassesForValidMessages($message);
     }
-
 }

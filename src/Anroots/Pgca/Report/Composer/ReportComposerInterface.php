@@ -27,6 +27,4 @@ interface ReportComposerInterface
      * @return ReportInterface
      */
     public function getReport();
-
-
 }

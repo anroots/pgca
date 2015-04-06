@@ -2,7 +2,6 @@
 
 namespace Anroots\Pgca;
 
-
 interface ConfigInterface
 {
     public function get($path);

@@ -39,5 +39,4 @@ class FilePrinter extends AbstractPrinter
 
         return $this;
     }
-
 }

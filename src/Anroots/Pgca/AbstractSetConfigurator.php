@@ -44,7 +44,6 @@ abstract class AbstractSetConfigurator implements SetConfiguratorInterface
 
         $serviceInstances = [];
         foreach ($services as $serviceData) {
-
             $service = $this->createService($serviceData['name']);
 
             if (array_key_exists('config', $serviceData)) {
@@ -92,6 +91,4 @@ abstract class AbstractSetConfigurator implements SetConfiguratorInterface
 
         return $service;
     }
-
-
 }

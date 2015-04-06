@@ -136,5 +136,4 @@ class Commit implements CommitInterface
             'authorName' => $this->authorName
         ];
     }
-
 }

@@ -22,5 +22,4 @@ abstract class AbstractFilter extends ConfigurableEntity implements FilterInterf
     }
 
     abstract protected function isIncluded(CommitInterface $commit);
-
 }

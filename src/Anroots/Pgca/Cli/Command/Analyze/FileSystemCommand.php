@@ -37,5 +37,4 @@ class FileSystemCommand extends AbstractAnalyzeCommand
             )
             ->setDescription('Analyses Git commit messages from the .git directory');
     }
-
 }

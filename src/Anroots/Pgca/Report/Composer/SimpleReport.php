@@ -11,7 +11,6 @@ class SimpleReport extends AbstractComposer
         $violations = $this->getReport()->getViolations();
 
         foreach ($violations as $violation) {
-
             $this->getReportHeader()->addRow([
                 $this->column($violation->getCommit()->getShortHash(), 'shortHash', 'Commit'),
                 $this->column($violation->getCommit()->getAuthorName(), 'authorName', 'Author'),

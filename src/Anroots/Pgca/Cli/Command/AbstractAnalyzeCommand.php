@@ -140,6 +140,4 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
 
         return $printer;
     }
-
-
 }

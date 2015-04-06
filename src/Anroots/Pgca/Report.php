@@ -40,6 +40,4 @@ class Report implements ReportInterface
     {
         return count($this->violations);
     }
-
-
 }
