@@ -15,7 +15,7 @@ class FileSystemProvider extends AbstractProvider
 
     private $defaultOptions = [
         'path' => '.',
-        'from' => null,
+        'revision' => null,
         'limit' => self::DEFAULT_LIMIT
     ];
 
@@ -29,7 +29,7 @@ class FileSystemProvider extends AbstractProvider
     public function getCommits()
     {
 
-        $log = $this->repository->getLog($this->options['from'], null, null, $this->options['limit']);
+        $log = $this->repository->getLog($this->options['revision'], null, null, $this->options['limit']);
 
 
         if (!$log->countCommits()) {
@@ -52,7 +52,7 @@ class FileSystemProvider extends AbstractProvider
     {
         // Remove the last character from the commit message.
         // This is always a newline due to the way Gitlib works.
-        $commitMessage =substr($commitData->getMessage(), 0, mb_strlen($commitData->getMessage()) - 1);
+        $commitMessage = substr($commitData->getMessage(), 0, mb_strlen($commitData->getMessage()) - 1);
 
         return $this->commitFactory->create([
             'hash' => $commitData->getHash(),

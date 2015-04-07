@@ -15,8 +15,8 @@ class FileSystemCommand extends AbstractAnalyzeCommand
         $this->setName('analyze:filesystem')
             ->setAliases(['analyze'])
             ->addOption(
-                'from',
-                'f',
+                'revision',
+                'r',
                 InputOption::VALUE_OPTIONAL,
                 'The Git revision from which to analyze the log',
                 null
