@@ -14,6 +14,8 @@ class ContainsProfanity extends AbstractRule
      */
     private $profanityChecker;
 
+    private $message = 'Message contains profanity';
+
     /**
      * @param ViolationFactoryInterface $violationFactory
      */
@@ -31,12 +33,28 @@ class ContainsProfanity extends AbstractRule
 
     public function getMessage()
     {
-        return 'Message contains profanity';
+        return $this->message;
     }
 
     protected function run(CommitInterface $commit)
     {
-        if ($this->profanityChecker->profane($commit->getMessage())) {
+        $profane = false;
+        $message = null;
+
+        $this->profanityChecker->scan($commit->getMessage(), function ($word, $types) use (&$profane, &$message) {
+            $profane = true;
+
+            $message = sprintf(
+                'The word "%s" is considered profane (%s)',
+                mb_strtolower($word),
+                implode(',', $types)
+            );
+
+            return false;
+        });
+
+        if ($profane) {
+            $this->message = $message;
             $this->addViolation($commit);
         }
     }
