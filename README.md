@@ -11,7 +11,6 @@
 ## Todo: rule implementations
 
 - summary is in present / imperative form
-- Summary line must not end with a period
 - has ticket reference in commit message
 
 http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html

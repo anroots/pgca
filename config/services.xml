@@ -113,5 +113,7 @@
                 <service class="swearjar\Tester"/>
             </argument>
         </service>
+        <service id="rule.message.summaryDoesNotEndWithPeriod" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\SummaryDoesNotEndWithPeriod"/>
     </services>
 </container>
