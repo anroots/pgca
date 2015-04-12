@@ -6,22 +6,35 @@
 [![Quality Score](https://img.shields.io/sensiolabs/i/83f5f769-be6c-4913-8de3-086b07d45e61.svg)](https://insight.sensiolabs.com/projects/83f5f769-be6c-4913-8de3-086b07d45e61)
 [![Total Downloads](https://img.shields.io/packagist/dt/anroots/pgca.svg?style=flat-square)](https://packagist.org/packages/anroots/pgca)
 
-*Work in progress! Do not use!*
-
-## Todo: rule implementations
-
-- summary is in present / imperative form
-- has ticket reference in commit message
-
-http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+A CLI tool which analyses Git commit messages for violations.
 
 ## Install
 
-Via Composer
+Via Composer CLI, in your project directory:
 
 ``` bash
-$ composer require anroots/pgca
+$ composer require anroots/pgca:~0.1
 ```
+
+...or, in your `composer.json` file:
+
+```json
+{ 
+  "require": {
+    "anroots/pgca": "~0.1"
+  }
+}
+ 
+```
+## Rules
+
+Many rule definitions are taken from [A Note About Git Commit Messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+
+### Message rules
+
+### Commit content rules
+
+
 
 ## Usage
 
@@ -37,9 +50,20 @@ $ phpunit
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Security
+## Backlog
 
-If you discover any security related issues, please email ando@sqroot.eu instead of using the issue tracker.
+These are the broader topics that need improvement and are planned in the undefined near future:
+
+### Rule implementations
+
+- [message] summary is in present / imperative form
+- [message] has ticket reference in commit message
+- [content] commit does not contain excessive changed file count (commits that change 100 files)
+
+### Refactoring
+
+- Add more in-code documentation
+- Increase unit test coverage
 
 ## Credits
 

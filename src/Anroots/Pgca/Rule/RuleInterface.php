@@ -22,4 +22,6 @@ interface RuleInterface
     public function getMessage();
 
     public function toArray();
+
+    public function getCategory();
 }

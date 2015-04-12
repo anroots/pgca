@@ -80,4 +80,14 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
             'message' => $this->getMessage()
         ];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCategory()
+    {
+        // Naive implementation.
+        // Something more sophisticated is needed when the rule categories expand.
+        return strstr(get_class($this), '\Message\\') ? 'Message' : 'Content';
+    }
 }

@@ -5,6 +5,12 @@
 
     <services>
 
+        <!-- CLI -->
+        <service id="cli.command.rulesCommand" class="Anroots\Pgca\Cli\Command\RulesCommand">
+
+        </service>
+
+
         <service id="config" class="Anroots\Pgca\Config">
             <call method="load"/>
         </service>
@@ -92,38 +98,63 @@
         <service id="rule.abstractRule" abstract="true"
                  class="Anroots\Pgca\Rule\AbstractRule">
             <argument type="service" id="rule.violationFactory"/>
-
         </service>
 
         <service id="rule.message.hasSummaryAndDescription" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\HasSummaryAndDescription"/>
+                 class="Anroots\Pgca\Rule\Message\HasSummaryAndDescription">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.isTooShort" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\IsLongEnough"/>
+                 class="Anroots\Pgca\Rule\Message\IsLongEnough">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.startsWithCapitalLetter" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\StartsWithCapitalLetter"/>
+                 class="Anroots\Pgca\Rule\Message\StartsWithCapitalLetter">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.summaryFiftyOrLessChars" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\SummaryFiftyOrLessChars"/>
+                 class="Anroots\Pgca\Rule\Message\SummaryFiftyOrLessChars">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.oneBlankLineAfterSummary" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary"/>
+                 class="Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.noTrailingWhitespace" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\NoTrailingWhitespace"/>
+                 class="Anroots\Pgca\Rule\Message\NoTrailingWhitespace">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.noTrailingNewline" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\NoTrailingNewline"/>
+                 class="Anroots\Pgca\Rule\Message\NoTrailingNewline">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.noDoubleWhitespace" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\NoDoubleWhitespace"/>
+                 class="Anroots\Pgca\Rule\Message\NoDoubleWhitespace">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.allLinesLessThanThresholdChars" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\AllLinesLessThanThresholdChars"/>
+                 class="Anroots\Pgca\Rule\Message\AllLinesLessThanThresholdChars">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.notTypicalNonsense" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\NotTypicalNonsense"/>
+                 class="Anroots\Pgca\Rule\Message\NotTypicalNonsense">
+            <tag name="rule"/>
+        </service>
         <service id="rule.message.noProfanity" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\NoProfanity">
+            <tag name="rule"/>
             <argument type="service">
-                <service class="swearjar\Tester"/>
+                <service class="swearjar\Tester" />
             </argument>
+            <tag name="rule"/>
         </service>
         <service id="rule.message.summaryDoesNotEndWithPeriod" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\SummaryDoesNotEndWithPeriod"/>
+                 class="Anroots\Pgca\Rule\Message\SummaryDoesNotEndWithPeriod">
+            <tag name="rule"/>
+        </service>
         <service id="rule.content.hasNoIgnoredFiles" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Content\HasNoIgnoredFiles"/>
+                 class="Anroots\Pgca\Rule\Content\HasNoIgnoredFiles">
+            <tag name="rule"/>
+        </service>
     </services>
 </container>

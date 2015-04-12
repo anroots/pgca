@@ -3,6 +3,8 @@
 namespace Anroots\Pgca\Cli;
 
 use Anroots\Pgca\Cli\Command\Analyze\FileSystemCommand;
+use Anroots\Pgca\Cli\Command\Rules\RuleLoaderCompilerPass;
+use Anroots\Pgca\Cli\Command\RulesCommand;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Command\HelpCommand;
 use Symfony\Component\Console\Command\ListCommand;
@@ -17,17 +19,11 @@ class Application extends \Symfony\Component\Console\Application
 {
     use ContainerAwareTrait;
 
-    /**
-     * @param InputInterface $input
-     * @param OutputInterface $output
-     * @return int
-     * @throws \Exception
-     */
-    public function run(InputInterface $input = null, OutputInterface $output = null)
+    public function __construct($name = 'UNKNOWN', $version = 'UNKNOWN')
     {
         $this->setContainer($this->containerFactory());
 
-        return parent::run($input, $output);
+        parent::__construct($name, $version);
     }
 
     /**
@@ -38,7 +34,8 @@ class Application extends \Symfony\Component\Console\Application
         return [
             new HelpCommand,
             new ListCommand,
-            new FileSystemCommand
+            new FileSystemCommand,
+            $this->container->get('cli.command.rulesCommand')
         ];
     }
 
@@ -70,6 +67,8 @@ class Application extends \Symfony\Component\Console\Application
             // Could not load the additional rules file
             // Todo: handle this better
         }
+
+        $container->addCompilerPass(new RuleLoaderCompilerPass);
         $container->compile();
 
         return $container;
