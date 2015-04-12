@@ -19,3 +19,4 @@ analyzers:
       - name: message.allLinesLessThanThresholdChars
       - name: message.messageIsTypicalNonsense
       - name: message.containsProfanity
+      - name: message.summaryDoesNotEndWithPeriod
