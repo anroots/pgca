@@ -21,8 +21,6 @@ class OneBlankLineAfterSummaryTest extends AbstractRuleTest
     public function provideInvalidMessages()
     {
         return [
-            [''],
-            ['Fix test'],
             ["Do some magic\nsome more"],
             ["Do some magic\n\n\nsome more"],
             ["Do some magic\n\n\n\nsome more"],
@@ -32,8 +30,10 @@ class OneBlankLineAfterSummaryTest extends AbstractRuleTest
     public function provideValidMessages()
     {
         return [
+            [''],
             ["Fix some magic that happened between\n\nyesterday and today"],
-            ["Re-implement feature NGW-222.\n\nThis was supposed to be done yesterday"]
+            ["Re-implement feature NGW-222.\n\nThis was supposed to be done yesterday"],
+            ['Fix test'], // Has no description block, should pass
         ];
     }
 }

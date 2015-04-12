@@ -6,7 +6,6 @@ use Anroots\Pgca\Rule\Message\HasSummaryAndDescription;
 
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\HasSummaryAndDescription
- * @group debug
  */
 class HasSummaryAndDescriptionTest extends AbstractRuleTest
 {
