@@ -26,7 +26,7 @@ $ composer require anroots/pgca:~0.1
     "anroots/pgca": "~0.1"
   }
 }
-
+```
 
 ## Usage
 
