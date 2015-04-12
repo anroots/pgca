@@ -33,4 +33,8 @@ interface CommitInterface
     public function setDescription($description);
 
     public function toArray();
+
+    public function setChangedFiles(array $changedFiles);
+    public function getChangedFiles();
+
 }

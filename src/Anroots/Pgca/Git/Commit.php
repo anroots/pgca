@@ -12,6 +12,27 @@ class Commit implements CommitInterface
     private $authorName;
     private $message;
 
+    private $changedFiles = [];
+
+    /**
+     * @return array
+     */
+    public function getChangedFiles()
+    {
+        return $this->changedFiles;
+    }
+
+    /**
+     * @param array $changedFiles
+     * @return $this
+     */
+    public function setChangedFiles(array $changedFiles)
+    {
+        $this->changedFiles = $changedFiles;
+
+        return $this;
+    }
+
     /**
      * @return mixed
      */

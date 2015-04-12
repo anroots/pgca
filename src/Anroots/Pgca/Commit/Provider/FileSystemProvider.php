@@ -3,6 +3,7 @@
 namespace Anroots\Pgca\Commit\Provider;
 
 use Gitonomy\Git\Commit;
+use Gitonomy\Git\Diff\File;
 use Gitonomy\Git\Repository;
 
 class FileSystemProvider extends AbstractProvider
@@ -29,8 +30,8 @@ class FileSystemProvider extends AbstractProvider
     public function getCommits()
     {
 
+        /** @var \Gitonomy\Git\Log $log */
         $log = $this->repository->getLog($this->options['revision'], null, null, $this->options['limit']);
-
 
         if (!$log->countCommits()) {
             throw new \RuntimeException('No commits found');
@@ -38,6 +39,9 @@ class FileSystemProvider extends AbstractProvider
 
         $commits = $log->getIterator();
         foreach ($commits as $commitData) {
+
+            /** @var \Gitonomy\Git\Commit $commitData */
+
             $commit = $this->createCommit($commitData);
 
             if ($this->skipCommit($commit)) {
@@ -48,18 +52,27 @@ class FileSystemProvider extends AbstractProvider
         }
     }
 
+
+    /**
+     * @param Commit $commitData
+     * @return \Anroots\Pgca\Git\Commit
+     */
     private function createCommit(Commit $commitData)
     {
         // Remove the last character from the commit message.
         // This is always a newline due to the way Gitlib works.
         $commitMessage = substr($commitData->getMessage(), 0, mb_strlen($commitData->getMessage()) - 1);
 
+
+        $files = $this->extractFilePaths($commitData->getDiff()->getFiles());
+
         return $this->commitFactory->create([
             'hash' => $commitData->getHash(),
             'message' => $commitMessage,
             'shortHash' => $commitData->getShortHash(),
             'summary' => $commitData->getSubjectMessage(),
-            'authorName' => $commitData->getAuthorName()
+            'authorName' => $commitData->getAuthorName(),
+            'changedFiles' => $files
         ]);
     }
 
@@ -79,5 +92,19 @@ class FileSystemProvider extends AbstractProvider
     private function getRepositoryServiceClass()
     {
         return Repository::class;
+    }
+
+    /**
+     * @param File[] $files
+     * @return array
+     */
+    private function extractFilePaths(array $files)
+    {
+        $paths = [];
+        foreach ($files as $file) {
+            $paths[] = $file->getName();
+        }
+
+        return $paths;
     }
 }
