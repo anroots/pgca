@@ -17,4 +17,4 @@ before_script:
 
 script:
   - phpunit
-  - bin/pgca analyze --printer=console --serializer=console --composer=simple --from HEAD~1..HEAD
+  - bin/pgca analyze --printer=console --serializer=console --composer=simple --revision HEAD~1..HEAD
