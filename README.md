@@ -54,8 +54,7 @@ PGCA report, generated on 2015-04-12 15:08:06
 
 _Todo: write setup and usage guide_
 
- 
-```
+
 ## Rules
 
 Many rule definitions are taken from [A Note About Git Commit Messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
@@ -98,13 +97,13 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 These are the broader topics that need improvement and are planned in the undefined near future:
 
-### Rule implementations
+**Rule implementations**
 
 - [message] summary is in present / imperative form
 - [message] has ticket reference in commit message
 - [content] commit does not contain excessive changed file count (commits that change 100 files)
 
-### Refactoring
+**Refactoring**
 
 - Add more in-code documentation
 - Increase unit test coverage
