@@ -38,10 +38,18 @@ Pgca is flexible in the way it can be set up:
 - Have a standalone, manually run instance that tracks remote commits (GitHub)
 
 
-Print the "simple" report format in JSON form to the console and analyse the last Git commit of the current branch:
+Print the "simple" report in table format to the console and analyse the last 40 Git commits of the current branch:
 
 ```bash
-$ bin/pgca analyze --printer=console --serializer=json --composer=simple --revision=HEAD~1..HEAD
+$ bin/pgca analyze --printer=console --serializer=console --composer=simple --revision=HEAD~40..HEAD                                                                                       1 ↵
+PGCA report, generated on 2015-04-12 15:08:06
++---------+------------+-------------------------+--------------------------------------------------+
+| Commit  | Author     | Commit Message          | Explanation                                      |
++---------+------------+-------------------------+--------------------------------------------------+
+| 342a207 | Ando Roots | Readme additions        | Commit message is really short                   |
+| 8ba29a8 | Ando Roots | Add five new Rules      | Commit message is really short                   |
+| a7c97f9 | Ando Roots | Refactor AbstractRul... | The Summary line should be 50 or less characters |
++---------+------------+-------------------------+--------------------------------------------------+
 ```
 
 _Todo: write setup and usage guide_
