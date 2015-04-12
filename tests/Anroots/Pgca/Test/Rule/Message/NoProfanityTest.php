@@ -3,14 +3,14 @@
 namespace Anroots\Pgca\Test\Rule\Message;
 
 use Anroots\Pgca\Git\Commit;
-use Anroots\Pgca\Rule\Message\ContainsProfanity;
+use Anroots\Pgca\Rule\Message\NoProfanity;
 use Anroots\Pgca\Rule\ViolationFactory;
 use swearjar\Tester;
 
 /**
- * @coversDefaultClass \Anroots\Pgca\Rule\Message\ContainsProfanity
+ * @coversDefaultClass \Anroots\Pgca\Rule\Message\NoProfanity
  */
-class ContainsProfanityTest extends AbstractRuleTest
+class NoProfanityTest extends AbstractRuleTest
 {
 
     public function setUp()
@@ -29,7 +29,7 @@ class ContainsProfanityTest extends AbstractRuleTest
 
     protected function getRuleClass()
     {
-        return ContainsProfanity::class;
+        return NoProfanity::class;
     }
 
     /**

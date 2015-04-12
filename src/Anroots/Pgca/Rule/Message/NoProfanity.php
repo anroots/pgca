@@ -7,7 +7,7 @@ use Anroots\Pgca\Rule\AbstractRule;
 use Anroots\Pgca\Rule\ViolationFactoryInterface;
 use swearjar\Tester;
 
-class ContainsProfanity extends AbstractRule
+class NoProfanity extends AbstractRule
 {
     /**
      * @var Tester
@@ -28,7 +28,7 @@ class ContainsProfanity extends AbstractRule
 
     public function getName()
     {
-        return 'message.containsProfanity';
+        return 'message.noProfanity';
     }
 
     public function getMessage()

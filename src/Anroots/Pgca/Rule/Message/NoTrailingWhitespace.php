@@ -5,12 +5,12 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
-class HasTrailingWhitespace extends AbstractRule
+class NoTrailingWhitespace extends AbstractRule
 {
 
     public function getName()
     {
-        return 'message.hasTrailingWhitespace';
+        return 'message.noTrailingWhitespace';
     }
 
     public function getMessage()

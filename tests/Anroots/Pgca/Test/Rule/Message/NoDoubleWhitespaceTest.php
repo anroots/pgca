@@ -3,16 +3,16 @@
 namespace Anroots\Pgca\Test\Rule\Message;
 
 use Anroots\Pgca\Git\Commit;
-use Anroots\Pgca\Rule\Message\HasDoubleWhitespace;
+use Anroots\Pgca\Rule\Message\NoDoubleWhitespace;
 
 /**
- * @coversDefaultClass \Anroots\Pgca\Rule\Message\HasDoubleWhitespace
+ * @coversDefaultClass \Anroots\Pgca\Rule\Message\NoDoubleWhitespace
  */
-class HasDoubleWhitespaceTest extends AbstractRuleTest
+class NoDoubleWhitespaceTest extends AbstractRuleTest
 {
     protected function getRuleClass()
     {
-        return HasDoubleWhitespace::class;
+        return NoDoubleWhitespace::class;
     }
 
     /**

@@ -5,12 +5,12 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
-class HasTrailingNewline extends AbstractRule
+class NoTrailingNewline extends AbstractRule
 {
 
     public function getName()
     {
-        return 'message.hasTrailingNewline';
+        return 'message.noTrailingNewline';
     }
 
     public function getMessage()

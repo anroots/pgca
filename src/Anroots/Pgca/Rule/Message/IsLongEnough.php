@@ -5,13 +5,13 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
-class IsTooShort extends AbstractRule
+class IsLongEnough extends AbstractRule
 {
     const MIN_LENGTH = 20;
 
     public function getName()
     {
-        return 'message.isReallyShort';
+        return 'message.isLongEnough';
     }
 
     public function getMessage()

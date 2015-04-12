@@ -2,12 +2,12 @@
 
 namespace Anroots\Pgca\Test\Rule\Message;
 
-use Anroots\Pgca\Rule\Message\HasTrailingWhitespace;
+use Anroots\Pgca\Rule\Message\NoTrailingWhitespace;
 
 /**
- * @coversDefaultClass \Anroots\Pgca\Rule\Message\HasTrailingWhitespace
+ * @coversDefaultClass \Anroots\Pgca\Rule\Message\NoTrailingWhitespace
  */
-class HasTrailingWhitespaceTest extends AbstractRuleTest
+class NoTrailingWhitespaceTest extends AbstractRuleTest
 {
 
     public function provideInvalidMessages()
@@ -34,6 +34,6 @@ class HasTrailingWhitespaceTest extends AbstractRuleTest
 
     protected function getRuleClass()
     {
-        return HasTrailingWhitespace::class;
+        return NoTrailingWhitespace::class;
     }
 }

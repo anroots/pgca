@@ -5,7 +5,7 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
-class MessageIsTypicalNonsense extends AbstractRule
+class NotTypicalNonsense extends AbstractRule
 {
     private $vocabulary = [
         'bug fix',
@@ -26,7 +26,7 @@ class MessageIsTypicalNonsense extends AbstractRule
 
     public function getName()
     {
-        return 'message.messageIsTypicalNonsense';
+        return 'message.notTypicalNonsense';
     }
 
     public function isConfigured()

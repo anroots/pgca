@@ -2,12 +2,12 @@
 
 namespace Anroots\Pgca\Test\Rule\Message;
 
-use Anroots\Pgca\Rule\Message\HasTrailingNewline;
+use Anroots\Pgca\Rule\Message\NoTrailingNewline;
 
 /**
- * @coversDefaultClass \Anroots\Pgca\Rule\Message\HasTrailingNewline
+ * @coversDefaultClass \Anroots\Pgca\Rule\Message\NoTrailingNewline
  */
-class HasTrailingNewlineTest extends AbstractRuleTest
+class NoTrailingNewlineTest extends AbstractRuleTest
 {
 
     public function provideInvalidMessages()
@@ -32,6 +32,6 @@ class HasTrailingNewlineTest extends AbstractRuleTest
 
     protected function getRuleClass()
     {
-        return HasTrailingNewline::class;
+        return NoTrailingNewline::class;
     }
 }

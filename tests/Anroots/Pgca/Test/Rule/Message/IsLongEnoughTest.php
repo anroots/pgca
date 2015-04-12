@@ -3,16 +3,16 @@
 namespace Anroots\Pgca\Test\Rule\Message;
 
 use Anroots\Pgca\Git\Commit;
-use Anroots\Pgca\Rule\Message\IsTooShort;
+use Anroots\Pgca\Rule\Message\IsLongEnough;
 
 /**
- * @coversDefaultClass \Anroots\Pgca\Rule\Message\IsTooShort
+ * @coversDefaultClass \Anroots\Pgca\Rule\Message\IsLongEnough
  */
-class IsTooShortTest extends AbstractRuleTest
+class IsLongEnoughTest extends AbstractRuleTest
 {
     protected function getRuleClass()
     {
-        return IsTooShort::class;
+        return IsLongEnough::class;
     }
 
     /**

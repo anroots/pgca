@@ -98,25 +98,25 @@
         <service id="rule.message.hasSummaryAndDescription" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\HasSummaryAndDescription"/>
         <service id="rule.message.isTooShort" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\IsTooShort"/>
+                 class="Anroots\Pgca\Rule\Message\IsLongEnough"/>
         <service id="rule.message.startsWithCapitalLetter" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\StartsWithCapitalLetter"/>
         <service id="rule.message.summaryFiftyOrLessChars" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\SummaryFiftyOrLessChars"/>
         <service id="rule.message.oneBlankLineAfterSummary" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary"/>
-        <service id="rule.message.hasTrailingWhitespace" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\HasTrailingWhitespace"/>
-        <service id="rule.message.hasTrailingNewline" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\HasTrailingNewline"/>
-        <service id="rule.message.hasDoubleWhitespace" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\HasDoubleWhitespace"/>
+        <service id="rule.message.noTrailingWhitespace" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\NoTrailingWhitespace"/>
+        <service id="rule.message.noTrailingNewline" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\NoTrailingNewline"/>
+        <service id="rule.message.noDoubleWhitespace" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\NoDoubleWhitespace"/>
         <service id="rule.message.allLinesLessThanThresholdChars" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\AllLinesLessThanThresholdChars"/>
-        <service id="rule.message.messageIsTypicalNonsense" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\MessageIsTypicalNonsense"/>
-        <service id="rule.message.containsProfanity" parent="rule.abstractRule"
-                 class="Anroots\Pgca\Rule\Message\ContainsProfanity">
+        <service id="rule.message.notTypicalNonsense" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\NotTypicalNonsense"/>
+        <service id="rule.message.noProfanity" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Message\NoProfanity">
             <argument type="service">
                 <service class="swearjar\Tester"/>
             </argument>

@@ -5,12 +5,12 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
-class HasDoubleWhitespace extends AbstractRule
+class NoDoubleWhitespace extends AbstractRule
 {
 
     public function getName()
     {
-        return 'message.hasDoubleWhitespace';
+        return 'message.noDoubleWhitespace';
     }
 
     public function getMessage()
@@ -20,8 +20,8 @@ class HasDoubleWhitespace extends AbstractRule
 
     protected function run(CommitInterface $commit)
     {
-        $hasDoubleWhitespace = preg_match('/\w  \w/', $commit->getMessage());
-        if ($hasDoubleWhitespace) {
+        $NoDoubleWhitespace = preg_match('/\w  \w/', $commit->getMessage());
+        if ($NoDoubleWhitespace) {
             $this->addViolation($commit);
         }
     }

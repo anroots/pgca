@@ -2,12 +2,12 @@
 
 namespace Anroots\Pgca\Test\Rule\Message;
 
-use Anroots\Pgca\Rule\Message\MessageIsTypicalNonsense;
+use Anroots\Pgca\Rule\Message\NotTypicalNonsense;
 
 /**
- * @coversDefaultClass \Anroots\Pgca\Rule\Message\MessageIsTypicalNonsense
+ * @coversDefaultClass \Anroots\Pgca\Rule\Message\NotTypicalNonsense
  */
-class MessageIsTypicalNonsenseTest extends AbstractRuleTest
+class NotTypicalNonsenseTest extends AbstractRuleTest
 {
 
     public function provideInvalidMessages()
@@ -43,6 +43,6 @@ class MessageIsTypicalNonsenseTest extends AbstractRuleTest
 
     protected function getRuleClass()
     {
-        return MessageIsTypicalNonsense::class;
+        return NotTypicalNonsense::class;
     }
 }
