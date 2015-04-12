@@ -47,4 +47,12 @@ class HtmlSerializer extends AbstractSerializer
 
         return $out;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFileName()
+    {
+        return 'report.html';
+    }
 }

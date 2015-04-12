@@ -11,4 +11,9 @@ interface SerializerInterface
      * @return string
      */
     public function serialize(ReportComposerInterface $report);
+
+    /**
+     * @return string
+     */
+    public function getFileName();
 }

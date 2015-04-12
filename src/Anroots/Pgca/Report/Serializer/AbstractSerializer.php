@@ -32,4 +32,12 @@ abstract class AbstractSerializer implements SerializerInterface
             'created' => $report->getReportHeader()->getCreated()->format('Y-m-d H:i:s')
         ];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFileName()
+    {
+        return 'pgca_report.txt';
+    }
 }

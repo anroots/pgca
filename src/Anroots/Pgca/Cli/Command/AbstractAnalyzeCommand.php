@@ -6,8 +6,10 @@ use Anroots\Pgca\Cli\ContainerAwareCommand;
 use Anroots\Pgca\Commit\Analyzer\CommitAnalyzerInterface;
 use Anroots\Pgca\Commit\Provider\CommitProviderInterface;
 use Anroots\Pgca\ConfigInterface;
+use Anroots\Pgca\Report\Composer\ReportComposerInterface;
 use Anroots\Pgca\Report\Printer\ConsolePrinter;
-use Anroots\Pgca\Report\Printer\FilePrinter;
+use Anroots\Pgca\Report\Printer\PrinterInterface;
+use Anroots\Pgca\Report\ReportBuilderInterface;
 use Anroots\Pgca\Report\Serializer\SerializerInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -36,6 +38,7 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
     /**
      * @param InputInterface $input
      * @param OutputInterface $output
+     * @return int|null
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -47,20 +50,27 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         $analyzer = $this->analyzerFactory($mergedConfig);
         $analyzer->run();
 
-        $simpleReport = $this->reportComposerFactory($mergedConfig['composer']);
-        $simpleReport->setReport($analyzer->getReport())
-            ->build();
+        /** @var ReportBuilderInterface $reportBuilder */
+        $reportBuilder = $this->getContainer()->get('report.reportBuilder');
 
+        $reportComposer = $this->reportComposerFactory($mergedConfig['composer']);
         $serializer = $this->serializerFactory($mergedConfig['serializer']);
-        $serializedReport = $serializer->serialize($simpleReport);
-
         $printer = $this->printerFactory($mergedConfig['printer']);
-        $printer->write($serializedReport);
+
+        $reportBuilder->setComposer($reportComposer)
+            ->setSerializer($serializer)
+            ->setPrinter($printer)
+            ->setReport($analyzer->getReport())
+            ->build();
 
         return $analyzer->getReport()->countViolations() === 0 ?: 1;
     }
 
 
+    /**
+     * @param InputInterface $input
+     * @return array
+     */
     public function getConfig(InputInterface $input)
     {
         $providerConfig = $this->config->get('provider');
@@ -95,7 +105,7 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param $mergedConfig
+     * @param array $mergedConfig
      * @return CommitAnalyzerInterface
      */
     protected function analyzerFactory(array $mergedConfig)
@@ -110,8 +120,8 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
     }
 
     /**
-     * @param $name
-     * @return object ReportComposerInterface
+     * @param string $name
+     * @return ReportComposerInterface
      */
     private function reportComposerFactory($name)
     {
@@ -127,6 +137,10 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         return $this->getContainer()->get('report.serializer.' . $serializer . 'Serializer');
     }
 
+    /**
+     * @param string $name
+     * @return PrinterInterface
+     */
     private function printerFactory($name)
     {
         $printer = $this->getContainer()->get('report.printer.' . $name . 'Printer');
@@ -134,8 +148,6 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         // Todo: refactor with the correct design pattern. Lose the if-s
         if ($printer instanceof ConsolePrinter) {
             $printer->setOutput($this->output);
-        } elseif ($printer instanceof FilePrinter) {
-            $printer->setFileName('report.json');
         }
 
         return $printer;

@@ -40,6 +40,9 @@
         <service id="report.composer.abstractComposer" abstract="true">
             <argument type="service" id="report.reportHeader"/>
         </service>
+
+        <service id="report.reportBuilder" class="Anroots\Pgca\Report\ReportBuilder" scope="prototype"/>
+
         <service id="report.reportHeader" class="Anroots\Pgca\Report\ReportHeader">
             <argument type="service">
                 <service class="DateTime"/>

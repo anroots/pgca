@@ -17,4 +17,12 @@ class JsonSerializer extends AbstractSerializer
 
         return json_encode($output, JSON_PRETTY_PRINT);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFileName()
+    {
+        return 'report.json';
+    }
 }
