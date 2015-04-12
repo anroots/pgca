@@ -3,7 +3,7 @@
 
 $autoloadLocations = array(
     __DIR__ . '/../../../autoload.php',
-    __DIR__.'/../vendor/autoload.php'
+    __DIR__ . '/../vendor/autoload.php'
 );
 
 foreach ($autoloadLocations as $file) {
@@ -13,8 +13,6 @@ foreach ($autoloadLocations as $file) {
 }
 
 use Anroots\Pgca\Cli\Application;
-use Anroots\Pgca\Cli\Command\Analyze\FileSystemCommand;
 
-$application = new Application('PHP Git Commit Analyzer');
-$application->add(new FileSystemCommand);
+$application = new Application('PHP Git Commit Analyzer', '1');
 $application->run();

@@ -2,7 +2,10 @@
 
 namespace Anroots\Pgca\Cli;
 
+use Anroots\Pgca\Cli\Command\Analyze\FileSystemCommand;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Console\Command\HelpCommand;
+use Symfony\Component\Console\Command\ListCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -26,6 +29,19 @@ class Application extends \Symfony\Component\Console\Application
 
         return parent::run($input, $output);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultCommands()
+    {
+        return [
+            new HelpCommand,
+            new ListCommand,
+            new FileSystemCommand
+        ];
+    }
+
 
     /**
      * @return ContainerInterface
