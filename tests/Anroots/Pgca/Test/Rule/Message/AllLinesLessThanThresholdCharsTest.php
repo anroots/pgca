@@ -8,7 +8,7 @@ use Faker\Factory;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\AllLinesLessThanThresholdChars
  */
-class AllLinesLessThanThresholdCharsTest extends AbstractRuleTest
+class AllLinesLessThanThresholdCharsTest extends AbstractMessageTest
 {
 
     public function provideValidMessages()

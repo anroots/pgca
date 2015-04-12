@@ -10,7 +10,7 @@ use swearjar\Tester;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\NoProfanity
  */
-class NoProfanityTest extends AbstractRuleTest
+class NoProfanityTest extends AbstractMessageTest
 {
 
     public function setUp()

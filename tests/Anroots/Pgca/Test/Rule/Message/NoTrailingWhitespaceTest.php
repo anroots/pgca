@@ -7,7 +7,7 @@ use Anroots\Pgca\Rule\Message\NoTrailingWhitespace;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\NoTrailingWhitespace
  */
-class NoTrailingWhitespaceTest extends AbstractRuleTest
+class NoTrailingWhitespaceTest extends AbstractMessageTest
 {
 
     public function provideInvalidMessages()

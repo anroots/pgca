@@ -20,3 +20,4 @@ analyzers:
       - name: message.notTypicalNonsense
       - name: message.noProfanity
       - name: message.summaryDoesNotEndWithPeriod
+      - name: content.hasNoIgnoredFiles

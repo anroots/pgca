@@ -7,7 +7,7 @@ use Anroots\Pgca\Rule\Message\StartsWithCapitalLetter;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\StartsWithCapitalLetter
  */
-class StartsWithCapitalLetterTest extends AbstractRuleTest
+class StartsWithCapitalLetterTest extends AbstractMessageTest
 {
 
     public function provideInvalidMessages()

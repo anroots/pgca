@@ -7,7 +7,7 @@ use Anroots\Pgca\Rule\Message\NoTrailingNewline;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\NoTrailingNewline
  */
-class NoTrailingNewlineTest extends AbstractRuleTest
+class NoTrailingNewlineTest extends AbstractMessageTest
 {
 
     public function provideInvalidMessages()

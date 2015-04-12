@@ -3,27 +3,15 @@
 namespace Anroots\Pgca\Test\Rule\Message;
 
 use Anroots\Pgca\Git\Commit;
-use Anroots\Pgca\Rule\RuleInterface;
-use Anroots\Pgca\Test\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
+use Anroots\Pgca\Test\Rule\AbstractRuleTest;
 
-abstract class AbstractRuleTest extends TestCase
+abstract class AbstractMessageTest extends AbstractRuleTest
 {
-    /**
-     * @var RuleInterface|PHPUnit_Framework_MockObject_MockObject
-     */
-    protected $rule;
 
-    public function setUp()
-    {
-        parent::setUp();
-        $this->rule = $this->getMockBuilder($this->getRuleClass())
-            ->setMethods(['addViolation'])
-            ->disableOriginalConstructor()
-            ->getMock();
-    }
 
     abstract public function provideInvalidMessages();
+
+    abstract public function provideValidMessages();
 
     /**
      * @dataProvider provideInvalidMessages
@@ -39,7 +27,6 @@ abstract class AbstractRuleTest extends TestCase
         $this->rule->apply($commit);
     }
 
-    abstract public function provideValidMessages();
 
     /**
      * @covers ::run
@@ -62,17 +49,4 @@ abstract class AbstractRuleTest extends TestCase
         return $commit;
     }
 
-    abstract protected function getRuleClass();
-
-    protected function expectSuccess()
-    {
-        $this->rule->expects($this->never())
-            ->method('addViolation');
-    }
-
-    protected function expectFailure()
-    {
-        $this->rule->expects($this->once())
-            ->method('addViolation');
-    }
 }

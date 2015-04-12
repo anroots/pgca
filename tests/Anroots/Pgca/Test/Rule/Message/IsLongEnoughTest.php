@@ -8,7 +8,7 @@ use Anroots\Pgca\Rule\Message\IsLongEnough;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\IsLongEnough
  */
-class IsLongEnoughTest extends AbstractRuleTest
+class IsLongEnoughTest extends AbstractMessageTest
 {
     protected function getRuleClass()
     {

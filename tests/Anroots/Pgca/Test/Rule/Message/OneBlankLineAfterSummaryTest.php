@@ -8,7 +8,7 @@ use Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary
  */
-class OneBlankLineAfterSummaryTest extends AbstractRuleTest
+class OneBlankLineAfterSummaryTest extends AbstractMessageTest
 {
     protected function getRuleClass()
     {

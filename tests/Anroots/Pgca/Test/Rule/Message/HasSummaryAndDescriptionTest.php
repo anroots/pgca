@@ -7,7 +7,7 @@ use Anroots\Pgca\Rule\Message\HasSummaryAndDescription;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\HasSummaryAndDescription
  */
-class HasSummaryAndDescriptionTest extends AbstractRuleTest
+class HasSummaryAndDescriptionTest extends AbstractMessageTest
 {
 
     public function provideInvalidMessages()

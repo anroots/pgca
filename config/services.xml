@@ -61,7 +61,7 @@
         <service id="report.serializer.jsonSerializer" class="Anroots\Pgca\Report\Serializer\JsonSerializer"/>
         <service id="report.serializer.htmlSerializer" class="Anroots\Pgca\Report\Serializer\HtmlSerializer">
             <argument type="service">
-                <service class="Mustache_Engine" />
+                <service class="Mustache_Engine"/>
             </argument>
         </service>
         <service id="report.serializer.consoleSerializer" class="Anroots\Pgca\Report\Serializer\ConsoleSerializer">
@@ -123,5 +123,7 @@
         </service>
         <service id="rule.message.summaryDoesNotEndWithPeriod" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\SummaryDoesNotEndWithPeriod"/>
+        <service id="rule.content.hasNoIgnoredFiles" parent="rule.abstractRule"
+                 class="Anroots\Pgca\Rule\Content\HasNoIgnoredFiles"/>
     </services>
 </container>

@@ -8,7 +8,7 @@ use Faker\Factory;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\SummaryFiftyOrLessChars
  */
-class SummaryFiftyOrLessCharsTest extends AbstractRuleTest
+class SummaryFiftyOrLessCharsTest extends AbstractMessageTest
 {
 
     public function provideValidMessages()

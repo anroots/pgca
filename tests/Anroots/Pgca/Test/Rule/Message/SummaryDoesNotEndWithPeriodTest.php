@@ -8,7 +8,7 @@ use Anroots\Pgca\Rule\Message\SummaryDoesNotEndWithPeriod;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\SummaryDoesNotEndWithPeriod
  */
-class SummaryDoesNotEndWithPeriodTest extends AbstractRuleTest
+class SummaryDoesNotEndWithPeriodTest extends AbstractMessageTest
 {
 
     public function provideInvalidMessages()

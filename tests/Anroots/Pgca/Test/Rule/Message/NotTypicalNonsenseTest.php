@@ -7,7 +7,7 @@ use Anroots\Pgca\Rule\Message\NotTypicalNonsense;
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\NotTypicalNonsense
  */
-class NotTypicalNonsenseTest extends AbstractRuleTest
+class NotTypicalNonsenseTest extends AbstractMessageTest
 {
 
     public function provideInvalidMessages()
