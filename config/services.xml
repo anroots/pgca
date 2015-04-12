@@ -56,6 +56,11 @@
 
         <!-- Serializers -->
         <service id="report.serializer.jsonSerializer" class="Anroots\Pgca\Report\Serializer\JsonSerializer"/>
+        <service id="report.serializer.htmlSerializer" class="Anroots\Pgca\Report\Serializer\HtmlSerializer">
+            <argument type="service">
+                <service class="Mustache_Engine" />
+            </argument>
+        </service>
         <service id="report.serializer.consoleSerializer" class="Anroots\Pgca\Report\Serializer\ConsoleSerializer">
             <argument type="service">
                 <service class="Symfony\Component\Console\Output\BufferedOutput"/>
