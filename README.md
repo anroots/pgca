@@ -28,6 +28,8 @@ $ composer require anroots/pgca:~0.1
 }
 ```
 
+Copy `config/pgca.yml` into your project root directory and change its contents as needed.
+
 ## Usage
 
 Pgca is flexible in the way it can be set up:
@@ -101,6 +103,7 @@ These are the broader topics that need improvement and are planned in the undefi
 
 - [message] summary is in present / imperative form
 - [message] has ticket reference in commit message
+- [message] is in English
 - [content] commit does not contain excessive changed file count (commits that change 100 files)
 
 **Refactoring**
