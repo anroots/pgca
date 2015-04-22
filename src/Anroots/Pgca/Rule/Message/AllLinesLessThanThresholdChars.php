@@ -45,4 +45,6 @@ class AllLinesLessThanThresholdChars extends AbstractRule
             }
         }
     }
+
+
 }
