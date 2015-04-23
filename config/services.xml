@@ -59,6 +59,8 @@
                  parent="report.composer.abstractComposer"/>
         <service id="report.composer.fullReport" class="Anroots\Pgca\Report\Composer\FullReport"
                  parent="report.composer.abstractComposer"/>
+        <service id="report.composer.blameReport" class="Anroots\Pgca\Report\Composer\BlameReport"
+                 parent="report.composer.abstractComposer"/>
 
         <!-- Printers -->
         <service id="report.printer.filePrinter" class="Anroots\Pgca\Report\Printer\FilePrinter"/>
