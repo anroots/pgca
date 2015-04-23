@@ -6,6 +6,6 @@ use Anroots\Pgca\AbstractSetConfigurator;
 
 class RuleSetConfigurator extends AbstractSetConfigurator
 {
-    protected $configPath = 'analyzers.message.rules';
+    protected $configPath = 'analyzer.rules';
     protected $prefix = 'rule.';
 }

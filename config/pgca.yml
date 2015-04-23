@@ -1,12 +1,11 @@
 provider:
   name: fileSystemProvider
-  path: .
+  path: ../hubot
   filters:
     - name: isNotMergeCommit
 
 
-analyzers:
-  message:
+analyzer:
     rules:
       - name: message.hasSummaryAndDescription
       - name: message.startsWithCapitalLetter
