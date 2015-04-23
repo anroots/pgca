@@ -19,7 +19,7 @@ class BlameReport extends AbstractComposer
             $authors[$authorName]['blame'] += $violation->getRule()->getSeverity();
         }
 
-        $totalBlame = array_sum(array_column($authors, 'blame'));
+        $totalBlame = $this->getReport()->getScore();
 
         foreach ($authors as $authorName => $violation) {
             $this->getReportHeader()->addRow([

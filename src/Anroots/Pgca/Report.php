@@ -40,4 +40,21 @@ class Report implements ReportInterface
     {
         return count($this->violations);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getScore()
+    {
+        if ($this->countViolations() === 0) {
+            return 0;
+        }
+
+        $sum = 0;
+        foreach ($this->violations as $violation) {
+            $sum += $violation->getRule()->getSeverity();
+        }
+
+        return $sum;
+    }
 }

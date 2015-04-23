@@ -32,6 +32,13 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
     {
         $this->addOption('serializer', 's', InputOption::VALUE_OPTIONAL, 'Specify the serializer to use', 'console')
             ->addOption('printer', null, InputOption::VALUE_OPTIONAL, 'Specify the printer to use', 'console')
+            ->addOption(
+                'tolerance',
+                't',
+                InputOption::VALUE_OPTIONAL,
+                'Exit with an error code if the level of violations is above the set tolerance',
+                20
+            )
             ->addOption('composer', 'c', InputOption::VALUE_OPTIONAL, 'Specify the composer to use', 'simple');
     }
 
@@ -63,7 +70,7 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
             ->setReport($analyzer->getReport())
             ->build();
 
-        return $analyzer->getReport()->countViolations() === 0 ?: 1;
+        return $analyzer->getReport()->getScore() > $input->getOption('tolerance') ? 1 : 0;
     }
 
 
