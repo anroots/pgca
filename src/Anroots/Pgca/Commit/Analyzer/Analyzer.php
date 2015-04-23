@@ -58,6 +58,7 @@ class Analyzer implements CollectionSetAwareInterface, CommitAnalyzerInterface
     public function setCommitProvider(CommitProviderInterface $commitProvider)
     {
         $this->commitProvider = $commitProvider;
+        $this->report->setProvider($commitProvider);
 
         return $this;
     }

@@ -14,4 +14,10 @@ interface CommitProviderInterface
     public function getFilters();
 
     public function configure(array $options);
+
+    public function countTotal();
+
+    public function countAnalyzed();
+
+    public function countSkipped();
 }

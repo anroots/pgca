@@ -8,7 +8,7 @@ use Gitonomy\Git\Repository;
 
 class FileSystemProvider extends AbstractProvider
 {
-    const DEFAULT_LIMIT = 100;
+    const DEFAULT_LIMIT = 400;
     /**
      * @var Repository
      */
@@ -21,6 +21,12 @@ class FileSystemProvider extends AbstractProvider
     ];
 
     private $options = [];
+
+    private $counters = [
+        'analyzed' => 0,
+        'skipped' => 0,
+        'total' => 0
+    ];
 
     public function setRepository(Repository $repository)
     {
@@ -37,21 +43,36 @@ class FileSystemProvider extends AbstractProvider
             throw new \RuntimeException('No commits found');
         }
 
+        $this->counters['total'] = $log->countCommits();
+
         $commits = $log->getIterator();
         foreach ($commits as $commitData) {
-
             /** @var \Gitonomy\Git\Commit $commitData */
-
             $commit = $this->createCommit($commitData);
 
             if ($this->skipCommit($commit)) {
+                $this->counters['skipped']++;
                 continue;
             }
-
+            $this->counters['analyzed']++;
             yield $commit;
         }
     }
 
+    public function countAnalyzed()
+    {
+        return $this->counters['analyzed'];
+    }
+
+    public function countSkipped()
+    {
+        return $this->counters['skipped'];
+    }
+
+    public function countTotal()
+    {
+        return $this->counters['total'];
+    }
 
     /**
      * @param Commit $commitData

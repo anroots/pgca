@@ -38,6 +38,7 @@ class ConsoleSerializer extends AbstractSerializer
             $this->printRows($rows);
         }
 
+        $this->output->writeln($this->getFooter($report));
 
         return $this->output->fetch();
     }
@@ -76,5 +77,21 @@ class ConsoleSerializer extends AbstractSerializer
         }
 
         $table->render();
+    }
+
+    /**
+     * @param ReportComposerInterface $report
+     * @return string
+     */
+    private function getFooter(ReportComposerInterface $report)
+    {
+        return sprintf(
+            "Found a total of %s commits, skipped %s and analyzed %s of them.\n"
+            . "The total score was %s",
+            $report->getReport()->getProvider()->countTotal(),
+            $report->getReport()->getProvider()->countSkipped(),
+            $report->getReport()->getProvider()->countAnalyzed(),
+            $report->getReport()->getScore()
+        );
     }
 }

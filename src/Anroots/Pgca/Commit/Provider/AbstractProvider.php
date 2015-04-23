@@ -67,4 +67,19 @@ abstract class AbstractProvider implements CommitProviderInterface, CollectionSe
     {
         return $this->setFilters($collection);
     }
+
+    public function countTotal()
+    {
+        return null;
+    }
+
+    public function countAnalyzed()
+    {
+        return null;
+    }
+
+    public function countSkipped()
+    {
+        return null;
+    }
 }
