@@ -24,4 +24,6 @@ interface RuleInterface
     public function toArray();
 
     public function getCategory();
+
+    public function getSeverity();
 }

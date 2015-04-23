@@ -90,4 +90,12 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
         // Something more sophisticated is needed when the rule categories expand.
         return strstr(get_class($this), '\Message\\') ? 'Message' : 'Content';
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSeverity()
+    {
+        return 1;
+    }
 }
