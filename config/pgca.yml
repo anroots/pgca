@@ -1,6 +1,6 @@
 provider:
   name: fileSystemProvider
-  path: ../hubot
+  path: .
   filters:
     - name: isNotMergeCommit
 
