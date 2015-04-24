@@ -6,9 +6,13 @@ use Gitonomy\Git\Commit;
 use Gitonomy\Git\Diff\File;
 use Gitonomy\Git\Repository;
 
+/**
+ * {@inheritdoc}
+ */
 class FileSystemProvider extends AbstractProvider
 {
     const DEFAULT_LIMIT = 400;
+
     /**
      * @var Repository
      */
@@ -22,17 +26,20 @@ class FileSystemProvider extends AbstractProvider
 
     private $options = [];
 
-    private $counters = [
-        'analyzed' => 0,
-        'skipped' => 0,
-        'total' => 0
-    ];
-
+    /**
+     * @param Repository $repository
+     * @return $this
+     */
     public function setRepository(Repository $repository)
     {
         $this->repository = $repository;
+
+        return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCommits()
     {
 
@@ -59,20 +66,6 @@ class FileSystemProvider extends AbstractProvider
         }
     }
 
-    public function countAnalyzed()
-    {
-        return $this->counters['analyzed'];
-    }
-
-    public function countSkipped()
-    {
-        return $this->counters['skipped'];
-    }
-
-    public function countTotal()
-    {
-        return $this->counters['total'];
-    }
 
     /**
      * @param Commit $commitData
@@ -97,6 +90,9 @@ class FileSystemProvider extends AbstractProvider
         ]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $options)
     {
         $this->options = array_replace_recursive($this->defaultOptions, $options);
@@ -104,12 +100,18 @@ class FileSystemProvider extends AbstractProvider
         $this->setRepositoryPath($this->options['path']);
     }
 
+    /**
+     * @param string $path
+     */
     private function setRepositoryPath($path)
     {
         $repositoryClass = $this->getRepositoryServiceClass();
         $this->repository = new $repositoryClass($path);
     }
 
+    /**
+     * @return string
+     */
     private function getRepositoryServiceClass()
     {
         return Repository::class;

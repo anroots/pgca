@@ -2,6 +2,9 @@
 
 namespace Anroots\Pgca\Git;
 
+/**
+ * {@inheritdoc}
+ */
 class Commit implements CommitInterface
 {
 
@@ -15,7 +18,7 @@ class Commit implements CommitInterface
     private $changedFiles = [];
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getChangedFiles()
     {
@@ -23,8 +26,7 @@ class Commit implements CommitInterface
     }
 
     /**
-     * @param array $changedFiles
-     * @return $this
+     * {@inheritdoc}
      */
     public function setChangedFiles(array $changedFiles)
     {
@@ -34,7 +36,7 @@ class Commit implements CommitInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getDescription()
     {
@@ -42,8 +44,7 @@ class Commit implements CommitInterface
     }
 
     /**
-     * @param mixed $description
-     * @return $this
+     * {@inheritdoc}
      */
     public function setDescription($description)
     {
@@ -52,9 +53,8 @@ class Commit implements CommitInterface
         return $this;
     }
 
-
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getAuthorName()
     {
@@ -62,8 +62,7 @@ class Commit implements CommitInterface
     }
 
     /**
-     * @param mixed $authorName
-     * @return $this
+     * {@inheritdoc}
      */
     public function setAuthorName($authorName)
     {
@@ -74,7 +73,7 @@ class Commit implements CommitInterface
 
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getSummary()
     {
@@ -82,8 +81,7 @@ class Commit implements CommitInterface
     }
 
     /**
-     * @param mixed $summary
-     * @return $this
+     * {@inheritdoc}
      */
     public function setSummary($summary)
     {
@@ -92,6 +90,9 @@ class Commit implements CommitInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getHash()
     {
         return $this->hash;
@@ -107,11 +108,17 @@ class Commit implements CommitInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMessage()
     {
         return $this->message;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setMessage($message)
     {
 
@@ -129,7 +136,7 @@ class Commit implements CommitInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getShortHash()
     {
@@ -137,8 +144,7 @@ class Commit implements CommitInterface
     }
 
     /**
-     * @param mixed $shortHash
-     * @return $this
+     * {@inheritdoc}
      */
     public function setShortHash($shortHash)
     {
@@ -147,6 +153,9 @@ class Commit implements CommitInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function toArray()
     {
         return [

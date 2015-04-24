@@ -6,8 +6,10 @@ use Anroots\Pgca\Commit\Analyzer\CommitAnalyzerInterface;
 use Anroots\Pgca\Commit\Analyzer\RuleException;
 use Anroots\Pgca\ConfigurableEntity;
 use Anroots\Pgca\Git\CommitInterface;
-use Anroots\Pgca\ReportInterface;
 
+/**
+ * {@inheritdoc}
+ */
 abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
 {
 
@@ -30,15 +32,20 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
         $this->violationFactory = $violationFactory;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function addViolation(CommitInterface $commit)
     {
 
         $violation = $this->violationFactory->create($commit, $this);
         $this->analyzer->addViolation($violation);
+
+        return $this;
     }
 
     /**
-     * @return ReportInterface
+     * {@inheritdoc}
      */
     public function getAnalyzer()
     {
@@ -46,8 +53,7 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
     }
 
     /**
-     * @param CommitAnalyzerInterface $analyzer
-     * @return $this
+     * {@inheritdoc}
      */
     public function setAnalyzer(CommitAnalyzerInterface $analyzer)
     {
@@ -56,10 +62,19 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     abstract public function getName();
 
+    /**
+     * {@inheritdoc}
+     */
     abstract public function getMessage();
 
+    /**
+     * {@inheritdoc}
+     */
     public function apply(CommitInterface $commit)
     {
         if (!$this->isConfigured()) {
@@ -68,11 +83,18 @@ abstract class AbstractRule extends ConfigurableEntity implements RuleInterface
             );
         }
 
-        return $this->run($commit);
+        $this->run($commit);
     }
 
+    /**
+     * @param CommitInterface $commit
+     * @return void
+     */
     abstract protected function run(CommitInterface $commit);
 
+    /**
+     * {@inheritdoc}
+     */
     public function toArray()
     {
         return [

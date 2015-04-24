@@ -6,6 +6,11 @@ use Anroots\Pgca\Git\CommitInterface;
 
 interface ViolationInterface
 {
+
+    /**
+     * @param CommitInterface $commit
+     * @param RuleInterface $rule
+     */
     public function __construct(CommitInterface $commit, RuleInterface $rule);
 
     /**
@@ -18,5 +23,8 @@ interface ViolationInterface
      */
     public function getRule();
 
+    /**
+     * @return array
+     */
     public function toArray();
 }

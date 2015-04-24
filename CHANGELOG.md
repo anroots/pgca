@@ -5,11 +5,16 @@ All Notable changes to `anroots/pgca` will be documented in this file
 ## NEXT - YYYY-MM-DD
 
 ### Added
-- Nothing
+- Console report footer now shows counts of analyzed commits
+- Rules now have a 'severity' attribute
+- A new CLI flag, '--tolerance' can be used to indicate when the analyzer should fail 
+- New report, `BlameReport` can be used to list violations by author
 
 ### Deprecated
 - Nothing
 
+### Changed
+- Config file path for rules is now `analyzer.rules`
 ### Fixed
 - Nothing
 
@@ -18,3 +23,7 @@ All Notable changes to `anroots/pgca` will be documented in this file
 
 ### Security
 - Nothing
+
+## 0.1.0
+
+Initial alpha release. Very basic, proof-of-concept functionality implemented.

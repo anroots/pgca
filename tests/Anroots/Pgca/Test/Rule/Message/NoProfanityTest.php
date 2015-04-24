@@ -12,7 +12,9 @@ use swearjar\Tester;
  */
 class NoProfanityTest extends AbstractMessageTest
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function setUp()
     {
         parent::setUp();
@@ -27,13 +29,16 @@ class NoProfanityTest extends AbstractMessageTest
             ->getMock();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return NoProfanity::class;
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function provideInvalidMessages()
     {
@@ -45,6 +50,9 @@ class NoProfanityTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [

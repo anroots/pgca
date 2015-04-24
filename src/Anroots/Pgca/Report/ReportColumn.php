@@ -2,14 +2,28 @@
 
 namespace Anroots\Pgca\Report\Report;
 
+/**
+ *
+ */
 class ReportColumn implements \ArrayAccess
 {
+    /**
+     * @var string
+     */
     protected $key;
+
+    /**
+     * @var string
+     */
     protected $title;
+
+    /**
+     * @var string
+     */
     protected $content;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getKey()
     {
@@ -17,7 +31,7 @@ class ReportColumn implements \ArrayAccess
     }
 
     /**
-     * @param mixed $key
+     * @param string $key
      * @return $this
      */
     public function setKey($key)
@@ -28,7 +42,7 @@ class ReportColumn implements \ArrayAccess
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -36,7 +50,7 @@ class ReportColumn implements \ArrayAccess
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      * @return $this
      */
     public function setTitle($title)
@@ -47,7 +61,7 @@ class ReportColumn implements \ArrayAccess
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getContent()
     {
@@ -55,7 +69,7 @@ class ReportColumn implements \ArrayAccess
     }
 
     /**
-     * @param mixed $content
+     * @param string $content
      * @return $this
      */
     public function setContent($content)

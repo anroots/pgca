@@ -23,7 +23,7 @@ class RuleLoaderCompilerPass implements CompilerPassInterface
 
         $rules = $container->findTaggedServiceIds('rule');
 
-        foreach ($rules as $id => $tags) {
+        foreach (array_keys($rules) as $id) {
             $rulesCommand->addMethodCall(
                 'addRule',
                 array(new Reference($id))

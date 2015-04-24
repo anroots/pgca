@@ -5,12 +5,20 @@ namespace Anroots\Pgca\Test\Rule\Content;
 use Anroots\Pgca\Git\Commit;
 use Anroots\Pgca\Test\Rule\AbstractRuleTest;
 
+/**
+ * {@inheritdoc}
+ */
 abstract class AbstractContentTest extends AbstractRuleTest
 {
 
-
+    /**
+     * @return array
+     */
     abstract public function provideInvalidContent();
 
+    /**
+     * @return array
+     */
     abstract public function provideValidContent();
 
     /**
@@ -27,6 +35,17 @@ abstract class AbstractContentTest extends AbstractRuleTest
         $this->rule->apply($commit);
     }
 
+    /**
+     * @param array $content
+     * @return Commit
+     */
+    protected function commitFactory(array $content)
+    {
+        $commit = new Commit;
+        $commit->setChangedFiles($content);
+
+        return $commit;
+    }
 
     /**
      * @covers ::run
@@ -39,18 +58,6 @@ abstract class AbstractContentTest extends AbstractRuleTest
 
         $commit = $this->commitFactory($content);
         $this->rule->apply($commit);
-    }
-
-    /**
-     * @param array $content
-     * @return Commit
-     */
-    protected function commitFactory(array $content)
-    {
-        $commit = new Commit;
-        $commit->setChangedFiles($content);
-
-        return $commit;
     }
 
 }

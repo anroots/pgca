@@ -13,6 +13,9 @@ use Faker\Factory;
 class AllLinesLessThanThresholdCharsTest extends AbstractRuleTest
 {
 
+    /**
+     * @return array
+     */
     public function provideValidMessages()
     {
         $faker = Factory::create();
@@ -26,6 +29,9 @@ class AllLinesLessThanThresholdCharsTest extends AbstractRuleTest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function provideInvalidMessages()
     {
         return [
@@ -35,6 +41,9 @@ class AllLinesLessThanThresholdCharsTest extends AbstractRuleTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return AllLinesLessThanThresholdChars::class;

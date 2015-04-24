@@ -6,6 +6,9 @@ use Anroots\Pgca\CollectionSetAwareInterface;
 use Anroots\Pgca\Git\Commit\FactoryInterface;
 use Github\Client;
 
+/**
+ * {@inheritdoc}
+ */
 class GitHubProvider extends AbstractProvider implements CollectionSetAwareInterface
 {
 
@@ -15,8 +18,19 @@ class GitHubProvider extends AbstractProvider implements CollectionSetAwareInter
         'branch' => 'master'
     ];
 
+    /**
+     * @var string
+     */
     private $user;
+
+    /**
+     * @var string
+     */
     private $repo;
+
+    /**
+     * @var string
+     */
     private $branch;
     /**
      * @var Client
@@ -33,9 +47,8 @@ class GitHubProvider extends AbstractProvider implements CollectionSetAwareInter
         $this->client = $client;
     }
 
-
     /**
-     * @return \Generator
+     * {@inheritdoc}
      */
     public function getCommits()
     {
@@ -52,6 +65,10 @@ class GitHubProvider extends AbstractProvider implements CollectionSetAwareInter
         }
     }
 
+    /**
+     * @param array $commitData
+     * @return \Anroots\Pgca\Git\Commit
+     */
     private function createCommit(array $commitData)
     {
         return $this->commitFactory->create([
@@ -60,6 +77,9 @@ class GitHubProvider extends AbstractProvider implements CollectionSetAwareInter
         ]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $options)
     {
         $options = array_replace_recursive($this->defaultOptions, $options);

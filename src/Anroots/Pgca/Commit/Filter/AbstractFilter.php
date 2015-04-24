@@ -6,10 +6,15 @@ namespace Anroots\Pgca\Commit\Filter;
 use Anroots\Pgca\ConfigurableEntity;
 use Anroots\Pgca\Git\CommitInterface;
 
+/**
+ * {@inheritdoc}
+ */
 abstract class AbstractFilter extends ConfigurableEntity implements FilterInterface
 {
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function apply(CommitInterface $commit)
     {
         if (!$this->isConfigured()) {

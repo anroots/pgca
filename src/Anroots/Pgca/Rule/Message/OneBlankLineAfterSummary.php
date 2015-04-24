@@ -5,18 +5,30 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
+/**
+ * {@inheritdoc}
+ */
 class OneBlankLineAfterSummary extends AbstractRule
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'message.oneBlankLineAfterSummary';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMessage()
     {
         return 'There should be exactly one blank line after the summary line';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function run(CommitInterface $commit)
     {
         if (mb_strlen($commit->getDescription()) === 0) {

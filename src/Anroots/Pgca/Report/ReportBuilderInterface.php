@@ -8,6 +8,9 @@ use Anroots\Pgca\ReportInterface;
 
 interface ReportBuilderInterface
 {
+    /**
+     * @return void
+     */
     public function build();
 
     /**

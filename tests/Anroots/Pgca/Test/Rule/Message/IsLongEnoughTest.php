@@ -10,13 +10,8 @@ use Anroots\Pgca\Rule\Message\IsLongEnough;
  */
 class IsLongEnoughTest extends AbstractMessageTest
 {
-    protected function getRuleClass()
-    {
-        return IsLongEnough::class;
-    }
-
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function provideInvalidMessages()
     {
@@ -27,11 +22,22 @@ class IsLongEnoughTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [
             ['Fix some magic that happened between yesterday and today'],
             ['Re-implement feature NGW-222. This was supposed to be done yesterday']
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getRuleClass()
+    {
+        return IsLongEnough::class;
     }
 }

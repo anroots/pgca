@@ -4,6 +4,9 @@ namespace Anroots\Pgca\Report\Serializer;
 
 use Anroots\Pgca\Report\Composer\ReportComposerInterface;
 
+/**
+ * {@inheritdoc}
+ */
 class HtmlSerializer extends AbstractSerializer
 {
 
@@ -37,11 +40,14 @@ class HtmlSerializer extends AbstractSerializer
         return $html;
     }
 
+    /**
+     * @param array $rows
+     * @return array
+     */
     private function getRows(array $rows)
     {
         $out = [];
         foreach ($rows as $columns) {
-
             $out[]['columns'] = $columns;
         }
 

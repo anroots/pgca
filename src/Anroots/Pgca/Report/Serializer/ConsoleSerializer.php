@@ -3,9 +3,13 @@
 namespace Anroots\Pgca\Report\Serializer;
 
 use Anroots\Pgca\Report\Composer\ReportComposerInterface;
+use Anroots\Pgca\Report\Report\ReportColumn;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\BufferedOutput;
 
+/**
+ * {@inheritdoc}
+ */
 class ConsoleSerializer extends AbstractSerializer
 {
 
@@ -54,9 +58,9 @@ class ConsoleSerializer extends AbstractSerializer
     }
 
     /**
-     * @param $rows
+     * @param ReportColumn[] $rows
      */
-    private function printRows($rows)
+    private function printRows(array $rows)
     {
         $table = new Table($this->output);
 

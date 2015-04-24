@@ -5,6 +5,9 @@ use Anroots\Pgca\Report\Report\ReportColumn;
 use Anroots\Pgca\Report\ReportHeaderInterface;
 use Anroots\Pgca\ReportInterface;
 
+/**
+ * {@inheritdoc}
+ */
 abstract class AbstractComposer implements ReportComposerInterface
 {
     /**
@@ -27,7 +30,7 @@ abstract class AbstractComposer implements ReportComposerInterface
     }
 
     /**
-     * @return ReportHeaderInterface
+     * {@inheritdoc}
      */
     public function getReportHeader()
     {
@@ -35,7 +38,7 @@ abstract class AbstractComposer implements ReportComposerInterface
     }
 
     /**
-     * @return ReportInterface
+     * {@inheritdoc}
      */
     public function getReport()
     {
@@ -43,8 +46,7 @@ abstract class AbstractComposer implements ReportComposerInterface
     }
 
     /**
-     * @param ReportInterface $report
-     * @return $this
+     * {@inheritdoc}
      */
     public function setReport(ReportInterface $report)
     {
@@ -53,7 +55,9 @@ abstract class AbstractComposer implements ReportComposerInterface
         return $this;
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function build()
     {
 
@@ -64,6 +68,9 @@ abstract class AbstractComposer implements ReportComposerInterface
         return $this->buildRows();
     }
 
+    /**
+     * @return mixed
+     */
     abstract protected function buildRows();
 
     /**

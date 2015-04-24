@@ -2,10 +2,15 @@
 
 namespace Anroots\Pgca\Report\Composer;
 
+/**
+ * {@inheritdoc}
+ */
 class SimpleReport extends AbstractComposer
 {
 
-
+    /**
+     * {@inheritdoc}
+     */
     protected function buildRows()
     {
         $violations = $this->getReport()->getViolations();
@@ -26,6 +31,11 @@ class SimpleReport extends AbstractComposer
         return $this;
     }
 
+    /**
+     * @param string $text
+     * @param int $limit
+     * @return string
+     */
     private function truncate($text, $limit = 50)
     {
         if (strlen($text) <= $limit) {

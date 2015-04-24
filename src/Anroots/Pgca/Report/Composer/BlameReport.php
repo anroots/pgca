@@ -2,9 +2,14 @@
 
 namespace Anroots\Pgca\Report\Composer;
 
+/**
+ * {@inheritdoc}
+ */
 class BlameReport extends AbstractComposer
 {
-
+    /**
+     * {@inheritdoc}
+     */
     protected function buildRows()
     {
         $violations = $this->getReport()->getViolations();

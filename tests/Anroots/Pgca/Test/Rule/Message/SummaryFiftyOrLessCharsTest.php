@@ -10,7 +10,9 @@ use Faker\Factory;
  */
 class SummaryFiftyOrLessCharsTest extends AbstractMessageTest
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         $faker = Factory::create();
@@ -27,6 +29,9 @@ class SummaryFiftyOrLessCharsTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideInvalidMessages()
     {
         $faker = Factory::create();
@@ -41,6 +46,9 @@ class SummaryFiftyOrLessCharsTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return SummaryFiftyOrLessChars::class;

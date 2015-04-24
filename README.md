@@ -8,17 +8,14 @@
 
 A CLI tool which analyses Git commits for violations.
 
-**Development status: pre-alpha, ongoing. Unstable public API. Use at your own risk.**
+How often have you seen commit messages such as "fix some stuff"? This tool aims to improve the quality of
+your commit practices by applying a set of rules against your commit (message) and then yelling at you if you get too lazy.
+
+**Development status: alpha, ongoing. Unstable public API. Use at your own risk.**
 
 ## Install
 
-Via Composer CLI, in your project directory:
-
-``` bash
-$ composer require anroots/pgca:~0.1
-```
-
-...or, in your `composer.json` file:
+1. Include the analyzer via Composer:
 
 ```json
 { 
@@ -28,9 +25,15 @@ $ composer require anroots/pgca:~0.1
 }
 ```
 
-Copy `config/pgca.yml` into your project root directory and change its contents as needed.
+2. Copy `config/pgca.yml` into your project root directory and change its contents as needed.
 
 ## Usage
+
+Run the analyzer from CLI:
+
+```bash
+$ vendor/bin/pgca analyze
+```
 
 Pgca is flexible in the way it can be set up:
 
@@ -111,6 +114,9 @@ These are the broader topics that need improvement and are planned in the undefi
 - Add more in-code documentation
 - Increase unit test coverage
 - Refactor code, from proof-of-concept version to 1.0 quality
+- Improve HTML report
+- Create a command for showing details about a particular rule (`rules:show`), refactor `rules` into `rules:list`
+- Add longer 'explanation' block to all rules. Might be 2-3 paragraphs with examples and a long explanation why this particular rule exists
 
 ## Credits
 

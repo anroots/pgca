@@ -15,18 +15,27 @@ class ContainsRegex extends AbstractFilter
      */
     private $pattern;
 
+    /**
+     * {@inheritdoc}
+     */
     public function isConfigured()
     {
         return !empty($this->pattern);
     }
 
-    public function configure(array $options)
+    /**
+     * {@inheritdoc}
+     */
+    public function configure(array $options = [])
     {
         if (array_key_exists('pattern', $options)) {
             $this->pattern = $options['pattern'];
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function isIncluded(CommitInterface $commit)
     {
 

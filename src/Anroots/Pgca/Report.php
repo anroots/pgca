@@ -5,6 +5,9 @@ namespace Anroots\Pgca;
 use Anroots\Pgca\Commit\Provider\CommitProviderInterface;
 use Anroots\Pgca\Rule\ViolationInterface;
 
+/**
+ * {@inheritdoc}
+ */
 class Report implements ReportInterface
 {
 
@@ -18,14 +21,18 @@ class Report implements ReportInterface
      */
     protected $provider;
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function addViolation(ViolationInterface $violation)
     {
         $this->violations[] = $violation;
+
+        return $this;
     }
 
     /**
-     * @return Rule\ViolationInterface[]
+     * {@inheritdoc}
      */
     public function getViolations()
     {
@@ -33,19 +40,13 @@ class Report implements ReportInterface
     }
 
     /**
-     * @param Rule\ViolationInterface[] $violations
-     * @return $this
+     * {@inheritdoc}
      */
     public function setViolations(array $violations)
     {
         $this->violations = $violations;
 
         return $this;
-    }
-
-    public function countViolations()
-    {
-        return count($this->violations);
     }
 
     /**
@@ -63,6 +64,14 @@ class Report implements ReportInterface
         }
 
         return $sum;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countViolations()
+    {
+        return count($this->violations);
     }
 
     /**

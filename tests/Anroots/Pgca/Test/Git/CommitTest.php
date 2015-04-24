@@ -11,7 +11,9 @@ use Anroots\Pgca\Test\TestCase;
 class CommitTest extends TestCase
 {
 
-
+    /**
+     * @return array
+     */
     public function provideSummaryAndDescriptionMessages()
     {
         return [
@@ -25,9 +27,9 @@ class CommitTest extends TestCase
     }
 
     /**
-     * @param $message
-     * @param $expectedSummary
-     * @param $expectedDescription
+     * @param string $message
+     * @param string $expectedSummary
+     * @param string $expectedDescription
      * @covers ::setMessage
      * @dataProvider provideSummaryAndDescriptionMessages
      */

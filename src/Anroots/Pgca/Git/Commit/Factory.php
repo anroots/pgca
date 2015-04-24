@@ -4,6 +4,9 @@ namespace Anroots\Pgca\Git\Commit;
 
 use Anroots\Pgca\Git\Commit;
 
+/**
+ * {@inheritdoc}
+ */
 class Factory implements FactoryInterface
 {
     /**

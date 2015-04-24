@@ -97,6 +97,7 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
     }
 
     /**
+     * @param array $providerConfig
      * @return CommitProviderInterface
      */
     private function providerFactory(array $providerConfig)

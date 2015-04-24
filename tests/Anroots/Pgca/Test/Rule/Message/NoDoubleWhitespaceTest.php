@@ -10,13 +10,8 @@ use Anroots\Pgca\Rule\Message\NoDoubleWhitespace;
  */
 class NoDoubleWhitespaceTest extends AbstractMessageTest
 {
-    protected function getRuleClass()
-    {
-        return NoDoubleWhitespace::class;
-    }
-
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function provideInvalidMessages()
     {
@@ -26,10 +21,21 @@ class NoDoubleWhitespaceTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [
             ["Fix some magic that...\n  - happened between yesterday and today"]
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getRuleClass()
+    {
+        return NoDoubleWhitespace::class;
     }
 }

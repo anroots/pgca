@@ -10,7 +10,9 @@ use Anroots\Pgca\Rule\Message\SummaryDoesNotEndWithPeriod;
  */
 class SummaryDoesNotEndWithPeriodTest extends AbstractMessageTest
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function provideInvalidMessages()
     {
         return [
@@ -21,6 +23,9 @@ class SummaryDoesNotEndWithPeriodTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [
@@ -31,6 +36,9 @@ class SummaryDoesNotEndWithPeriodTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return SummaryDoesNotEndWithPeriod::class;
