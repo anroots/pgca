@@ -17,5 +17,11 @@ before_script:
   - travis_retry composer install -n --prefer-source
 
 script:
+  - php -l src
+  - php -l tests
   - phpunit
-  - bin/pgca analyze --printer=console --serializer=console --composer=simple --tolerance=20 --revision HEAD~10..HEAD
+  - vendor/bin/phpcs --standard=PSR2 src
+  - vendor/bin/phpcs --standard=PSR2 tests
+  - vendor/bin/phpmd src text cleancode,codesize,controversial,design,naming,unusedcode
+  - vendor/bin/phpmd tests text cleancode,codesize,controversial,design,naming,unusedcode
+  - bin/pgca analyze --printer=console --serializer=console --composer=simple --tolerance=14 --revision HEAD~10..HEAD
