@@ -8,16 +8,11 @@
 
 A CLI tool which analyses Git commits for violations.
 
-This project aims to improve the quality of your commit practices by applying a set of rules against your commit (message) and then yelling at you if you get too lazy.
+This project aims to improve the quality of your commit practices by applying a set of rules against your commit (message) and then yelling at you when you get too lazy.
 
 The project was born from frustration of seeing commit messages like "fix some stuff" and people's inability to write [good commit messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 
 **Development status:** Alpha, ongoing. Unstable public API. Is usable.**
-
-## Requirements
-
-* PHP >= 5.6
-* [Composer](http://getcomposer.org)
 
 ## Install
 
@@ -73,6 +68,11 @@ PGCA report, generated on 2015-04-12 15:08:06
 Found a total of 40 commits, skipped 0 and analyzed 40 of them.
 The total score was 3
 ```
+
+## Requirements
+
+* PHP >= 5.6
+* [Composer](http://getcomposer.org)
 
 ## Rules
 
