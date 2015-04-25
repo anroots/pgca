@@ -11,7 +11,7 @@ analyzer:
       - name: message.startsWithCapitalLetter
       - name: message.oneBlankLineAfterSummary
       - name: message.summaryFiftyOrLessChars
-      - name: message.isTooShort
+      - name: message.isLongEnough
       - name: message.noTrailingWhitespace
       - name: message.noTrailingNewline
       - name: message.noDoubleWhitespace
