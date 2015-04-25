@@ -15,7 +15,7 @@ class SummaryFiftyOrLessCharsTest extends AbstractMessageTest
      */
     public function provideValidMessages()
     {
-        $faker = Factory::create();
+        $faker = $this->getFaker();
 
         return [
             [$faker->text(50)],
@@ -34,7 +34,7 @@ class SummaryFiftyOrLessCharsTest extends AbstractMessageTest
      */
     public function provideInvalidMessages()
     {
-        $faker = Factory::create();
+        $faker = $this->getFaker();
         $prefix = 'Something obviously of exact character length, huh';
 
         return [

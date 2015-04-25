@@ -36,11 +36,7 @@ class ConsoleSerializer extends AbstractSerializer
 
         $rows = $report->getReportHeader()->getRows();
 
-        if (!count($rows)) {
-            $this->output->writeln('<info>No violations.</info>');
-        } else {
-            $this->printRows($rows);
-        }
+        $this->printBody($rows);
 
         $this->output->writeln($this->getFooter($report));
 
@@ -97,5 +93,19 @@ class ConsoleSerializer extends AbstractSerializer
             $report->getReport()->getProvider()->countAnalyzed(),
             $report->getReport()->getScore()
         );
+    }
+
+    /**
+     * @param array $rows
+     */
+    private function printBody(array $rows)
+    {
+        if (!count($rows)) {
+            $this->output->writeln('<info>No violations.</info>');
+
+            return;
+        }
+
+        $this->printRows($rows);
     }
 }

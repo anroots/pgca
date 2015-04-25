@@ -86,9 +86,9 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
 
             $isNotDefaultValue = $value !== $defaults[$key];
 
-            $providerConfigDoesNotSetThis = !array_key_exists($key, $providerConfig);
+            $configDoesNotSetThis = !array_key_exists($key, $providerConfig);
 
-            return $isNotDefaultValue || $providerConfigDoesNotSetThis;
+            return $isNotDefaultValue || $configDoesNotSetThis;
         }, ARRAY_FILTER_USE_BOTH);
 
         $mergedConfig = array_replace($providerConfig, $options);

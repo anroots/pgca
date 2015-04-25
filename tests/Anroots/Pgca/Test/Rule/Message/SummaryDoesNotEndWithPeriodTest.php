@@ -4,7 +4,6 @@ namespace Anroots\Pgca\Test\Rule\Message;
 
 use Anroots\Pgca\Rule\Message\SummaryDoesNotEndWithPeriod;
 
-
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\SummaryDoesNotEndWithPeriod
  */

@@ -56,5 +56,4 @@ abstract class AbstractMessageTest extends AbstractRuleTest
         $commit = $this->commitFactory($message);
         $this->rule->apply($commit);
     }
-
 }

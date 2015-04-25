@@ -24,6 +24,7 @@ class Config implements ConfigInterface
 
     /**
      * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function load()
     {

@@ -18,7 +18,7 @@ class AllLinesLessThanThresholdCharsTest extends AbstractRuleTest
      */
     public function provideValidMessages()
     {
-        $faker = Factory::create();
+        $faker = $this->getFaker();
 
         return [
             [$faker->text(50), 50],

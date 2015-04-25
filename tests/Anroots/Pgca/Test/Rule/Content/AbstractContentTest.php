@@ -59,5 +59,4 @@ abstract class AbstractContentTest extends AbstractRuleTest
         $commit = $this->commitFactory($content);
         $this->rule->apply($commit);
     }
-
 }
