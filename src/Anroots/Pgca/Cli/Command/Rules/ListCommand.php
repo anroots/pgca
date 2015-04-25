@@ -4,6 +4,7 @@ namespace Anroots\Pgca\Cli\Command\Rules;
 
 use Anroots\Pgca\Cli\ContainerAwareCommand;
 use Anroots\Pgca\Rule\RuleInterface;
+use Anroots\Pgca\Rule\RuleSetAwareTrait;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

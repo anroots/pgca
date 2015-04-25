@@ -1,8 +1,6 @@
 <?php
 
-namespace Anroots\Pgca\Cli\Command\Rules;
-
-use Anroots\Pgca\Rule\RuleInterface;
+namespace Anroots\Pgca\Rule;
 
 trait RuleSetAwareTrait
 {
