@@ -25,3 +25,7 @@ script:
   - vendor/bin/phpmd src text cleancode,codesize,controversial,design,naming,unusedcode
   - vendor/bin/phpmd tests text cleancode,codesize,controversial,design,naming,unusedcode
   - bin/pgca analyze --printer=console --serializer=console --composer=simple --tolerance=14 --revision HEAD~10..HEAD
+
+notifications:
+  email:
+    on_success: never
