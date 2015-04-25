@@ -17,14 +17,22 @@ before_script:
   - travis_retry composer install -n --prefer-source
 
 script:
+  # Find php syntax errors
   - php -l src
   - php -l tests
+
+  # Run unit tests
   - phpunit
-  - vendor/bin/phpcs --standard=PSR2 src
-  - vendor/bin/phpcs --standard=PSR2 tests
-  - vendor/bin/phpmd src text cleancode,codesize,controversial,design,naming,unusedcode
-  - vendor/bin/phpmd tests text cleancode,codesize,controversial,design,naming,unusedcode
-  - bin/pgca analyze --printer=console --serializer=console --composer=simple --tolerance=14 --revision HEAD~10..HEAD
+
+  # Check for coding standard violations
+  - vendor/bin/phpcs --standard=PSR2 src tests
+
+  # Check for code design violations
+  - vendor/bin/phpmd src,tests text cleancode,codesize,controversial,design,naming,unusedcode
+
+  # Print statistics about commit messages
+  - bin/pgca analyze --printer=console --serializer=console --composer=simple --tolerance=15 --revision HEAD~10..HEAD
+  - bin/pgca analyze --composer=blame --revision HEAD~50..HEAD --tolerance=100
 
 notifications:
   email:
