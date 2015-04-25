@@ -69,6 +69,10 @@ Found a total of 40 commits, skipped 0 and analyzed 40 of them.
 The total score was 3
 ```
 
+## Documentation
+
+See [the wiki](https://github.com/anroots/pgca/wiki) for more documentation.
+
 ## Requirements
 
 * PHP >= 5.6
