@@ -1,10 +1,7 @@
 <?php
 
-namespace Anroots\Pgca\Report\Report;
+namespace Anroots\Pgca\Report;
 
-/**
- *
- */
 class ReportColumn implements \ArrayAccess
 {
     /**

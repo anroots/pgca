@@ -1,7 +1,7 @@
 <?php
 namespace Anroots\Pgca\Report\Composer;
 
-use Anroots\Pgca\Report\Report\ReportColumn;
+use Anroots\Pgca\Report\ReportColumn;
 use Anroots\Pgca\Report\ReportHeaderInterface;
 use Anroots\Pgca\ReportInterface;
 

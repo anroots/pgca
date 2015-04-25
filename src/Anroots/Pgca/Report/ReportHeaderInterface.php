@@ -2,7 +2,7 @@
 
 namespace Anroots\Pgca\Report;
 
-use Anroots\Pgca\Report\Report\ReportColumn;
+use Anroots\Pgca\Report\ReportColumn;
 
 interface ReportHeaderInterface
 {

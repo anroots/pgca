@@ -3,7 +3,7 @@
 namespace Anroots\Pgca\Report\Serializer;
 
 use Anroots\Pgca\Report\Composer\ReportComposerInterface;
-use Anroots\Pgca\Report\Report\ReportColumn;
+use Anroots\Pgca\Report\ReportColumn;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\BufferedOutput;
 
