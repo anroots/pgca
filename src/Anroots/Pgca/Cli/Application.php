@@ -4,6 +4,7 @@ namespace Anroots\Pgca\Cli;
 
 use Anroots\Pgca\Cli\Command\Analyze\FileSystemCommand;
 use Anroots\Pgca\Cli\Command\Rules\RuleLoaderCompilerPass;
+use Anroots\Pgca\Cli\Command\Rules\ShowCommand;
 use Anroots\Pgca\Cli\Command\RulesCommand;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Command\HelpCommand;
@@ -33,7 +34,8 @@ class Application extends \Symfony\Component\Console\Application
             new HelpCommand,
             new ListCommand,
             new FileSystemCommand,
-            $this->container->get('cli.command.rulesCommand')
+            $this->container->get('cli.command.rules.listCommand'),
+            $this->container->get('cli.command.rules.showCommand'),
         ];
     }
 

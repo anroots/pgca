@@ -1,26 +1,27 @@
 <?php
 
-namespace Anroots\Pgca\Cli\Command;
+namespace Anroots\Pgca\Cli\Command\Rules;
 
 use Anroots\Pgca\Cli\ContainerAwareCommand;
-use Anroots\Pgca\Rule\RuleInterface;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class RulesCommand extends ContainerAwareCommand
+class ListCommand extends ContainerAwareCommand
 {
-    /**
-     * @var RuleInterface[]
-     */
-    private $rules = [];
+    use RuleSetAwareTrait;
 
     protected function configure()
     {
-        $this->setName('rules')
+        $this->setName('rules:list')
             ->setDescription('List all available rules');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null|void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $table = new Table($output);
@@ -31,10 +32,5 @@ class RulesCommand extends ContainerAwareCommand
         }
 
         $table->render();
-    }
-
-    public function addRule(RuleInterface $rule)
-    {
-        $this->rules[] = $rule;
     }
 }

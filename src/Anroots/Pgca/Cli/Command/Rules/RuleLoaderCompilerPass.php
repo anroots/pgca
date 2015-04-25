@@ -6,6 +6,9 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
+/**
+ * Load all Rules into RuleSetAware classes
+ */
 class RuleLoaderCompilerPass implements CompilerPassInterface
 {
 
@@ -16,18 +19,22 @@ class RuleLoaderCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
+        // Get all services who are tagged ruleSetAware
+        $ruleSetAwareServices = $container->findTaggedServiceIds('ruleSetAware');
 
-        $rulesCommand = $container->getDefinition(
-            'cli.command.rulesCommand'
-        );
+        foreach (array_keys($ruleSetAwareServices) as $serviceId) {
+            $service = $container->getDefinition($serviceId);
 
-        $rules = $container->findTaggedServiceIds('rule');
+            // Get all rules
+            $rules = $container->findTaggedServiceIds('rule');
 
-        foreach (array_keys($rules) as $id) {
-            $rulesCommand->addMethodCall(
-                'addRule',
-                array(new Reference($id))
-            );
+            // Add rules to the service
+            foreach (array_keys($rules) as $id) {
+                $service->addMethodCall(
+                    'addRule',
+                    [new Reference($id)]
+                );
+            }
         }
     }
 }

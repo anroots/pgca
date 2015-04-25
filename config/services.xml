@@ -6,8 +6,11 @@
     <services>
 
         <!-- CLI -->
-        <service id="cli.command.rulesCommand" class="Anroots\Pgca\Cli\Command\RulesCommand">
-
+        <service id="cli.command.rules.listCommand" class="Anroots\Pgca\Cli\Command\Rules\ListCommand">
+            <tag name="ruleSetAware" />
+        </service>
+        <service id="cli.command.rules.showCommand" class="Anroots\Pgca\Cli\Command\Rules\ShowCommand">
+            <tag name="ruleSetAware" />
         </service>
 
 
@@ -106,7 +109,7 @@
                  class="Anroots\Pgca\Rule\Message\HasSummaryAndDescription">
             <tag name="rule"/>
         </service>
-        <service id="rule.message.isTooShort" parent="rule.abstractRule"
+        <service id="rule.message.isLongEnough" parent="rule.abstractRule"
                  class="Anroots\Pgca\Rule\Message\IsLongEnough">
             <tag name="rule"/>
         </service>
