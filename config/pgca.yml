@@ -1,21 +1,41 @@
+# This is the main pgca configuration file
+
+# Settings for the commit provider
 provider:
+
+  # Name of the provider class
   name: fileSystemProvider
+
+  # Filesystem path of the Git project to analyze
+  # Defaults to the current directory
   path: .
+
+  # Filters to apply to the commit provider
+  # A filter is applied to a commit and can exclude the commit from analysis
   filters:
     - name: isNotMergeCommit
+    #- name: containsRegex
+    #  config:
+    #    pattern: /Add/
 
-
+# Commit analyzer config
 analyzer:
+
+    # A list of rules to apply during analysis
     rules:
       - name: message.hasSummaryAndDescription
       - name: message.startsWithCapitalLetter
       - name: message.oneBlankLineAfterSummary
       - name: message.summaryFiftyOrLessChars
       - name: message.isLongEnough
+        config:
+          min: 20
       - name: message.noTrailingWhitespace
       - name: message.noTrailingNewline
       - name: message.noDoubleWhitespace
       - name: message.allLinesLessThanThresholdChars
+        config:
+          max: 72
       - name: message.notTypicalNonsense
       - name: message.noProfanity
       - name: message.summaryDoesNotEndWithPeriod
