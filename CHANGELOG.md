@@ -10,6 +10,7 @@ All Notable changes to `anroots/pgca` will be documented in this file. The packa
 - A new CLI flag, '--tolerance' can be used to indicate when the analyzer should fail 
 - New report, `BlameReport` can be used to list violations by author
 - New command, `rules:show` for showing details about a rule
+- New optional argument `category` for the `rules:list` command
 
 ### Deprecated
 - Nothing
