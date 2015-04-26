@@ -1,14 +1,17 @@
-# This is the main pgca configuration file
+# This is the main PGCA configuration file
 
 # Settings for the commit provider
 provider:
 
-  # Name of the provider class
+  # Name of the provider
   name: fileSystemProvider
 
   # Filesystem path of the Git project to analyze
   # Defaults to the current directory
   path: .
+
+  # Limit the number of analyzed commits
+  limit: 400
 
   # Filters to apply to the commit provider
   # A filter is applied to a commit and can exclude the commit from analysis
@@ -17,6 +20,22 @@ provider:
     #- name: containsRegex
     #  config:
     #    pattern: /Add/
+
+# Report config
+report:
+
+  # The composer to use
+  composer: simple
+
+  # The serializer to use
+  serializer: console
+
+  # The printer to use
+  printer: console
+
+# Tolerance towards violations
+# If the violations score is greater than this value, the report command will exit with an error
+tolerance: 20
 
 # Commit analyzer config
 analyzer:

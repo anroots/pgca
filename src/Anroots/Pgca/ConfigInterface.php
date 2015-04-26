@@ -11,6 +11,13 @@ interface ConfigInterface
     public function get($path);
 
     /**
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function set($key, $value);
+
+    /**
      * @param array $paths
      * @return $this
      */

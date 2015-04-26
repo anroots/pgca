@@ -87,7 +87,7 @@ class ConsoleSerializer extends AbstractSerializer
     {
         return sprintf(
             "Found a total of %s commits, skipped %s and analyzed %s of them.\n"
-            . "The total score was %s",
+            . "The total violations score was %s",
             $report->getReport()->getProvider()->countTotal(),
             $report->getReport()->getProvider()->countSkipped(),
             $report->getReport()->getProvider()->countAnalyzed(),

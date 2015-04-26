@@ -31,8 +31,8 @@ script:
   - vendor/bin/phpmd src,tests text cleancode,codesize,controversial,design,naming,unusedcode
 
   # Print statistics about commit messages
-  - bin/pgca analyze --printer=console --serializer=console --composer=simple --tolerance=15 --revision HEAD~10..HEAD
-  - bin/pgca analyze --composer=blame --revision HEAD~40..HEAD --tolerance=100
+  - bin/pgca analyze --provider-revision HEAD~10..HEAD
+  - bin/pgca analyze --report-composer=blame --provider-revision HEAD~40..HEAD --tolerance=100
 
 notifications:
   email:

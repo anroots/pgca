@@ -50,6 +50,16 @@ class Config implements ConfigInterface
     /**
      * {@inheritdoc}
      */
+    public function set($key, $value)
+    {
+        $this->config->set($key, $value);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setPaths(array $paths)
     {
         $this->paths = $paths;
