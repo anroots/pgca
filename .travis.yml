@@ -14,7 +14,7 @@ matrix:
 
 before_script:
   - travis_retry composer self-update --no-progress -n
-  - travis_retry composer install -n --prefer-source
+  - travis_retry composer install -n --prefer-dist
 
 script:
   # Find php syntax errors

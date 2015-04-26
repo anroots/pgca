@@ -12,7 +12,7 @@ This project aims to improve the quality of your commit practices by applying a 
 
 The project was born from frustration of seeing commit messages like "fix some stuff" and people's inability to write [good commit messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 
-**Development status:** Alpha, ongoing. Unstable public API. Is usable.**
+**Development status:** Alpha, ongoing. Unstable public API. Is usable.
 
 ## Install
 
