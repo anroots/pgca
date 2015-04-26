@@ -18,6 +18,7 @@ All Notable changes to `anroots/pgca` will be documented in this file. The packa
 ### Changed
 - Config file path for rules is now `analyzer.rules`
 - `rules` command renamed to `rules:list`
+- CLI options are now prefixed with dot notation corresponding to their names in pgca.yml. For example, if the pgca.yml has `provider.path` then the CLI option is `--provider-path`
 
 ### Fixed
 - Nothing

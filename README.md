@@ -21,7 +21,7 @@ The project was born from frustration of seeing commit messages like "fix some s
 ```json
 { 
   "require": {
-    "anroots/pgca": "~0.1"
+    "anroots/pgca": "~0.2"
   }
 }
 ```
@@ -56,7 +56,7 @@ You can customize the analysis in the `pgca.yml` file and with CLI options.
 Print the "simple" report in table format to the console and analyse the last 40 Git commits of the current branch:
 
 ```bash
-$ vendor/bin/pgca analyze --printer=console --serializer=console --composer=simple --revision=HEAD~40..HEAD                                                                                       1 ↵
+$ vendor/bin/pgca analyze --report-printer=console --report-serializer=console --report-composer=simple --provider-revision=HEAD~40..HEAD                                                                                       1 ↵
 PGCA report, generated on 2015-04-12 15:08:06
 +---------+------------+-------------------------+--------------------------------------------------+
 | Commit  | Author     | Commit Message          | Explanation                                      |
