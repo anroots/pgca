@@ -2,7 +2,27 @@
 
 All Notable changes to `anroots/pgca` will be documented in this file. The package follows [SemVer](http://semver.org) versioning scheme.
 
-## NEXT - YYYY-MM-DD
+## NEXT_VERSION
+
+### Added
+- Nothing
+
+### Deprecated
+- Nothing
+
+### Changed
+- Nothing
+
+### Fixed
+- Nothing
+
+### Removed
+- Nothing
+
+### Security
+- Nothing
+
+## 0.2.0
 
 ### Added
 - Console report footer now shows counts of analyzed commits
