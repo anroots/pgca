@@ -1,8 +1,12 @@
 {
   "name": "anroots/pgca",
-  "description": "Analyzes Git commit messages",
+  "description": "Analyzes Git commit messages for poor committing practices and reports a list of violations",
   "keywords": [
-    "pgca"
+    "pgca",
+    "git",
+    "commit",
+    "commit analysis",
+    "commit message"
   ],
   "homepage": "https://github.com/anroots/pgca",
   "license": "MIT",
@@ -26,10 +30,11 @@
     "mustache/mustache":"~2.8"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.*",
+    "phpunit/phpunit": "~4.6",
     "phpmd/phpmd": "~2.2",
     "fzaninotto/faker": "~1.4",
-    "squizlabs/php_codesniffer": "~2.3"
+    "squizlabs/php_codesniffer": "~2.3",
+    "phpmd/phpmd" : "~2.2"
   },
   "autoload": {
     "psr-4": {

@@ -4,6 +4,9 @@ namespace Anroots\Pgca\Report\Printer;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * {@inheritdoc}
+ */
 class ConsolePrinter extends AbstractPrinter
 {
 
@@ -12,6 +15,10 @@ class ConsolePrinter extends AbstractPrinter
      */
     private $output;
 
+    /**
+     * @param OutputInterface $output
+     * @return $this
+     */
     public function setOutput(OutputInterface $output)
     {
         $this->output = $output;

@@ -10,10 +10,12 @@ use Faker\Factory;
  */
 class SummaryFiftyOrLessCharsTest extends AbstractMessageTest
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
-        $faker = Factory::create();
+        $faker = $this->getFaker();
 
         return [
             [$faker->text(50)],
@@ -27,9 +29,12 @@ class SummaryFiftyOrLessCharsTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideInvalidMessages()
     {
-        $faker = Factory::create();
+        $faker = $this->getFaker();
         $prefix = 'Something obviously of exact character length, huh';
 
         return [
@@ -41,6 +46,9 @@ class SummaryFiftyOrLessCharsTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return SummaryFiftyOrLessChars::class;

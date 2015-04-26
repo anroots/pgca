@@ -10,13 +10,8 @@ use Anroots\Pgca\Rule\Message\OneBlankLineAfterSummary;
  */
 class OneBlankLineAfterSummaryTest extends AbstractMessageTest
 {
-    protected function getRuleClass()
-    {
-        return OneBlankLineAfterSummary::class;
-    }
-
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function provideInvalidMessages()
     {
@@ -27,6 +22,9 @@ class OneBlankLineAfterSummaryTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [
@@ -35,5 +33,13 @@ class OneBlankLineAfterSummaryTest extends AbstractMessageTest
             ["Re-implement feature NGW-222.\n\nThis was supposed to be done yesterday"],
             ['Fix test'], // Has no description block, should pass
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getRuleClass()
+    {
+        return OneBlankLineAfterSummary::class;
     }
 }

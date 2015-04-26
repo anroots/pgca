@@ -9,7 +9,9 @@ use Anroots\Pgca\Rule\Message\NoTrailingWhitespace;
  */
 class NoTrailingWhitespaceTest extends AbstractMessageTest
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function provideInvalidMessages()
     {
         return [
@@ -22,6 +24,9 @@ class NoTrailingWhitespaceTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [
@@ -32,6 +37,9 @@ class NoTrailingWhitespaceTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return NoTrailingWhitespace::class;

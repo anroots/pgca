@@ -2,9 +2,14 @@
 
 namespace Anroots\Pgca\Report\Composer;
 
+/**
+ * {@inheritdoc}
+ */
 class FullReport extends AbstractComposer
 {
-
+    /**
+     * {@inheritdoc}
+     */
     protected function buildRows()
     {
 

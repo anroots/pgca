@@ -4,9 +4,20 @@ namespace Anroots\Pgca\Report\Serializer;
 
 use Anroots\Pgca\Report\Composer\ReportComposerInterface;
 
+/**
+ * {@inheritdoc}
+ */
 abstract class AbstractSerializer implements SerializerInterface
 {
 
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFileName()
+    {
+        return 'pgca_report.txt';
+    }
 
     /**
      * @param ReportComposerInterface $report
@@ -31,13 +42,5 @@ abstract class AbstractSerializer implements SerializerInterface
             'violations' => $output,
             'created' => $report->getReportHeader()->getCreated()->format('Y-m-d H:i:s')
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getFileName()
-    {
-        return 'pgca_report.txt';
     }
 }

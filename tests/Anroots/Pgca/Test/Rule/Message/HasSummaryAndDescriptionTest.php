@@ -9,7 +9,9 @@ use Anroots\Pgca\Rule\Message\HasSummaryAndDescription;
  */
 class HasSummaryAndDescriptionTest extends AbstractMessageTest
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function provideInvalidMessages()
     {
         return [
@@ -25,6 +27,9 @@ class HasSummaryAndDescriptionTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [
@@ -54,6 +59,9 @@ make contributions a tiny bit easier."
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return HasSummaryAndDescription::class;

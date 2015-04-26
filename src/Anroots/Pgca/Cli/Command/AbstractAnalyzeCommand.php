@@ -30,9 +30,15 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
 
     public function configure()
     {
-        $this->addOption('serializer', 's', InputOption::VALUE_OPTIONAL, 'Specify the serializer to use', 'console')
-            ->addOption('printer', null, InputOption::VALUE_OPTIONAL, 'Specify the printer to use', 'console')
-            ->addOption('composer', 'c', InputOption::VALUE_OPTIONAL, 'Specify the composer to use', 'simple');
+        $this->addOption('report-serializer', 's', InputOption::VALUE_OPTIONAL, 'The serializer to use')
+            ->addOption('report-printer', null, InputOption::VALUE_OPTIONAL, 'The printer to use')
+            ->addOption(
+                'tolerance',
+                't',
+                InputOption::VALUE_OPTIONAL,
+                'Exit with an error code if the level of violations is above the set tolerance'
+            )
+            ->addOption('report-composer', 'c', InputOption::VALUE_OPTIONAL, 'The composer to use');
     }
 
     /**
@@ -42,54 +48,48 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // Load configuration by merging the pgca.yml config with the overrides provided during runtime
         $this->config = $this->getContainer()->get('config');
+        $this->setConfigFrom($input);
+
         $this->output = $output;
 
-        $mergedConfig = $this->getConfig($input);
+        // Get the object that provides Git commits
+        $provider = $this->providerFactory($this->config->get('provider'));
 
-        $analyzer = $this->analyzerFactory($mergedConfig);
-        $analyzer->run();
+        // Construct the analyzer (main controller) object
+        $analyzer = /** @var CommitAnalyzerInterface $analyzer */
+        $analyzer = $this->getContainer()->get('commit.analyzer.analyzer');
 
+        // Run the analysis
+        $analyzer->setCommitProvider($provider)
+            ->run();
+
+        // Get the object that builds the report from the analysis results
         /** @var ReportBuilderInterface $reportBuilder */
         $reportBuilder = $this->getContainer()->get('report.reportBuilder');
 
-        $reportComposer = $this->reportComposerFactory($mergedConfig['composer']);
-        $serializer = $this->serializerFactory($mergedConfig['serializer']);
-        $printer = $this->printerFactory($mergedConfig['printer']);
+        // Construct report output objects
+        $composer = $this->reportComposerFactory($this->config->get('report.composer'));
+        $serializer = $this->serializerFactory($this->config->get('report.serializer'));
+        $printer = $this->printerFactory($this->config->get('report.printer'));
 
-        $reportBuilder->setComposer($reportComposer)
+        // Build the report
+        $reportBuilder->setComposer($composer)
             ->setSerializer($serializer)
             ->setPrinter($printer)
             ->setReport($analyzer->getReport())
             ->build();
 
-        return $analyzer->getReport()->countViolations() === 0 ?: 1;
+        // Exit with an error status if the number of violations is greater than the allowed tolerance
+        return $analyzer->getReport()->getScore() > $this->config->get('tolerance') ? 1 : 0;
     }
 
 
     /**
-     * @param InputInterface $input
-     * @return array
-     */
-    public function getConfig(InputInterface $input)
-    {
-        $providerConfig = $this->config->get('provider');
-        $defaults = $this->getDefinition()->getOptionDefaults();
-        $options = array_filter($input->getOptions(), function ($value, $key) use ($defaults, $providerConfig) {
-
-            $isNotDefaultValue = $value !== $defaults[$key];
-
-            $providerConfigDoesNotSetThis = !array_key_exists($key, $providerConfig);
-
-            return $isNotDefaultValue || $providerConfigDoesNotSetThis;
-        }, ARRAY_FILTER_USE_BOTH);
-
-        $mergedConfig = array_replace($providerConfig, $options);
-
-        return $mergedConfig;
-    }
-
-    /**
+     * Get an instance of a Commit Provider object
+     *
+     * @param array $providerConfig
      * @return CommitProviderInterface
      */
     private function providerFactory(array $providerConfig)
@@ -100,23 +100,7 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         $provider = $this->getContainer()->get($providerServiceName);
         $provider->configure($providerConfig);
 
-
         return $provider;
-    }
-
-    /**
-     * @param array $mergedConfig
-     * @return CommitAnalyzerInterface
-     */
-    protected function analyzerFactory(array $mergedConfig)
-    {
-        /** @var CommitAnalyzerInterface $analyzer */
-        $analyzer = $this->getContainer()->get('commit.analyzer.analyzer');
-
-        $provider = $this->providerFactory($mergedConfig);
-        $analyzer->setCommitProvider($provider);
-
-        return $analyzer;
     }
 
     /**
@@ -151,5 +135,36 @@ abstract class AbstractAnalyzeCommand extends ContainerAwareCommand
         }
 
         return $printer;
+    }
+
+    /**
+     * Override static (pgca.yml) config with values from CLI input
+     *
+     * @param InputInterface $input
+     *
+     * @return void
+     */
+    private function setConfigFrom(InputInterface $input)
+    {
+        foreach ($input->getOptions() as $key => $value) {
+            if (!in_array($key, $this->getCliOverrideNames()) || $value === null) {
+                continue;
+            }
+
+            // Convert CLI-styled option into dot notation
+            $key = str_replace('-', '.', $key);
+
+            $this->config->set($key, $value);
+        }
+    }
+
+    /**
+     * Return a list of CLI option names that can be merged with the main configuration file
+     *
+     * @return array
+     */
+    protected function getCliOverrideNames()
+    {
+        return ['report-composer', 'report-printer', 'report-serializer', 'tolerance'];
     }
 }

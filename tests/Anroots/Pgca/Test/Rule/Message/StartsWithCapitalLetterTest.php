@@ -9,7 +9,9 @@ use Anroots\Pgca\Rule\Message\StartsWithCapitalLetter;
  */
 class StartsWithCapitalLetterTest extends AbstractMessageTest
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function provideInvalidMessages()
     {
         return [
@@ -19,6 +21,9 @@ class StartsWithCapitalLetterTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [
@@ -27,6 +32,9 @@ class StartsWithCapitalLetterTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return StartsWithCapitalLetter::class;

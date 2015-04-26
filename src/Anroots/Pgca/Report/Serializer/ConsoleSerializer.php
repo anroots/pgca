@@ -3,9 +3,13 @@
 namespace Anroots\Pgca\Report\Serializer;
 
 use Anroots\Pgca\Report\Composer\ReportComposerInterface;
+use Anroots\Pgca\Report\ReportColumn;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\BufferedOutput;
 
+/**
+ * {@inheritdoc}
+ */
 class ConsoleSerializer extends AbstractSerializer
 {
 
@@ -32,12 +36,9 @@ class ConsoleSerializer extends AbstractSerializer
 
         $rows = $report->getReportHeader()->getRows();
 
-        if (!count($rows)) {
-            $this->output->writeln('<info>No violations.</info>');
-        } else {
-            $this->printRows($rows);
-        }
+        $this->printBody($rows);
 
+        $this->output->writeln($this->getFooter($report));
 
         return $this->output->fetch();
     }
@@ -53,9 +54,9 @@ class ConsoleSerializer extends AbstractSerializer
     }
 
     /**
-     * @param $rows
+     * @param ReportColumn[] $rows
      */
-    private function printRows($rows)
+    private function printRows(array $rows)
     {
         $table = new Table($this->output);
 
@@ -76,5 +77,35 @@ class ConsoleSerializer extends AbstractSerializer
         }
 
         $table->render();
+    }
+
+    /**
+     * @param ReportComposerInterface $report
+     * @return string
+     */
+    private function getFooter(ReportComposerInterface $report)
+    {
+        return sprintf(
+            "Found a total of %s commits, skipped %s and analyzed %s of them.\n"
+            . "The total violations score was %s",
+            $report->getReport()->getProvider()->countTotal(),
+            $report->getReport()->getProvider()->countSkipped(),
+            $report->getReport()->getProvider()->countAnalyzed(),
+            $report->getReport()->getScore()
+        );
+    }
+
+    /**
+     * @param array $rows
+     */
+    private function printBody(array $rows)
+    {
+        if (!count($rows)) {
+            $this->output->writeln('<info>No violations.</info>');
+
+            return;
+        }
+
+        $this->printRows($rows);
     }
 }

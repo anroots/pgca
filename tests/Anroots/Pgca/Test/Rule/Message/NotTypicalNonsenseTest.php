@@ -9,7 +9,9 @@ use Anroots\Pgca\Rule\Message\NotTypicalNonsense;
  */
 class NotTypicalNonsenseTest extends AbstractMessageTest
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function provideInvalidMessages()
     {
         return [
@@ -21,6 +23,9 @@ class NotTypicalNonsenseTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [
@@ -30,7 +35,9 @@ class NotTypicalNonsenseTest extends AbstractMessageTest
         ];
     }
 
-
+    /**
+     * @covers ::configure
+     */
     public function testCustomVocabularyCanBeAdded()
     {
         $this->expectFailure();
@@ -41,6 +48,9 @@ class NotTypicalNonsenseTest extends AbstractMessageTest
         $this->rule->apply($commit);
     }
 
+    /**
+     * @return string
+     */
     protected function getRuleClass()
     {
         return NotTypicalNonsense::class;

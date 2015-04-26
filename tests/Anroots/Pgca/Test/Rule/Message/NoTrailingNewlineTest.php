@@ -9,7 +9,9 @@ use Anroots\Pgca\Rule\Message\NoTrailingNewline;
  */
 class NoTrailingNewlineTest extends AbstractMessageTest
 {
-
+    /**
+     * {@inheritdoc}
+     */
     public function provideInvalidMessages()
     {
         return [
@@ -20,6 +22,9 @@ class NoTrailingNewlineTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidMessages()
     {
         return [
@@ -30,6 +35,9 @@ class NoTrailingNewlineTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return NoTrailingNewline::class;

@@ -5,6 +5,9 @@ namespace Anroots\Pgca;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
+/**
+ * {@inheritdoc}
+ */
 abstract class AbstractSetConfigurator implements SetConfiguratorInterface
 {
 
@@ -12,14 +15,20 @@ abstract class AbstractSetConfigurator implements SetConfiguratorInterface
      * @var ConfigInterface
      */
     protected $config;
+
     /**
      * @var ContainerInterface
      */
     protected $container;
 
-
+    /**
+     * @var string
+     */
     protected $prefix;
 
+    /**
+     * @var string
+     */
     protected $configPath;
 
     /**
@@ -33,6 +42,9 @@ abstract class AbstractSetConfigurator implements SetConfiguratorInterface
         $this->container = $container;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function load(CollectionSetAwareInterface $subject)
     {
 
@@ -56,31 +68,10 @@ abstract class AbstractSetConfigurator implements SetConfiguratorInterface
         $subject->setCollection($serviceInstances);
     }
 
-
     /**
-     * @return mixed
+     * @param string $serviceName
+     * @return object
      */
-    public function getPrefix()
-    {
-        return $this->prefix;
-    }
-
-    /**
-     * @param mixed $prefix
-     * @return $this
-     */
-    public function setPrefix($prefix)
-    {
-        $this->prefix = $prefix;
-
-        return $this;
-    }
-
-    protected function getServiceName($suffix)
-    {
-        return $this->prefix . $suffix;
-    }
-
     private function createService($serviceName)
     {
         if (!$this->container->has($this->getServiceName($serviceName))) {
@@ -90,5 +81,31 @@ abstract class AbstractSetConfigurator implements SetConfiguratorInterface
         $service = $this->container->get($this->prefix . $serviceName);
 
         return $service;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getServiceName($suffix)
+    {
+        return $this->prefix . $suffix;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPrefix()
+    {
+        return $this->prefix;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setPrefix($prefix)
+    {
+        $this->prefix = $prefix;
+
+        return $this;
     }
 }

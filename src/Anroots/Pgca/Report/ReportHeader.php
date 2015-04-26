@@ -2,8 +2,16 @@
 
 namespace Anroots\Pgca\Report;
 
+use Anroots\Pgca\Report\ReportColumn;
+
+/**
+ * {@inheritdoc}
+ */
 class ReportHeader implements ReportHeaderInterface
 {
+    /**
+     * @var ReportColumn[]
+     */
     private $rows = [];
 
     /**
@@ -11,23 +19,32 @@ class ReportHeader implements ReportHeaderInterface
      */
     private $created;
 
+    /**
+     * @param \DateTime $generationDate
+     */
     public function __construct(\DateTime $generationDate)
     {
         $this->created = $generationDate;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function addRow(array $columns)
     {
         $this->rows[] = $columns;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getRows()
     {
         return $this->rows;
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getCreated()
     {

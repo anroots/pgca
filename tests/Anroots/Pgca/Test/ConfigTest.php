@@ -16,6 +16,9 @@ class ConfigTest extends TestCase
      */
     private $config;
 
+    /**
+     * {@inheritdoc}
+     */
     public function setUp()
     {
         parent::setUp();

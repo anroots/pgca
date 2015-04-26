@@ -3,7 +3,6 @@
 namespace Anroots\Pgca\Cli\Command\Analyze;
 
 use Anroots\Pgca\Cli\Command\AbstractAnalyzeCommand;
-use Anroots\Pgca\Commit\Provider\FileSystemProvider;
 use Symfony\Component\Console\Input\InputOption;
 
 class FileSystemCommand extends AbstractAnalyzeCommand
@@ -15,26 +14,31 @@ class FileSystemCommand extends AbstractAnalyzeCommand
         $this->setName('analyze:filesystem')
             ->setAliases(['analyze'])
             ->addOption(
-                'revision',
+                'provider-revision',
                 'r',
                 InputOption::VALUE_OPTIONAL,
-                'The Git revision from which to analyze the log',
-                null
+                'The Git revision from which to analyze the log'
             )
             ->addOption(
-                'limit',
+                'provider-limit',
                 null,
                 InputOption::VALUE_OPTIONAL,
-                'How many commits to include',
-                FileSystemProvider::DEFAULT_LIMIT
+                'How many commits to include'
             )
             ->addOption(
-                'path',
+                'provider-path',
                 'p',
                 InputOption::VALUE_OPTIONAL,
-                'The path to the project directory',
-                null
+                'The path to the project directory'
             )
             ->setDescription('Analyses Git commit messages from the .git directory');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getCliOverrideNames()
+    {
+        return array_merge(parent::getCliOverrideNames(), ['provider-path', 'provider-limit']);
     }
 }

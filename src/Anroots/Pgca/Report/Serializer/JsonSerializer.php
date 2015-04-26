@@ -4,6 +4,9 @@ namespace Anroots\Pgca\Report\Serializer;
 
 use Anroots\Pgca\Report\Composer\ReportComposerInterface;
 
+/**
+ * {@inheritdoc}
+ */
 class JsonSerializer extends AbstractSerializer
 {
 

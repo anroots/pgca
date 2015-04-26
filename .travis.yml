@@ -13,9 +13,27 @@ matrix:
     - php: hhvm
 
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer install --no-interaction --prefer-source --dev
+  - travis_retry composer self-update --no-progress -n
+  - travis_retry composer install -n --prefer-dist
 
 script:
+  # Find php syntax errors
+  - php -l src
+  - php -l tests
+
+  # Run unit tests
   - phpunit
-  - bin/pgca analyze --printer=console --serializer=console --composer=simple --revision HEAD~1..HEAD
+
+  # Check for coding standard violations
+  - vendor/bin/phpcs --standard=PSR2 src tests
+
+  # Check for code design violations
+  - vendor/bin/phpmd src,tests text cleancode,codesize,controversial,design,naming,unusedcode
+
+  # Print statistics about commit messages
+  - bin/pgca analyze --provider-revision HEAD~10..HEAD
+  - bin/pgca analyze --report-composer=blame --provider-revision HEAD~40..HEAD --tolerance=100
+
+notifications:
+  email:
+    on_success: never

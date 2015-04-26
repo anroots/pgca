@@ -2,18 +2,23 @@
 
 namespace Anroots\Pgca\Test\Rule\Message;
 
+use Anroots\Pgca\Git\Commit;
 use Anroots\Pgca\Rule\Message\AllLinesLessThanThresholdChars;
+use Anroots\Pgca\Test\Rule\AbstractRuleTest;
 use Faker\Factory;
 
 /**
  * @coversDefaultClass \Anroots\Pgca\Rule\Message\AllLinesLessThanThresholdChars
  */
-class AllLinesLessThanThresholdCharsTest extends AbstractMessageTest
+class AllLinesLessThanThresholdCharsTest extends AbstractRuleTest
 {
 
+    /**
+     * @return array
+     */
     public function provideValidMessages()
     {
-        $faker = Factory::create();
+        $faker = $this->getFaker();
 
         return [
             [$faker->text(50), 50],
@@ -24,6 +29,9 @@ class AllLinesLessThanThresholdCharsTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function provideInvalidMessages()
     {
         return [
@@ -33,6 +41,9 @@ class AllLinesLessThanThresholdCharsTest extends AbstractMessageTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function getRuleClass()
     {
         return AllLinesLessThanThresholdChars::class;
@@ -47,7 +58,10 @@ class AllLinesLessThanThresholdCharsTest extends AbstractMessageTest
     public function testRuleFailsForInvalidMessages($message, $maxLength)
     {
         $this->rule->configure(['max' => $maxLength]);
-        parent::testRuleFailsForInvalidMessages($message);
+        $this->expectFailure();
+
+        $commit = $this->commitFactory($message);
+        $this->rule->apply($commit);
     }
 
     /**
@@ -59,6 +73,23 @@ class AllLinesLessThanThresholdCharsTest extends AbstractMessageTest
     public function testRulePassesForValidMessages($message, $maxLength)
     {
         $this->rule->configure(['max' => $maxLength]);
-        parent::testRulePassesForValidMessages($message);
+
+        $this->expectSuccess();
+
+        $commit = $this->commitFactory($message);
+        $this->rule->apply($commit);
+    }
+
+
+    /**
+     * @param string $message
+     * @return Commit
+     */
+    protected function commitFactory($message)
+    {
+        $commit = new Commit;
+        $commit->setMessage($message);
+
+        return $commit;
     }
 }

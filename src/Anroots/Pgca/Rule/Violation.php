@@ -4,6 +4,9 @@ namespace Anroots\Pgca\Rule;
 
 use Anroots\Pgca\Git\CommitInterface;
 
+/**
+ * {@inheritdoc}
+ */
 class Violation implements ViolationInterface
 {
 
@@ -16,6 +19,9 @@ class Violation implements ViolationInterface
      */
     private $rule;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(CommitInterface $commit, RuleInterface $rule)
     {
 
@@ -23,6 +29,9 @@ class Violation implements ViolationInterface
         $this->rule = $rule;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function toArray()
     {
         return [

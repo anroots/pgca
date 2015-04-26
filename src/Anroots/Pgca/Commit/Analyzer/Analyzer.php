@@ -9,6 +9,9 @@ use Anroots\Pgca\ReportInterface;
 use Anroots\Pgca\Rule\RuleInterface;
 use Anroots\Pgca\Rule\ViolationInterface;
 
+/**
+ * {@inheritdoc}
+ */
 class Analyzer implements CollectionSetAwareInterface, CommitAnalyzerInterface
 {
     /**
@@ -35,7 +38,7 @@ class Analyzer implements CollectionSetAwareInterface, CommitAnalyzerInterface
     }
 
     /**
-     * @return mixed
+     * @throws RuleException
      */
     public function run()
     {
@@ -55,20 +58,29 @@ class Analyzer implements CollectionSetAwareInterface, CommitAnalyzerInterface
     }
 
 
+    /**
+     * {@inheritdoc}
+     */
     public function setCommitProvider(CommitProviderInterface $commitProvider)
     {
         $this->commitProvider = $commitProvider;
+        $this->report->setProvider($commitProvider);
 
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function addViolation(ViolationInterface $violation)
     {
         $this->report->addViolation($violation);
+
+        return $this;
     }
 
     /**
-     * @return \Anroots\Pgca\Rule\RuleInterface[]
+     * {@inheritdoc}
      */
     public function getRules()
     {
@@ -76,8 +88,7 @@ class Analyzer implements CollectionSetAwareInterface, CommitAnalyzerInterface
     }
 
     /**
-     * @param \Anroots\Pgca\Rule\RuleInterface[] $rules
-     * @return $this
+     * {@inheritdoc}
      */
     public function setRules(array $rules)
     {
@@ -95,8 +106,7 @@ class Analyzer implements CollectionSetAwareInterface, CommitAnalyzerInterface
     }
 
     /**
-     * @param ReportInterface $report
-     * @return $this
+     * {@inheritdoc}
      */
     public function setReport(ReportInterface $report)
     {
@@ -106,7 +116,7 @@ class Analyzer implements CollectionSetAwareInterface, CommitAnalyzerInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function analyzeCommit(CommitInterface $commit)
     {

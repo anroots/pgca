@@ -7,6 +7,9 @@ use Anroots\Pgca\Commit\Filter\FilterInterface;
 use Anroots\Pgca\Git\Commit\FactoryInterface;
 use Anroots\Pgca\Git\CommitInterface;
 
+/**
+ * {@inheritdoc}
+ */
 abstract class AbstractProvider implements CommitProviderInterface, CollectionSetAwareInterface
 {
 
@@ -20,6 +23,13 @@ abstract class AbstractProvider implements CommitProviderInterface, CollectionSe
      */
     protected $filters;
 
+
+    protected $counters = [
+        'analyzed' => 0,
+        'skipped' => 0,
+        'total' => 0
+    ];
+
     /**
      * @param FactoryInterface $commitFactory
      */
@@ -28,6 +38,9 @@ abstract class AbstractProvider implements CommitProviderInterface, CollectionSe
         $this->commitFactory = $commitFactory;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function skipCommit(CommitInterface $commit)
     {
         if (!count($this->filters)) {
@@ -44,7 +57,7 @@ abstract class AbstractProvider implements CommitProviderInterface, CollectionSe
     }
 
     /**
-     * @return FilterInterface[]
+     * {@inheritdoc}
      */
     public function getFilters()
     {
@@ -52,8 +65,7 @@ abstract class AbstractProvider implements CommitProviderInterface, CollectionSe
     }
 
     /**
-     * @param FilterInterface[] $filters
-     * @return $this
+     * {@inheritdoc}
      */
     public function setFilters(array $filters)
     {
@@ -62,9 +74,35 @@ abstract class AbstractProvider implements CommitProviderInterface, CollectionSe
         return $this;
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function setCollection(array $collection)
     {
         return $this->setFilters($collection);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countAnalyzed()
+    {
+        return $this->counters['analyzed'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countSkipped()
+    {
+        return $this->counters['skipped'];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function countTotal()
+    {
+        return $this->counters['total'];
     }
 }

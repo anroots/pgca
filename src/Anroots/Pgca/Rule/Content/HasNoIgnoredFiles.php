@@ -5,6 +5,9 @@ namespace Anroots\Pgca\Rule\Content;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
+/**
+ * {@inheritdoc}
+ */
 class HasNoIgnoredFiles extends AbstractRule
 {
 
@@ -37,6 +40,7 @@ class HasNoIgnoredFiles extends AbstractRule
         foreach ($commit->getChangedFiles() as $file) {
             if ($this->isFileInIgnoreList($file)) {
                 $this->addViolation($commit);
+
                 return;
             }
         }

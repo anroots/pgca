@@ -2,9 +2,14 @@
 
 namespace Anroots\Pgca\Report;
 
+use Anroots\Pgca\Report\ReportColumn;
+
 interface ReportHeaderInterface
 {
 
+    /**
+     * @param ReportColumn[] $columns
+     */
     public function addRow(array $columns);
 
     /**
@@ -12,5 +17,8 @@ interface ReportHeaderInterface
      */
     public function getCreated();
 
+    /**
+     * @return ReportColumn[]
+     */
     public function getRows();
 }

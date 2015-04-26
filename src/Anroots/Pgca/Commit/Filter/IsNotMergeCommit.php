@@ -10,6 +10,9 @@ use Anroots\Pgca\Git\CommitInterface;
 class IsNotMergeCommit extends AbstractFilter
 {
 
+    /**
+     * {@inheritdoc}
+     */
     public function isIncluded(CommitInterface $commit)
     {
         // Extremely naive implementation. Probably needs improving.

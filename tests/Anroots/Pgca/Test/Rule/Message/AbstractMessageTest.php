@@ -8,9 +8,14 @@ use Anroots\Pgca\Test\Rule\AbstractRuleTest;
 abstract class AbstractMessageTest extends AbstractRuleTest
 {
 
-
+    /**
+     * @return array
+     */
     abstract public function provideInvalidMessages();
 
+    /**
+     * @return array
+     */
     abstract public function provideValidMessages();
 
     /**
@@ -27,6 +32,17 @@ abstract class AbstractMessageTest extends AbstractRuleTest
         $this->rule->apply($commit);
     }
 
+    /**
+     * @param $message
+     * @return Commit
+     */
+    protected function commitFactory($message)
+    {
+        $commit = new Commit;
+        $commit->setMessage($message);
+
+        return $commit;
+    }
 
     /**
      * @covers ::run
@@ -40,13 +56,4 @@ abstract class AbstractMessageTest extends AbstractRuleTest
         $commit = $this->commitFactory($message);
         $this->rule->apply($commit);
     }
-
-    protected function commitFactory($message)
-    {
-        $commit = new Commit;
-        $commit->setMessage($message);
-
-        return $commit;
-    }
-
 }

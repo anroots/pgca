@@ -22,6 +22,10 @@ class Config implements ConfigInterface
      */
     private $config;
 
+    /**
+     * {@inheritdoc}
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
     public function load()
     {
         $locator = new FileLocator($this->paths);
@@ -30,6 +34,9 @@ class Config implements ConfigInterface
         $this->config = new Data($fileContents);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get($path)
     {
         if ($this->config === null) {
@@ -40,6 +47,19 @@ class Config implements ConfigInterface
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function set($key, $value)
+    {
+        $this->config->set($key, $value);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function setPaths(array $paths)
     {
         $this->paths = $paths;
@@ -47,6 +67,9 @@ class Config implements ConfigInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getPaths()
     {
         return $this->paths;

@@ -7,6 +7,9 @@ use Anroots\Pgca\Rule\AbstractRule;
 use Anroots\Pgca\Rule\ViolationFactoryInterface;
 use swearjar\Tester;
 
+/**
+ * {@inheritdoc}
+ */
 class NoProfanity extends AbstractRule
 {
     /**
@@ -18,6 +21,7 @@ class NoProfanity extends AbstractRule
 
     /**
      * @param ViolationFactoryInterface $violationFactory
+     * @param Tester $profanityChecker
      */
     public function __construct(ViolationFactoryInterface $violationFactory, Tester $profanityChecker)
     {
@@ -26,16 +30,25 @@ class NoProfanity extends AbstractRule
         $this->profanityChecker = $profanityChecker;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'message.noProfanity';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMessage()
     {
         return $this->message;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function run(CommitInterface $commit)
     {
         $profane = false;

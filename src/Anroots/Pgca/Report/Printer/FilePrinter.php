@@ -2,6 +2,9 @@
 
 namespace Anroots\Pgca\Report\Printer;
 
+/**
+ * {@inheritdoc}
+ */
 class FilePrinter extends AbstractPrinter
 {
     /**

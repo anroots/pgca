@@ -6,9 +6,13 @@ use Gitonomy\Git\Commit;
 use Gitonomy\Git\Diff\File;
 use Gitonomy\Git\Repository;
 
+/**
+ * {@inheritdoc}
+ */
 class FileSystemProvider extends AbstractProvider
 {
-    const DEFAULT_LIMIT = 100;
+    const DEFAULT_LIMIT = 400;
+
     /**
      * @var Repository
      */
@@ -22,11 +26,20 @@ class FileSystemProvider extends AbstractProvider
 
     private $options = [];
 
+    /**
+     * @param Repository $repository
+     * @return $this
+     */
     public function setRepository(Repository $repository)
     {
         $this->repository = $repository;
+
+        return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCommits()
     {
 
@@ -37,17 +50,18 @@ class FileSystemProvider extends AbstractProvider
             throw new \RuntimeException('No commits found');
         }
 
+        $this->counters['total'] = $log->countCommits();
+
         $commits = $log->getIterator();
         foreach ($commits as $commitData) {
-
             /** @var \Gitonomy\Git\Commit $commitData */
-
             $commit = $this->createCommit($commitData);
 
             if ($this->skipCommit($commit)) {
+                $this->counters['skipped']++;
                 continue;
             }
-
+            $this->counters['analyzed']++;
             yield $commit;
         }
     }
@@ -76,6 +90,9 @@ class FileSystemProvider extends AbstractProvider
         ]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configure(array $options)
     {
         $this->options = array_replace_recursive($this->defaultOptions, $options);
@@ -83,12 +100,18 @@ class FileSystemProvider extends AbstractProvider
         $this->setRepositoryPath($this->options['path']);
     }
 
+    /**
+     * @param string $path
+     */
     private function setRepositoryPath($path)
     {
         $repositoryClass = $this->getRepositoryServiceClass();
         $this->repository = new $repositoryClass($path);
     }
 
+    /**
+     * @return string
+     */
     private function getRepositoryServiceClass()
     {
         return Repository::class;

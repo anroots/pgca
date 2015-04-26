@@ -9,16 +9,25 @@ class HasSummaryAndDescription extends AbstractRule
 {
     const MAX_LINE_LENGTH = 72;
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'message.hasSummaryAndDescription';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getMessage()
     {
         return 'Missing description block';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function run(CommitInterface $commit)
     {
 

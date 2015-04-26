@@ -8,6 +8,9 @@ use Anroots\Pgca\Report\Printer\PrinterInterface;
 use Anroots\Pgca\Report\Serializer\SerializerInterface;
 use Anroots\Pgca\ReportInterface;
 
+/**
+ * {@inheritdoc}
+ */
 class ReportBuilder implements ReportBuilderInterface
 {
     /**

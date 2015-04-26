@@ -5,8 +5,12 @@ namespace Anroots\Pgca\Rule\Message;
 use Anroots\Pgca\Git\CommitInterface;
 use Anroots\Pgca\Rule\AbstractRule;
 
+/**
+ * {@inheritdoc}
+ */
 class NotTypicalNonsense extends AbstractRule
 {
+    const MATCH_THRESHOLD = 60.0;
     private $vocabulary = [
         'bug fix',
         'fix bug',
@@ -22,13 +26,17 @@ class NotTypicalNonsense extends AbstractRule
         'work on feature',
     ];
 
-    const MATCH_THRESHOLD = 60.0;
-
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'message.notTypicalNonsense';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isConfigured()
     {
         return count($this->vocabulary) > 0;
@@ -46,12 +54,17 @@ class NotTypicalNonsense extends AbstractRule
         $this->vocabulary = array_merge($this->vocabulary, $options['vocabulary']);
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function getMessage()
     {
         return 'Commit message does not provide any useful information';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function run(CommitInterface $commit)
     {
         foreach ($this->vocabulary as $nonsensePhrase) {
@@ -66,6 +79,11 @@ class NotTypicalNonsense extends AbstractRule
         }
     }
 
+    /**
+     * @param string $message
+     * @param string $nonsensePhrase
+     * @return bool
+     */
     private function isMessageMostlyNonsense($message, $nonsensePhrase)
     {
         if (stristr($message, $nonsensePhrase) && mb_strlen($message) <= mb_strlen($nonsensePhrase * 2)) {

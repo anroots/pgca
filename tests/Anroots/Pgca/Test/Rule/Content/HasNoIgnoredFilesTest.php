@@ -11,7 +11,9 @@ use Anroots\Pgca\Rule\Content\HasNoIgnoredFiles;
 class HasNoIgnoredFilesTest extends AbstractContentTest
 {
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function provideInvalidContent()
     {
         return [
@@ -20,6 +22,9 @@ class HasNoIgnoredFilesTest extends AbstractContentTest
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function provideValidContent()
     {
         return [
