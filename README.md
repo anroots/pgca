@@ -3,6 +3,8 @@
 [![Latest Version](https://img.shields.io/github/release/anroots/pgca.svg?style=flat-square)](https://github.com/anroots/pgca/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/anroots/pgca/master.svg?style=flat-square)](https://travis-ci.org/anroots/pgca)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/anroots/pgca.svg?style=flat-square)](https://scrutinizer-ci.com/g/anroots/pgca/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/anroots/pgca.svg?style=flat-square)](https://scrutinizer-ci.com/g/anroots/pgca)
 [![Quality Score](https://img.shields.io/sensiolabs/i/83f5f769-be6c-4913-8de3-086b07d45e61.svg)](https://insight.sensiolabs.com/projects/83f5f769-be6c-4913-8de3-086b07d45e61)
 [![Total Downloads](https://img.shields.io/packagist/dt/anroots/pgca.svg?style=flat-square)](https://packagist.org/packages/anroots/pgca)
 
