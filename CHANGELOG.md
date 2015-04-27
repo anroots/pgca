@@ -8,7 +8,7 @@ All Notable changes to `anroots/pgca` will be documented in this file. The packa
 - Nothing
 
 ### Deprecated
-- Nothing
+- GitHub provider is now an optional dependency
 
 ### Changed
 - Nothing
