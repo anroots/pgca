@@ -36,7 +36,8 @@
     "phpmd/phpmd": "~2.2",
     "fzaninotto/faker": "~1.4",
     "squizlabs/php_codesniffer": "~2.3",
-    "phpmd/phpmd" : "~2.2"
+    "phpmd/phpmd" : "~2.2",
+    "scrutinizer/ocular": "~1.1"
   },
   "autoload": {
     "psr-4": {

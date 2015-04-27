@@ -22,7 +22,7 @@ script:
   - php -l tests
 
   # Run unit tests
-  - phpunit
+  - phpunit --coverage-text --coverage-clover=coverage.clover
 
   # Check for coding standard violations
   - vendor/bin/phpcs --standard=PSR2 src tests
@@ -33,6 +33,9 @@ script:
   # Print statistics about commit messages
   - bin/pgca analyze --provider-revision HEAD~10..HEAD
   - bin/pgca analyze --report-composer=blame --provider-revision HEAD~40..HEAD --tolerance=100
+
+after_script:
+  - php vendor/bin/ocular code-coverage:upload --format=php-clover coverage.clover
 
 notifications:
   email:
