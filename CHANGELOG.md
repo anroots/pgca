@@ -4,23 +4,14 @@ All Notable changes to `anroots/pgca` will be documented in this file. The packa
 
 ## NEXT_VERSION
 
-### Added
+## Added
 - Nothing
+
+## 0.2.1 2015-04-28
 
 ### Deprecated
 - GitHub provider is now an optional dependency
-
-### Changed
-- Nothing
-
-### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
+- Downgraded to PHPUnit 4.5
 
 ## 0.2.0
 
@@ -32,22 +23,10 @@ All Notable changes to `anroots/pgca` will be documented in this file. The packa
 - New command, `rules:show` for showing details about a rule
 - New optional argument `category` for the `rules:list` command
 
-### Deprecated
-- Nothing
-
 ### Changed
 - Config file path for rules is now `analyzer.rules`
 - `rules` command renamed to `rules:list`
 - CLI options are now prefixed with dot notation corresponding to their names in pgca.yml. For example, if the pgca.yml has `provider.path` then the CLI option is `--provider-path`
-
-### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
 
 ## 0.1.0
 
